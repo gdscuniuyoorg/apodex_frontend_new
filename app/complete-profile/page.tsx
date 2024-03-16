@@ -23,11 +23,11 @@ export default function CompleteProfile() {
   });
 console.log(formData)
   return (
-    <div className="bg-[#E9EFF4] h-screen">
+    <div className="h-full">
       <div className="">
-        {page == "page-one" && <SetUpProfile setPage={setPage} formData={formData} setFormData={setFormData}/>}
-        {page == "page-two" && <SetUpProfileTwo setPage={setPage} />}
-        {page == "page-three" && <SetUpProfileThree setPage={setPage} />}
+        {page == "page-one" && <SetUpProfile setPage={setPage} page={page} formData={formData} setFormData={setFormData}/>}
+        {page == "page-two" && <SetUpProfileTwo setPage={setPage} page={page} formData={formData} setFormData={setFormData} />}
+        {page == "page-three" && <SetUpProfileThree setPage={setPage} page={page} formData={formData} setFormData={setFormData} />}
       </div>
     </div>
   );

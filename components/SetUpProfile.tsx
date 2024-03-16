@@ -1,7 +1,11 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import InputBox from "./InputBox";
+import Logo from "@/public/logo.svg";
+import Image from "next/image";
+import ActivePage from "./ActivePage";
 
 type TPageProps = {
+  page: string;
   setPage: Dispatch<SetStateAction<string>>;
   formData: {
     firstName: string;
@@ -36,6 +40,7 @@ type TPageProps = {
 };
 
 export default function SetUpProfile({
+  page,
   setPage,
   formData,
   setFormData,
@@ -51,7 +56,17 @@ export default function SetUpProfile({
 
   return (
     <div>
-      <div className="max-w-screen-sm mx-auto">
+      <div className="max-w-screen-sm mx-auto pb-10">
+        <div className="mx-auto w-max">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            height={60}
+            width={78}
+            className="object-cover"
+          />
+        </div>
+
         <h1 className="font-semibold text-4xl text-center">
           Set up your Profile
         </h1>
@@ -59,7 +74,7 @@ export default function SetUpProfile({
           Care to share some personal details with us?
         </p>
 
-        <div className="mt-10 mb-7">...{/* page bar */}</div>
+        <ActivePage page={page} />
 
         <div className="">
           <div className="">
@@ -117,6 +132,16 @@ export default function SetUpProfile({
               handleChange={handleChange}
             />
           </div>
+
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setPage("page-two");
+            }}
+            className="w-full bg-[#0072CE] py-4 px-2 text-white font-medium text-xl text-center rounded"
+          >
+            Continue
+          </button>
         </div>
       </div>
     </div>
