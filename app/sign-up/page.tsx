@@ -36,24 +36,24 @@ const SignUp = () => {
 
   return (
     <main className="w-full h-screen center">
-      <section className="w-[35%] gap-14 bg-darkBlue h-full p-10 center flex-col">
-        {/* <div className="flex center flex-col gap-3">
-          <h2 className="text-white text-center font-bold text-xl">
+      <section className="w-[35%]  bg-darkBlue h-full p-10 md:flex hidden items-center justify-center flex-col">
+        <div className="flex h-full center flex-col gap-3">
+          <h2 className="text-white text-center font-bold text-lg">
             Join our Talent Tribe
           </h2>
           <p className=" text-gray w-[80%] text-center leading-[19.2px]">
             Grow your career faster with a community of like-minds by
             challenging other talents and developing your skills.
           </p>
-        </div> */}
-        <img src="createAccount.png" alt="globe" />
+        </div>
+        <img src="globe.png" alt="globe" className="size-full object-contain" />
       </section>
 
-      <section className="w-[65%] h-full center">
-        <form action="#" className="w-2/3 flex flex-col gap-10">
+      <section className="md:w-[65%] w-full h-full center">
+        <form action="#" className="md:w-2/3 w-[90%] flex flex-col gap-10">
           <div className="flex flex-col items-start gap-2">
             <div className="flex gap-10">
-              <h2 className="font-bold text-xl">Welcome to</h2>
+              <h2 className="font-bold text-lg md:text-xl">Welcome to</h2>
               <img
                 src="/logo2.png"
                 alt="logo"
@@ -64,14 +64,14 @@ const SignUp = () => {
           </div>
 
           <div className="flex-col flex w-full text-text gap-6">
-            <h2 className="text-[29px] font-bold">Create an account with...</h2>
+            <h2 className="md:text-[29px] text-md font-bold">Create an account with...</h2>
 
             <Button
               link={handleGoogleAuth}
               classname="center gap-3 border border-lightGray"
             >
               <img src="google.png" alt="google" />
-              <p className="font-bold text-md">Google</p>
+              <p className="font-bold md:text-md">Google</p>
             </Button>
 
             <div className="center w-full gap-2">
