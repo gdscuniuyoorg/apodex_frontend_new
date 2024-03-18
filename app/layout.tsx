@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import StoreProvider from "@/providers/StoreProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="en">
-        <body className="bg-[#E9EFF4]">{children}</body>
+        <body className="bg-foundation text-black">
+          {children}
+          <Toaster />
+        </body>
       </html>
     </StoreProvider>
   );

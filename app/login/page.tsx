@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center ">
       <button
-        className="bg-blue-600 mt-[5rem] text-white rounded-xl py-2 px-3 font-[700]"
+        className="bg-blue mt-[5rem] text-white rounded-xl py-2 px-3 font-[700]"
         onClick={googleLoginHandler}
       >
         Login with google
