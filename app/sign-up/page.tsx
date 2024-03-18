@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button, Input } from "@/components/FormComponents";
-import Link from "next/link";
-import { useState } from "react";
-import toast from "react-hot-toast";
+import { Button, Input } from '@/components/FormComponents';
+import Link from 'next/link';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 interface FormData {
   email: string;
@@ -11,11 +11,11 @@ interface FormData {
 
 const SignUp = () => {
   const initialFormData: FormData = {
-    email: "",
+    email: ''
   };
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
   const [isEmailValid, setEmailValid] = useState<boolean>(true);
 
   const validateEmail = (email: string): boolean => {
@@ -31,29 +31,31 @@ const SignUp = () => {
 
   const handleGoogleAuth = (e: any) => {
     e.preventDefault();
-    toast.success("Comming soon!");
+    toast.success('Comming soon!');
   };
 
   return (
     <main className="w-full h-screen center">
-      <section className="w-[75%] flex h-screen object-contain center flex-col">
-        {/* <div className="flex center flex-col gap-3">
-          <h2 className="text-white text-center font-bold text-xl">
-            Join our Talent Tribe
-          </h2>
-          <p className=" text-gray w-[80%] text-center leading-[19.2px]">
-            Grow your career faster with a community of like-minds by
-            challenging other talents and developing your skills.
-          </p>
-        </div> */}
-        <img src="createAccount.png" className="w-full h-full object-cover" alt="globe" />
+      <section className="w-[40%] lg:flex hidden h-screen object-contain ">
+        <img
+          src="/assets/img/createAccountImage.png"
+          className="w-full  object-cover"
+          alt="globe"
+        />
       </section>
 
-      <section className="w-full h-full center">
+      {/* <section className="w-full h-full center">
         <form action="#" className="w-2/3 flex flex-col gap-10">
+=======
+        </div>
+        <img src="globe.png" alt="globe" className="size-full object-contain" />
+      </section> */}
+
+      <section className="lg:w-[65%] w-full h-full flex justify-center center px-4">
+        <form action="#" className=" lg:w-[60%] w-full flex flex-col gap-10">
           <div className="flex flex-col items-start gap-2">
             <div className="flex gap-10">
-              <h2 className="font-bold text-xl">Welcome to</h2>
+              <h2 className="font-bold text-lg md:text-xl">Welcome to</h2>
               <img
                 src="/logo2.png"
                 alt="logo"
@@ -64,14 +66,16 @@ const SignUp = () => {
           </div>
 
           <div className="flex-col flex w-full text-text gap-6">
-            <h2 className="text-[29px] font-bold">Create an account with...</h2>
+            <h2 className="md:text-[29px] text-md font-bold">
+              Create an account with...
+            </h2>
 
             <Button
               link={handleGoogleAuth}
               classname="center gap-3 border border-lightGray"
             >
               <img src="google.png" alt="google" />
-              <p className="font-bold text-md">Google</p>
+              <p className="font-bold md:text-md">Google</p>
             </Button>
 
             <div className="center w-full gap-2">
@@ -89,9 +93,7 @@ const SignUp = () => {
               />
 
               {!isEmailValid && (
-                <p className="text-sm text-error">
-                  Email not valid
-                </p>
+                <p className="text-sm text-error">Email not valid</p>
               )}
             </div>
 

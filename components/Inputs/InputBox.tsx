@@ -25,7 +25,7 @@ const InputBox: FunctionComponent<InputBoxProps> = ({
     <div
       className={`${
         type !== "file" && "border-2"
-      } font-work-sans w-full border-[#D4CECE] px-4 py-3 rounded shadow-[#4a4a6826] mb-5 mt-1 flex flex-col`}
+      } font-work-sans w-full border-lightGray px-4 py-3 rounded shadow-[#4a4a6826] mb-5 mt-1 flex flex-col`}
     >
       {isTextArea ? (
         <textarea
@@ -35,7 +35,7 @@ const InputBox: FunctionComponent<InputBoxProps> = ({
           cols={30}
           rows={10}
           style={{ resize: "none" }}
-          className="w-full outline-none bg-transparent"
+          className="w-full outline-none bg-foundation"
         />
       ) : (
         <input
@@ -45,7 +45,7 @@ const InputBox: FunctionComponent<InputBoxProps> = ({
           onChange={handleChange}
           accept={accept}
           placeholder={placeholder}
-          className={`w-full outline-none bg-transparent ${
+          className={`w-full outline-none bg-foundation ${
             type === "file" && "hidden"
           }`}
         />
