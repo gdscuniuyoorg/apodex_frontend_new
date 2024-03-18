@@ -1,7 +1,7 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import InputBox from "./InputBox";
-import ActivePage from "./ActivePage";
-import Image from "next/image";
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import InputBox from '../Inputs/InputBox';
+import ActivePage from './ActivePage';
+import Image from 'next/image';
 
 type TPageProps = {
   page: string;
@@ -42,14 +42,14 @@ export default function SetUpProfileThree({
   page,
   setPage,
   formData,
-  setFormData,
+  setFormData
 }: TPageProps) {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.value
     }));
   };
 
@@ -60,9 +60,9 @@ export default function SetUpProfileThree({
           <Image
             src="/logo.png"
             alt="Logo"
-            height={60}
-            width={78}
-            className="object-cover"
+            height={80}
+            width={118}
+            className="object-cover  w-[218px] mx-auto"
           />
         </div>
 

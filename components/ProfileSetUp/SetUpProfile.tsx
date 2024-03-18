@@ -1,8 +1,8 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import InputBox from "./InputBox";
-import Logo from "@/public/logo.svg";
-import Image from "next/image";
-import ActivePage from "./ActivePage";
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import InputBox from '../Inputs/InputBox';
+import Logo from '@/public/logo.svg';
+import Image from 'next/image';
+import ActivePage from './ActivePage';
 
 type TPageProps = {
   page: string;
@@ -43,14 +43,14 @@ export default function SetUpProfile({
   page,
   setPage,
   formData,
-  setFormData,
+  setFormData
 }: TPageProps) {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.value
     }));
   };
 
@@ -61,9 +61,9 @@ export default function SetUpProfile({
           <Image
             src="/logo.png"
             alt="Logo"
-            height={60}
-            width={78}
-            className="object-cover"
+            height={80}
+            width={118}
+            className="object-cover  w-[218px] mx-auto"
           />
         </div>
 
@@ -136,7 +136,7 @@ export default function SetUpProfile({
           <button
             onClick={() => {
               window.scrollTo(0, 0);
-              setPage("page-two");
+              setPage('page-two');
             }}
             className="w-full bg-[#0072CE] py-4 px-2 text-white font-medium text-xl text-center rounded"
           >
