@@ -36,7 +36,7 @@ const SignUp = () => {
 
   return (
     <main className="w-full h-screen center">
-      <section className="w-[35%] gap-14 bg-darkBlue h-full p-10 center flex-col">
+      <section className="w-[75%] flex h-screen object-contain center flex-col">
         {/* <div className="flex center flex-col gap-3">
           <h2 className="text-white text-center font-bold text-xl">
             Join our Talent Tribe
@@ -46,10 +46,10 @@ const SignUp = () => {
             challenging other talents and developing your skills.
           </p>
         </div> */}
-        <img src="createAccount.png" alt="globe" />
+        <img src="createAccount.png" className="w-full h-full object-cover" alt="globe" />
       </section>
 
-      <section className="w-[65%] h-full center">
+      <section className="w-full h-full center">
         <form action="#" className="w-2/3 flex flex-col gap-10">
           <div className="flex flex-col items-start gap-2">
             <div className="flex gap-10">
