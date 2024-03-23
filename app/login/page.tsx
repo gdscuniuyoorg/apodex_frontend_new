@@ -5,6 +5,7 @@ import { Button, Input } from "@/components/FormComponents";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 interface FormData {
   email: string;
@@ -12,6 +13,9 @@ interface FormData {
 }
 
 const Login = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
   const initialFormData: FormData = {
     email: "",
     password: "",
@@ -20,6 +24,7 @@ const Login = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [email, setEmail] = useState<string>("");
   const [isEmailValid, setEmailValid] = useState<boolean>(true);
+  const [show, setShow] = useState(false);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,6 +35,11 @@ const Login = () => {
     const newEmail = e.target.value;
     setFormData({ ...formData, email: newEmail });
     setEmailValid(validateEmail(newEmail));
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setFormData({ ...formData, password: newPassword });
   };
 
   const handleGoogleAuth = (e: any) => {
@@ -105,10 +115,15 @@ const Login = () => {
             </div>
             <div className="">
               <Input
-                onChange={(e: any) => handleEmailChange(e)}
+                onChange={(e: any) => handlePasswordChange(e)}
                 value={formData.password}
-                type="password"
                 label="Enter your password"
+                type={show ? "text" : "password"}
+                postIcon="/eye.svg"
+                postIconAction={(e: any) => {
+                  e.preventDefault();
+                  setShow(show ? false : true);
+                }}
               />
             </div>
 

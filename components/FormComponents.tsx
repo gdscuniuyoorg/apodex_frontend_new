@@ -34,6 +34,10 @@ interface InputProps {
   value?: any;
   placeholder?: string;
   type?: string;
+  postIcon?: any;
+  imageClassname?: string;
+  buttonClassnames?: any;
+  postIconAction?: (e: any) => void;
 }
 
 export const Input = ({
@@ -43,11 +47,35 @@ export const Input = ({
   value,
   onChange,
   placeholder,
+  imageClassname,
+  buttonClassnames,
+  postIcon,
+  postIconAction,
   type = "text",
 }: InputProps) => {
+  if (type === "textbox") {
+    return (
+      <div className={classnames("flex flex-col gap-2 ", classname)}>
+        {label && <label className="block text-sm font-medium">{label}</label>}
+        <textarea
+          id={label}
+          name={label}
+          rows={4}
+          cols={50}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          className="border border-[#BFBEBE] rounded-md focus:outline-brand focus:bg-none p-3 placeholder-[#777373] bg-transparent w-full"
+        ></textarea>
+      </div>
+    );
+  }
+
   return (
     <div className={classnames("flex flex-col gap-2 ", classname)}>
-      {label && <small className="font-medium text-base text-[#817E7E]">{label}</small>}
+      {label && (
+        <small className="font-medium text-base text-[#817E7E]">{label}</small>
+      )}
 
       <div className="flex items-center input-wrapper outline-none border-2 border-lightGray focus:outline-none bg-transparent rounded">
         <input
@@ -59,6 +87,19 @@ export const Input = ({
           onChange={onChange}
           name={name}
         />
+
+        {postIcon && (
+          <button
+            className={classnames("", buttonClassnames)}
+            onClick={postIconAction}
+          >
+            <img
+              className={classnames("h-4 w-4 mr-3", imageClassname)}
+              src={postIcon}
+              alt=""
+            />
+          </button>
+        )}
       </div>
     </div>
   );
