@@ -26,7 +26,6 @@ export const login = createAsyncThunk(
       return await AuthService.login(data);
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
-        // Log the error message
         console.log(err.response.data.message);
         return rejectWithValue(err.response.data.message);
       }

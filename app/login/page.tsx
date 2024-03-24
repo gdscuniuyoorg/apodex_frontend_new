@@ -3,9 +3,12 @@
 
 import { Button, Input } from "@/components/FormComponents";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/common/hooks";
+import { login } from "@/redux/features/authSlice";
+import * as states from "@/services/states";
 
 interface FormData {
   email: string;
@@ -15,6 +18,8 @@ interface FormData {
 const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
+  const { status, isAuth } = useAppSelector(state => state.auth);
   
   const initialFormData: FormData = {
     email: "",
@@ -46,6 +51,30 @@ const Login = () => {
     e.preventDefault();
     toast.success("Comming soon!");
   };
+
+  function submit() {
+    const { email, password } = formData
+    if (!email || !password) {
+        toast.error("Please enter both email and password.");
+        return;
+    }
+    
+    dispatch(login({ email, password }))
+    .unwrap()
+    .then((data) => {
+    toast.success("Login successful");
+    })
+    .catch((error) => {
+    toast.error(error);
+    }); 
+}
+
+useEffect(() => {
+    if (isAuth) {
+        const destinedPath = searchParams.get('route') || '/'
+        router.push(destinedPath)
+    }
+}, [status])
 
   return (
     <main className="w-full h-screen center">
@@ -130,8 +159,10 @@ const Login = () => {
             <Button
               validation={!formData.email || !isEmailValid}
               classname="bg-blue text-white font-semibold"
+              loading={status === states.FETCHING}
+              cta="Login"
+              link={(e: any) => { e.preventDefault(); submit() }}
             >
-              Log In
             </Button>
 
             <div className="flex gap-3">

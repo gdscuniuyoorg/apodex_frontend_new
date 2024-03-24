@@ -16,15 +16,15 @@ export const _clearToken = () => {
 
 export default class AuthService {
   static async login({
-    phone: phone_number,
+    email: email,
     password,
   }: {
-    phone: string;
+    email: string;
     password: string;
   }) {
     try {
       const response = await ApiRequestClient.post(ApiRoutes.login, {
-        phone_number,
+        email,
         password,
       });
 
