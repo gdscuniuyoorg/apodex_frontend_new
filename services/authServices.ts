@@ -37,10 +37,26 @@ export default class AuthService {
         throw new Error(errorMessage);
       }
 
-      _saveToken(response.data.data.token);
-      return response.data.data;
+      _saveToken(response.data.token);
+      return response.data;
     } catch (error) {
       throw error;
     }
   }
+
+  static async loginWithGoogle(code: string) {
+    try {
+      const response = await ApiRequestClient.post(ApiRoutes.googleLogin, { code });
+  
+      if (!response || !response.data) {
+        throw new Error("Unexpected error occurred. Please try again.");
+      }
+  
+      _saveToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  
 }

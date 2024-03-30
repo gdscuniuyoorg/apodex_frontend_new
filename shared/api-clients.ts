@@ -37,7 +37,6 @@ class ApiClient {
   getHeaders() {
     const headers = {
       Authorization: `Bearer ${_getUserToken()}`,
-      "tenant-id": "64cd4f4ea3219dee18c82f6b",
     };
     return headers;
   }

@@ -34,6 +34,22 @@ export const login = createAsyncThunk(
   }
 );
 
+export const loginWithGoogle = createAsyncThunk(
+  "dsh/loginWithGoogle",
+  async (code: string, { rejectWithValue }) => {
+    try {
+      return await AuthService.loginWithGoogle(code);
+    } catch (err: any) {
+      if (err.response && err.response.data && err.response.data.message) {
+        console.log(err.response.data.message);
+        return rejectWithValue(err.response.data.message);
+      }
+      throw err;
+    }
+  }
+);
+
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
