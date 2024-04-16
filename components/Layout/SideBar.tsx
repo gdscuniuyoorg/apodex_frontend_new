@@ -11,11 +11,11 @@ const SideBar = ({ className }: { className: string }) => {
   return (
     <aside className={className}>
       <div className="flex flex-col ">
-        <div className="border-b-[.1px] border-[#a7a9ae] flex gap-[1.5rem] flex-col pb-[1.5rem] mb-[1.5rem]">
+        <div className=" border-b-[1px] border-[#C2C2C4]/[20%] flex gap-[1.5rem] flex-col pb-[1.5rem] mb-[1.5rem]">
           <NavLink name="Home" icon={<GoHomeFill />} />
-          <NavLink name="Talents" icon={<IoIosPeople />} />{" "}
-          <NavLink name="Forum" icon={<MdForum />} />{" "}
-          <NavLink name="Challenges" icon={<MdReportProblem />} />{" "}
+          <NavLink name="Talents" icon={<IoIosPeople />} />{' '}
+          <NavLink name="Forum" icon={<MdForum />} />{' '}
+          <NavLink name="Challenges" icon={<MdReportProblem />} />{' '}
           <NavLink name="Updates" icon={<MdUpdate />} />
           <NavLink name="Job Listings" icon={<GoHomeFill />} />
         </div>

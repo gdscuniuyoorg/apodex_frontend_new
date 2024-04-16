@@ -14,11 +14,11 @@ const NavLink = ({ icon, name }: { icon: ReactElement; name: string }) => {
 
   return (
     <Link
-      href={name === "Home" ? "/dashboard" : `/dashboard/${name.toLowerCase()}`}
+      href={name === 'Home' ? '/dashboard' : `/dashboard/${name.toLowerCase()}`}
       className={`font-semibold flex gap-3 items-center ${activeClass}`}
     >
       <span className="text-[1.7rem]">{icon}</span>
-      <h2 className="text-[1.1rem]">{name}</h2>
+      <h2 className="text-[1.1rem] font-Switzer">{name}</h2>
     </Link>
   );
 };
