@@ -10,8 +10,8 @@ import { BsFillBagFill } from "react-icons/bs";
 const SideBar = ({ className }: { className: string }) => {
   return (
     <aside className={className}>
-      <div className="flex flex-col gap-3">
-        <div className="border-b flex gap-3 flex-col">
+      <div className="flex flex-col ">
+        <div className="border-b-[.1px] border-[#a7a9ae] flex gap-[1.5rem] flex-col pb-[1.5rem] mb-[1.5rem]">
           <NavLink name="Home" icon={<GoHomeFill />} />
           <NavLink name="Talents" icon={<IoIosPeople />} />{" "}
           <NavLink name="Forum" icon={<MdForum />} />{" "}
@@ -19,13 +19,13 @@ const SideBar = ({ className }: { className: string }) => {
           <NavLink name="Updates" icon={<MdUpdate />} />
           <NavLink name="Job Listings" icon={<GoHomeFill />} />
         </div>
-        <div className=" flex gap-2 flex-col">
+        <div className=" flex gap-[1.5rem] flex-col">
           <NavLink name="Profiles" icon={<CgProfile />} />
           <NavLink name="Notifications" icon={<GoHomeFill />} />
           <NavLink name="Settings" icon={<BsFillBagFill />} />
         </div>
       </div>
-      <div>
+      <div className="text-[#a7a9ae]">
         <h1>John Doe</h1>
         <p>Contact Support</p>
       </div>

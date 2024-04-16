@@ -2,7 +2,7 @@ import { IoNotificationsSharp } from "react-icons/io5";
 
 const Nav = () => {
   return (
-    <nav className="flex items-center justify-between h-[5rem] px-8">
+    <nav className="flex items-center justify-between h-[5rem] px-8 border-b-[.1px] border-[#a7a9ae]">
       <img src="/logo.png" alt="apodex-logo" className="h-[7rem]" />
 
       <div className="flex flex-1 items-center justify-end gap-3">
