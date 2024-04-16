@@ -3,7 +3,7 @@ import SearchIcon from "@/components/Icons/searchIcon";
 import NotificationsIcon from '@/components/Icons/NotificationsIcon';
 const Nav = () => {
   return (
-    <nav className="flex items-center justify-between px-8 py-3 border-b-[1px] border-[#C2C2C4]/[20%]">
+    <nav className="flex items-center justify-between px-8 py-3 border-b-[1px] border-[#C2C2C4]/[50%]">
       <img src="/apodexLogo.png" alt="apodex-logo" className="h-[4rem]" />
 
       <div className="flex flex-1 items-center justify-end gap-3">
