@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Apodex-Front-end
+
+## Description
+
+This is the front-end repository for the Team Apodex project. 
+
+## Technologies Used
+
+- `React.js`
+- `Next.js`
+- `ECMAScript (ES6+)`
+- `TypeScript`
+- `Tailwind CSS`
+- `Redux`
+
+## Project Type
+
+- FULL-STACK
 
 ## Getting Started
 
-First, run the development server:
+To get started with Apodex-Front-end, follow these simple steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone this repository to your local machine.
+2. Install the required dependencies by running:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   npm install
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+4. Open your browser and go to [http://localhost:3000](http://localhost:3000) to see the app in action.
 
-To learn more about Next.js, take a look at the following resources:
+## Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Here are some of the key dependencies used in this project:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [@reduxjs/toolkit](https://redux-toolkit.js.org/): State management for React applications.
+- [autoprefixer](https://github.com/postcss/autoprefixer): A CSS autoprefixer.
+- [eslint](https://eslint.org/): JavaScript and TypeScript code analysis tool.
+- [eslint-config-next](https://github.com/vercel/eslint-config-next): ESLint config for Next.js projects.
+- [formik](https://formik.org/): A form library for React.
+- [next](https://nextjs.org/): The Next.js framework for React.
+- [postcss](https://github.com/postcss/postcss): A CSS post-processor.
+- [react](https://reactjs.org/): A JavaScript library for building user interfaces.
+- [react-dom](https://reactjs.org/docs/react-dom.html): React package for working with the DOM.
+- [react-hook-form](https://react-hook-form.com/): Performant form library for React.
+- [react-icons](https://react-icons.github.io/react-icons/): A library for popular icon sets in React.
+- [react-redux](https://react-redux.js.org/): Official React bindings for Redux.
+- [tailwindcss](https://tailwindcss.com/): A utility-first CSS framework.
+- [yup](https://github.com/jquense/yup): A schema validation library.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here is [Contributing Guidelines](CONTRIBUTING.md).
