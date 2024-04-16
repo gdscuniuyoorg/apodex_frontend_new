@@ -1,5 +1,5 @@
 import { IoNotificationsSharp } from "react-icons/io5";
-import SearchIcon from "@/components/Icons/searchIcon";
+import SearchIcon from "@/components/Icons/SearchIcon";
 import NotificationsIcon from '@/components/Icons/NotificationsIcon';
 const Nav = () => {
   return (
