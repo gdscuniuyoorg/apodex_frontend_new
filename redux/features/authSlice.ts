@@ -1,5 +1,5 @@
 // slices/counterSlice.js
-import AuthService from "@/services/authServices";
+import AuthService, { _saveToken } from "@/services/authServices";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as states from "../../services/states";
 
@@ -49,6 +49,23 @@ export const loginWithGoogle = createAsyncThunk(
   }
 );
 
+export const signUp = createAsyncThunk(
+  "dsh/signup",
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await AuthService.signUp(data);
+      if (response.status === "success") {
+        _saveToken(response.token);
+        return response.user;
+      } else {
+        return rejectWithValue(response.message);
+      }
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 const authSlice = createSlice({
   name: "auth",
@@ -75,6 +92,19 @@ const authSlice = createSlice({
     builder.addCase(login.rejected, (state) => {
       state.status = states.ERROR;
     });
+
+    builder.addCase(signUp.pending, (state) => {
+      state.status = states.FETCHING;
+    });
+    builder.addCase(signUp.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isAuth = true;
+      state.status = states.FETCHED;
+    });
+    builder.addCase(signUp.rejected, (state) => {
+      state.status = states.ERROR;
+    });
+    
   },
 });
 

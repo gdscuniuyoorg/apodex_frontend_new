@@ -58,5 +58,37 @@ export default class AuthService {
       throw error;
     }
   }
+
+  static async signUp({
+    email: email,
+    password,
+    passwordConfirm,
+  }: {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  }) {
+    try {
+      const response = await ApiRequestClient.post(ApiRoutes.signup, {
+        email,
+        password,
+        passwordConfirm
+      });
+
+      if (!response) {
+        throw new Error("Unexpected error occurred. Please try again.");
+      }
+
+      if (response?.data === false) {
+        const errorMessage = response.data.message || "Something went wrong!.";
+        throw new Error(errorMessage);
+      }
+
+      _saveToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
   
 }
