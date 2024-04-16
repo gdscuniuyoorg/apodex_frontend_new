@@ -7,7 +7,7 @@ const Nav = () => {
       <img src="/apodexLogo.png" alt="apodex-logo" className="h-[4rem]" />
 
       <div className="flex flex-1 items-center justify-end gap-3">
-        <div className=" relative w-[50%] lg: block hidden">
+        <div className=" relative w-[50%] lg:block hidden">
           <input
             className=" border-[1px] border-neutral-300 text-neutral-300 !bg-lightBlue-100 pl-[50px] outline-none rounded-full p-3 h-[2.7rem] w-full"
             type="text"
