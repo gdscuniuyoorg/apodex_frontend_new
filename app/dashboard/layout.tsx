@@ -15,9 +15,8 @@ export default function RootLayout({
   return (
     <div className="flex flex-col h-full">
       <Nav />
-      <div className="flex w-full h-full flex-1  py-2 px-6">
+      <div className="flex w-full h-full flex-1 git a px-6">
         <SideBar className="w-1/6 h-full flex flex-col justify-between p-[1rem] border-r-[.1px] border-r-[#a7a9ae]" />
-
         <main className="w-5/6 h-full">{children}</main>
       </div>
     </div>
