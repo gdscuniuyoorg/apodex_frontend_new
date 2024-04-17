@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+"use client"
+
 import NavLink from "../atoms/NavLink";
 import { GoHomeFill } from "react-icons/go";
 import { IoIosPeople } from "react-icons/io";

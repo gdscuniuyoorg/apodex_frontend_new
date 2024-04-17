@@ -3,9 +3,9 @@
 
 import { Button, Input } from "@/components/FormComponents";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { login, loginWithGoogle } from "@/redux/features/authSlice";
 import * as states from "@/services/states";
@@ -27,7 +27,6 @@ const Login = () => {
   };
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [email, setEmail] = useState<string>("");
   const [isEmailValid, setEmailValid] = useState<boolean>(true);
   const [show, setShow] = useState(false);
 
@@ -86,7 +85,7 @@ const Login = () => {
     }
   }, [dispatch, router]);
 
-  console.log(isAuth);
+  // console.log(isAuth);
 
   useEffect(() => {
     if (isAuth) {

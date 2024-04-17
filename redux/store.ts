@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSReducer from "./features/authSlice";
+import userReducer from "./features/userSlice"
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   reducer: {
     auth: authSReducer,
+    user: userReducer,
   },
 });
 
