@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center  gap-6 justify-center p-24">
+    <main className="flex min-h-screen flex-col items-center  gap-6 justify-center ">
       This is for the landing page maybe?
-      <div className="w-full flex items-center justify-center gap-4">
+      <div className="w-full flex lg:flex-row flex-col items-center justify-center gap-4">
         <Link
           href="/login"
           className="font-light flex gap-3 btn-brand items-center"
