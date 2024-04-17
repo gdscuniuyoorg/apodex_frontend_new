@@ -63,3 +63,6 @@ body {
     width: 96%;
   }
 }
+.btn-brand {
+  @apply border-brand bg-brand  border-2 px-10 py-3 rounded-full text-sm;
+}
