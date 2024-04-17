@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { ApiRoutes } from "./apiRoutes";
 import { ApiRequestClient } from "@/shared/api-clients";
 
