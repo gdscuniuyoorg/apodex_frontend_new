@@ -1,30 +1,29 @@
 import React from 'react'
-import Button from './Button'
+import Button from '@/components/buttons/Button'
 import ChallengeIcon from '@/components/Icons/ChallengeIcon';
-import Challengeimg from '../../../components/Icons/Challengeimg';
-import Vector from '../../../components/Icons/vector';
-import '../challenges/Challenges.css';
+import Challengeimg from '@/components/Icons/Challengeimg';
+import PlusIcon from '@/components/Icons/PlusIcon';
 
 export default function Challenge() {
   return (
-    <div>
-      <div className="wrapper flex flex-row items-center justify-between p-10">
-        <h3 className="first font-semibold text-[33px] leadding-[43.56px] text-[#535458]">
+    <div className="w-full container py-5">
+      <div className=" lg:flex hidden flex-row items-center justify-between p-10">
+        <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458]">
           Challenges
         </h3>
         <Button className="">
-          <Vector></Vector>
+          <PlusIcon />
           <p>Create a challenge</p>
         </Button>
       </div>
-      <div className="flex flex-column items-center justify-center">
-        <Challengeimg className='ill'></Challengeimg>
+      <div className="flex flex-col items-center w-full justify-center">
+        <Challengeimg className="" />
       </div>
-      <div className="empty text-center m-auto w-[35%]">
+      <div className="w-full text-center flex flex-col justify-center items-center">
         <h4 className="text-[#535458] font-semibold p-2">
           Let’s Kick Things Off with a Challenge
         </h4>
-        <p className="main text-[#88898C] text-[13px]">
+        <p className=" text-[#88898C] text-[13px] lg:w-[40%]">
           You have not created any Challenge yet. You can click the button below
           or above to start. You will be able to access information regarding to
           Challenges on this page
@@ -32,7 +31,7 @@ export default function Challenge() {
       </div>
       <div className="flex items-center justify-center p-5">
         <Button className="">
-          <Vector></Vector>
+          <PlusIcon />
           <p>Create a challenge</p>
         </Button>
       </div>
