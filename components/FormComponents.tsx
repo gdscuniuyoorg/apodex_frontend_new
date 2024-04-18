@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import classnames from "@/app/shared/utils/classnames";
+import { useRef, useState } from "react";
 
 export const Button = ({
   link,
@@ -101,6 +103,80 @@ export const Input = ({
           </button>
         )}
       </div>
+    </div>
+  );
+};
+
+export const FileUpload = ({
+  image,
+  handleFileChange,
+  classname,
+  imageClassname = "rounded-md",
+}: any) => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [imagePreview, setImagePreview] = useState<any>(null);
+
+  const onFileChange = (e: any) => {
+    const selectedFile = e.target.files[0];
+    setImagePreview(selectedFile);
+    handleFileChange(selectedFile);
+  };
+
+  const clear = () => {
+    setImagePreview(null);
+    handleFileChange();
+  };
+
+  return (
+    <div className={classnames("", classname)}>
+      <input
+        type="file"
+        id="fileUpload"
+        className=""
+        onChange={(e) => onFileChange(e)}
+        style={{ display: "none" }}
+        ref={fileInputRef}
+      />
+
+      {!imagePreview && !image ? (
+        <>
+          <div
+            className="bg-background h-[250px] cursor-pointer flex items-center rounded-md border-lightGray border p-2 text-center justify-center"
+            onClick={() => fileInputRef?.current?.click()}
+          >
+            <img src="/uploadIcon.svg" alt="" />
+            <p className="text-blue">Click to upload picture</p>
+          </div>
+        </>
+      ) : imagePreview ? (
+        <div className="flex flex-col justify-start items-start">
+          <img
+            src={URL.createObjectURL(imagePreview)}
+            alt="Selected Image"
+            className={classnames("object-cover w-full h-52", imageClassname)}
+            onClick={() => fileInputRef?.current?.click()}
+          />
+
+          <span
+            className="p-2 flex gap-2 mt-2 bg-[#B2B3B533] w-auto"
+            onClick={clear}
+          >
+            <p className="text-dark font-light">
+              {(imagePreview.name as string) || "file.png"}
+            </p>
+            <img src="/closeIcon.svg" alt="" className="cursor-pointer" />
+          </span>
+        </div>
+      ) : (
+        image && (
+          <img
+            src={image}
+            alt="Image"
+            className={classnames("object-cover w-full h-full", imageClassname)}
+          />
+        )
+      )}
     </div>
   );
 };

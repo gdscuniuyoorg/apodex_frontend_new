@@ -1,25 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { Button, Input } from "@/components/FormComponents";
+import { signUp } from "@/redux/features/authSlice";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 interface FormData {
   email: string;
   password: string;
+  passwordConfirm: string;
 }
 
 const SignUp = () => {
+  const dispatch = useAppDispatch();
+  const { status, isAuth } = useAppSelector((state) => state.auth);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const initialFormData: FormData = {
     email: "",
     password: "",
+    passwordConfirm: ""
   };
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [email, setEmail] = useState<string>("");
   const [isEmailValid, setEmailValid] = useState<boolean>(true);
+  const [show, setShow] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(true);
+
+  console.log(formData)
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -32,13 +45,47 @@ const SignUp = () => {
     setEmailValid(validateEmail(newEmail));
   };
 
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setFormData({ ...formData, password: newPassword });
+  };
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPasswordConfirm = e.target.value;
+    setFormData({ ...formData, passwordConfirm: newPasswordConfirm });
+    setPasswordMatch(newPasswordConfirm === formData.password);
+  };
+
   const handleGoogleAuth = (e: any) => {
     e.preventDefault();
     toast.success("Comming soon!");
   };
 
+  function submit() {
+    const { email, password, passwordConfirm } = formData;
+    dispatch(signUp({ email, password, passwordConfirm }))
+      .unwrap()
+      .then((data) => {
+        toast.success("Sign up successful");
+      })
+      .catch((error) => {
+        // Ensure that a string is passed to toast.error
+        // console.log(error)
+        toast.error(error);
+      });
+  }
+
+  useEffect(() => {
+    if (isAuth) {
+      const destinedPath = searchParams.get("route") || "/complete-profile";
+      router.push(destinedPath);
+    }
+  }, [isAuth, router, searchParams, status]);
+  
+  
+
   return (
-    <main className="w-full h-screen center">
+    <main className="w-full min-h-screen center">
       <section className="w-[40%] relative resize-none bg-[#001E36] lg:flex items-center justify-center hidden h-screen object-contain">
         <div>
           <div className="text-center w-[340px] mx-auto">
@@ -105,16 +152,39 @@ const SignUp = () => {
             </div>
             <div className="">
               <Input
-                onChange={(e: any) => handleEmailChange(e)}
+                onChange={(e: any) => handlePasswordChange(e)}
                 value={formData.password}
-                type="password"
                 label="Create a password"
+                type={show ? "text" : "password"}
+                postIcon="/eye.svg"
+                postIconAction={(e: any) => {
+                  e.preventDefault();
+                  setShow(show ? false : true);
+                }}
               />
+            </div>
+            <div className="">
+              <Input
+                onChange={(e: any) => handleConfirmPasswordChange(e)}
+                value={formData.passwordConfirm}
+                label="Confirm your password"
+                type={show ? "text" : "password"}
+                postIcon="/eye.svg"
+                postIconAction={(e: any) => {
+                  e.preventDefault();
+                  setShow(show ? false : true);
+                }}
+              />
+              {!passwordMatch && <p className="text-sm text-error">Passwords do not match</p>}
             </div>
 
             <Button
-              validation={!formData.email || !isEmailValid}
+              validation={!formData.email || !isEmailValid || !passwordMatch}
               classname="bg-blue text-white font-semibold"
+              link={(e: any) => {
+                e.preventDefault();
+                submit();
+              }}
             >
               Continue
             </Button>

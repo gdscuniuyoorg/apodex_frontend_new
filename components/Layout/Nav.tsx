@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+"use client"
+
 import { IoNotificationsSharp } from "react-icons/io5";
 import SearchIcon from "@/components/Icons/SearchIcon";
 import NotificationsIcon from '@/components/Icons/NotificationsIcon';

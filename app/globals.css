@@ -22,11 +22,16 @@
   justify-content: space-between;
 }
 
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 html,
 body {
   height: 100%;
-font-family: 'Switzer', sans-serif;
+  font-family: 'Switzer', sans-serif;
 }
+
 .container {
   /* max-width: 1200px; */
   padding-right: 15px;
@@ -57,4 +62,7 @@ font-family: 'Switzer', sans-serif;
   .container {
     width: 96%;
   }
+}
+.btn-brand {
+  @apply border-brand bg-brand  border-2 px-10 py-3 rounded-full text-sm;
 }
