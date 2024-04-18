@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from './Button'
-import Challengeimg from './assets/Challengeimg';
-import Vector from './assets/vector';
+import ChallengeIcon from '@/components/Icons/ChallengeIcon';
+import Challengeimg from '../../../components/Icons/Challengeimg';
+import Vector from '../../../components/Icons/vector';
 import '../challenges/Challenges.css';
 
 export default function Challenge() {
