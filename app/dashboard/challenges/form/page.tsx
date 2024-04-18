@@ -1,17 +1,15 @@
-// Form.tsx
+
 "use client";
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-// import dynamic from "next/dynamic";
-import Button from "../Button";
-// const DynamicButton = dynamic(() => import("../Button"), { ssr: false }); // Dynamically import Button component
+import Button from "@/components/buttons/Button";
+
 
 const ChallengeForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    // Add more fields as needed
   });
 
   const router = useRouter();
@@ -30,13 +28,10 @@ const ChallengeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic to submit the form data (e.g., send it to the server)
     console.log("Form data:", formData);
-    // Clear the form fields after submission if needed
     setFormData({
       title: "",
       description: "",
-      // Add more fields as needed
     });
   };
 
