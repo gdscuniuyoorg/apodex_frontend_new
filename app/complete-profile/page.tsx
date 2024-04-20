@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Button, FileUpload, Input } from "@/components/FormComponents";
 import ActivePage from "@/components/ProfileSetUp/ActivePage";
 
+
 interface FormData {
   firstName: string;
   lastName: string;

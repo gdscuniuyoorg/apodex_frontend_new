@@ -1,17 +1,26 @@
-import React from 'react'
-import Button from '@/components/buttons/Button'
+"use client";
+import React from 'react';
+import Button from '@/components/buttons/Button';
 import ChallengeIcon from '@/components/Icons/ChallengeIcon';
 import Challengeimg from '@/components/Icons/Challengeimg';
 import PlusIcon from '@/components/Icons/PlusIcon';
+import { useRouter } from 'next/navigation';
+
 
 export default function Challenge() {
+  const router = useRouter();
+
+  const handleNext = () => {
+    router.push("challenges/form");
+  };
+
   return (
     <div className="w-full container py-5">
       <div className=" lg:flex hidden flex-row items-center justify-between p-10">
         <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458]">
           Challenges
         </h3>
-        <Button className="">
+        <Button className="" onClick={handleNext}>
           <PlusIcon />
           <p>Create a challenge</p>
         </Button>
@@ -30,7 +39,7 @@ export default function Challenge() {
         </p>
       </div>
       <div className="flex items-center justify-center p-5">
-        <Button className="">
+        <Button className="" onClick={handleNext}>
           <PlusIcon />
           <p>Create a challenge</p>
         </Button>
@@ -38,4 +47,3 @@ export default function Challenge() {
     </div>
   );
 }
-
