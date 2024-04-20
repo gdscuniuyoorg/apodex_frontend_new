@@ -63,14 +63,14 @@ export function CalendarForm() {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        " pl-3 text-left  font-work-sans border-lightGray border-2 px-4 py-3 rounded shadow-[#4a4a6826] mb-5 mt-1  ",
+                        " pl-3 text-left h-14 font-work-sans border-lightGray border-2 px-4 py-3 rounded shadow-[#4a4a6826] mb-5 mt-1 w-full",
                         !field.value && "text-muted-foreground"
                       )}
                     >
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (
-                        <span>Pick a date</span>
+                        <span className="text-[#D4CECE]">Pick a date</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>

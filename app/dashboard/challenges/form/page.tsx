@@ -10,7 +10,6 @@ import { boolean } from "zod";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-
 const ChallengeForm = () => {
   const [formData, setFormData] = useState({
     challengeName: "",
@@ -19,7 +18,26 @@ const ChallengeForm = () => {
     start: "",
     end: "",
   });
+
   const [value, setValue] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+
+
+   const validateForm = () => {
+     // Check if all required fields are filled out
+     const { challengeName, challengeDescription, Add, start, end } = formData;
+     if (
+       challengeName.trim() !== "" &&
+       challengeDescription.trim() !== "" &&
+       Add.trim() !== "" &&
+       start.trim() !== "" &&
+       end.trim() !== ""
+     ) {
+       setIsFormValid(true);
+     } else {
+       setIsFormValid(false);
+     }
+   };
 
   // code to handle drag and drop event goes here
   const fileUpload = useRef<HTMLDivElement>(null);
