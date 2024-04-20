@@ -10,6 +10,7 @@ import { boolean } from "zod";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+
 const ChallengeForm = () => {
   const [formData, setFormData] = useState({
     challengeName: "",
@@ -140,7 +141,12 @@ const ChallengeForm = () => {
                 Rules
               </label>
             </div>
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill
+              theme="snow"
+              className='border-2 border-gray rounded-[4px] w-full h-[10rem] text-editor flex flex-col-reverse bg-white"'
+              value={value}
+              onChange={setValue}
+            />
           </div>
 
           <div>
