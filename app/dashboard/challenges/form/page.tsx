@@ -132,7 +132,7 @@ const ChallengeForm = () => {
               id="challengeName"
               name="challengeName"
               placeholder="Enter challenge name"
-              value={formData.challengeName}
+              value={challengeName}
               handleChange={handleChange}
             />
           </div>
@@ -146,7 +146,7 @@ const ChallengeForm = () => {
               id="challengeDescription"
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
-              value={formData.challengeDescription }
+              value={challengeDescription }
               handleChange={handleChange}
             />
           </div>
