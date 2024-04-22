@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <div className="flex flex-col h-full">
       <Nav />
-      <div className="flex w-full h-full flex-1">
-        <SideBar className="w-1/6 h-full  flex-col hidden lg:flex flex-shrink-0 justify-between py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] " />
-        <main className="lg:w-5/6 w-full h-full">{children}</main>
+      <div className="flex w-full h-full flex-1 pt-[5.5rem]">
+        <SideBar className="w-1/6 h-full  flex-col hidden lg:flex flex-shrink-0 justify-between py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] fixed" />
+        <main className="lg:w-5/6 lg:pl-[24rem] w-full h-full">{children}</main>
       </div>
     </div>
   );
