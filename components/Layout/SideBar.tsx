@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
+"use client";
 
 import NavLink from "../atoms/NavLink";
 import { GoHomeFill } from "react-icons/go";
@@ -9,25 +9,25 @@ import { CgProfile } from "react-icons/cg";
 import { MdReportProblem } from "react-icons/md";
 import { MdUpdate } from "react-icons/md";
 import { BsFillBagFill } from "react-icons/bs";
-import NotificationsIcon from '@/components/Icons/NotificationsIcon';
-import HomeIcon from "@/components/Icons/HomeIcon"; 
-import TalentIcon from "@/components/Icons/TalentIcon"; 
-import ForumIcon from '@/components/Icons/ForumIcon';
-import ChallengeIcon from '@/components/Icons/ChallengeIcon';
-import UpdatesIcon from '@/components/Icons/UpdatesIcon';
-import JobListingIcon from '@/components/Icons/JobListingIcon';
-import ProfileIcon from '@/components/Icons/ProfileIcon';
-import SettingsIcon from '@/components/Icons/SettingsIcon';
-import SupportAgentIcon from '@/components/Icons/SupportAgentIcon';
+import NotificationsIcon from "@/components/Icons/NotificationsIcon";
+import HomeIcon from "@/components/Icons/HomeIcon";
+import TalentIcon from "@/components/Icons/TalentIcon";
+import ForumIcon from "@/components/Icons/ForumIcon";
+import ChallengeIcon from "@/components/Icons/ChallengeIcon";
+import UpdatesIcon from "@/components/Icons/UpdatesIcon";
+import JobListingIcon from "@/components/Icons/JobListingIcon";
+import ProfileIcon from "@/components/Icons/ProfileIcon";
+import SettingsIcon from "@/components/Icons/SettingsIcon";
+import SupportAgentIcon from "@/components/Icons/SupportAgentIcon";
 const SideBar = ({ className }: { className: string }) => {
   return (
     <aside className={`flex flex-col justify-between ${className}`}>
       <div className="flex flex-col ">
         <div className=" border-b-[1px] border-[#C2C2C4]/[50%] flex gap-[1.5rem] flex-col pb-[1.5rem] mb-[1.5rem]">
           <NavLink name="Home" icon={<HomeIcon />} />
-          <NavLink name="Talents" icon={<TalentIcon />} />{' '}
-          <NavLink name="Forum" icon={<ForumIcon />} />{' '}
-          <NavLink name="Challenges" icon={<ChallengeIcon />} />{' '}
+          <NavLink name="Talents" icon={<TalentIcon />} />{" "}
+          <NavLink name="Forum" icon={<ForumIcon />} />{" "}
+          <NavLink name="Challenges" icon={<ChallengeIcon />} />{" "}
           <NavLink name="Updates" icon={<UpdatesIcon />} />
           <NavLink name="Job Listings" icon={<JobListingIcon />} />
         </div>
