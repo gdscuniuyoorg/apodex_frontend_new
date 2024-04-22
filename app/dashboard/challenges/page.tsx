@@ -1,11 +1,10 @@
 "use client";
-import React from 'react';
-import Button from '@/components/buttons/Button';
-import ChallengeIcon from '@/components/Icons/ChallengeIcon';
-import Challengeimg from '@/components/Icons/Challengeimg';
-import PlusIcon from '@/components/Icons/PlusIcon';
-import { useRouter } from 'next/navigation';
-
+import React from "react";
+import Button from "@/components/buttons/Button";
+import ChallengeIcon from "@/components/Icons/ChallengeIcon";
+import Challengeimg from "@/components/Icons/Challengeimg";
+import PlusIcon from "@/components/Icons/PlusIcon";
+import { useRouter } from "next/navigation";
 
 export default function Challenge() {
   const router = useRouter();

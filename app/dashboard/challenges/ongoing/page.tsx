@@ -5,7 +5,7 @@ import Lightbulb from "@/components/Icons/Lightbulb";
 import Button from "@/components/buttons/Button";
 // import { useHistory } from "react-router-dom";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [challengeName, setChallengeName] = useState("Default Challenge Name");
   const [challengeDescription, setChallengeDescription] = useState(
@@ -44,12 +44,9 @@ const page = () => {
         </div>
       </div>
 
-      <div>
-
-      
-      </div>
+      <div></div>
     </div>
   );
 };
 
-export default page
+export default Page;
