@@ -17,7 +17,7 @@ export const Button = ({
       onClick={link}
       type="submit"
       className={classnames(
-        "p-3 disabled:opacity-50 disabled:cursor-not-allowed",
+        "p-3 py-2 disabled:opacity-50 disabled:cursor-not-allowed",
         classname
       )}
       disabled={loading || validation}
@@ -83,7 +83,7 @@ export const Input = ({
         <input
           type={type}
           id={label}
-          className="focus:outline-none focus:bg-none p-4 bg-foundation w-full"
+          className="focus:outline-none focus:bg-none p-4 py-2 bg-foundation w-full"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
