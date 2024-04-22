@@ -9,8 +9,11 @@ import { CalendarForm } from "@/components/UI/datepicker";
 import { boolean } from "zod";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+// import { useHistory } from "react-router-dom";
 
 const ChallengeForm = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     challengeName: "",
     challengeDescription: "",
@@ -22,22 +25,21 @@ const ChallengeForm = () => {
   const [value, setValue] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-
-   const validateForm = () => {
-     // Check if all required fields are filled out
-     const { challengeName, challengeDescription, Add, start, end } = formData;
-     if (
-       challengeName.trim() !== "" &&
-       challengeDescription.trim() !== "" &&
-       Add.trim() !== "" &&
-       start.trim() !== "" &&
-       end.trim() !== ""
-     ) {
-       setIsFormValid(true);
-     } else {
-       setIsFormValid(false);
-     }
-   };
+  const validateForm = () => {
+    // Check if all required fields are filled out
+    const { challengeName, challengeDescription, Add, start, end } = formData;
+    if (
+      challengeName.trim() !== "" &&
+      challengeDescription.trim() !== "" &&
+      Add.trim() !== "" &&
+      start.trim() !== "" &&
+      end.trim() !== ""
+    ) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  };
 
   // code to handle drag and drop event goes here
   const fileUpload = useRef<HTMLDivElement>(null);
@@ -67,7 +69,16 @@ const ChallengeForm = () => {
     console.log(files);
   };
 
-  const router = useRouter();
+  // store in localstorage
+  const [challengeName, setChallengeName] = useState<string>("");
+  const [challengeDescription, setChallengeDescription] = useState < string > ("");
+
+  const handleNext = () => {
+    router.push("/dashboard/challenges/ongoing");
+
+    localStorage.setItem("challengeName", challengeName);
+    localStorage.setItem("challengeDescription", challengeDescription)
+  };
 
   const handlePrev = () => {
     router.push("/challenges");
@@ -81,6 +92,12 @@ const ChallengeForm = () => {
       ...prevFormData,
       [name]: value,
     }));
+    // Use the name to determine which state variable to update
+    if (name === "challengeName") {
+      setChallengeName(value);
+    } else if (name === "challengeDescription") {
+      setChallengeDescription(value);
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -106,6 +123,7 @@ const ChallengeForm = () => {
         <form
           className="space-y-6  flex-col items-center justify-center"
           action="#"
+          onSubmit={handleSubmit}
         >
           <div>
             <LabelText htmlFor="username">Challenge Name</LabelText>
@@ -128,7 +146,7 @@ const ChallengeForm = () => {
               id="challengeDescription"
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
-              value={formData.challengeDescription || ""}
+              value={formData.challengeDescription }
               handleChange={handleChange}
             />
           </div>
@@ -177,7 +195,6 @@ const ChallengeForm = () => {
             <CalendarForm />
           </div>
 
-          {/* section for cover photo */}
           <div>
             <LabelText htmlFor="Add">Cover Photo</LabelText>
             <InputBox
@@ -190,7 +207,10 @@ const ChallengeForm = () => {
             />
           </div>
 
-          <Button className="w-full flex items-center justify-center">
+          <Button
+            className="w-full flex items-center justify-center"
+            onClick={handleNext}
+          >
             <p className="text-center">Create a challenge</p>
           </Button>
         </form>
