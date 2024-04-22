@@ -95,14 +95,14 @@ const Login = () => {
   }, [isAuth, router, searchParams, status]);
 
   return (
-    <main className="w-full h-screen center">
+    <main className="w-full h-screen flex center">
       <section className="w-[40%] relative resize-none bg-[#001E36] lg:flex items-center justify-center hidden h-screen object-contain">
         <div>
           <div className="text-center w-[340px] mx-auto">
             <h2 className="font-semibold text-3xl text-white">
               Join Our Talent Tribe
             </h2>
-            <p className="text-gray text-normal">
+            <p className="text-gray-100 text-normal">
               Grow your career faster with a community of like-minds by
               challenging other talents and developing your skills.
             </p>
@@ -114,7 +114,7 @@ const Login = () => {
         </div>
       </section>
 
-      <section className="lg:w-[60%] w-full h-full flex justify-center center px-4">
+      <section className="lg:w-[60%] w-full h-full flex justify-center pt-14 center px-4">
         <form action="#" className="lg:w-[60%] w-full flex flex-col gap-10">
           <div className="flex flex-col items-start">
             <div className="flex items-center">
@@ -135,7 +135,7 @@ const Login = () => {
 
             <Button
               link={handleGoogleAuth}
-              classname="center gap-3 border rounded-md border-lightGray"
+              classname="center gap-3 flex border justify-center items-center rounded-md border-lightGray"
             >
               <img src="google.svg" alt="google" />
               <p className="font-bold md:text-xl">Google</p>
@@ -165,7 +165,7 @@ const Login = () => {
                 onChange={(e: any) => handlePasswordChange(e)}
                 value={formData.password}
                 label="Enter your password"
-                type={show ? "text" : "password"}
+                type={show ? 'text' : 'password'}
                 postIcon="/eye.svg"
                 postIconAction={(e: any) => {
                   e.preventDefault();
@@ -176,7 +176,7 @@ const Login = () => {
 
             <Button
               validation={!formData.email || !isEmailValid}
-              classname="bg-blue text-white font-semibold"
+              classname="bg-primary text-white rounded-sm font-semibold"
               loading={status === states.FETCHING}
               cta="Login"
               link={(e: any) => {
