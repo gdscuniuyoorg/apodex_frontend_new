@@ -6,10 +6,7 @@ import Button from "@/components/buttons/Button";
 import InputBox from "@/components/Inputs/InputBox";
 import LabelText from "@/components/Labels/Labeltext";
 import { CalendarForm } from "@/components/UI/datepicker";
-import { boolean } from "zod";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-// import { useHistory } from "react-router-dom";
+import Tiptap from "@/components/UI/Tiptap";
 
 const ChallengeForm = () => {
   const router = useRouter();
@@ -71,13 +68,13 @@ const ChallengeForm = () => {
 
   // store in localstorage
   const [challengeName, setChallengeName] = useState<string>("");
-  const [challengeDescription, setChallengeDescription] = useState < string > ("");
+  const [challengeDescription, setChallengeDescription] = useState<string>("");
 
   const handleNext = () => {
     router.push("/dashboard/challenges/ongoing");
 
     localStorage.setItem("challengeName", challengeName);
-    localStorage.setItem("challengeDescription", challengeDescription)
+    localStorage.setItem("challengeDescription", challengeDescription);
   };
 
   const handlePrev = () => {
@@ -120,10 +117,9 @@ const ChallengeForm = () => {
           Create a Challenge
         </h3>
 
-        <form
+        <div
           className="space-y-6  flex-col items-center justify-center"
-          action="#"
-          onSubmit={handleSubmit}
+          // action="#"
         >
           <div>
             <LabelText htmlFor="username">Challenge Name</LabelText>
@@ -146,7 +142,7 @@ const ChallengeForm = () => {
               id="challengeDescription"
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
-              value={formData.challengeDescription }
+              value={formData.challengeDescription}
               handleChange={handleChange}
             />
           </div>
@@ -177,12 +173,14 @@ const ChallengeForm = () => {
                 Rules
               </label>
             </div>
-            <ReactQuill
+            {/* <ReactQuill
               theme="snow"
               className='border-2 border-gray rounded-[4px] w-full h-[10rem] text-editor flex flex-col-reverse bg-white"'
               value={value}
               onChange={setValue}
-            />
+            /> */}
+
+            <Tiptap />
           </div>
 
           <div>
@@ -209,11 +207,11 @@ const ChallengeForm = () => {
 
           <Button
             className="w-full flex items-center justify-center"
-            onClick={handleNext}
+            onClick={handleSubmit}
           >
-            <p className="text-center">Create a challenge</p>
+            Create a challenge
           </Button>
-        </form>
+        </div>
       </div>
     </div>
   );
