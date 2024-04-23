@@ -40,19 +40,19 @@ const Talent = () => {
     ]
 
     return (
-        <main className="p-10 w-full flex flex-col">
+        <main className="lg:px-10 p-10 px-4 w-full flex flex-col">
             <section className="mb-10">
                 <div className="flex items-center gap-2">
                     <img src="/filter.png" alt="filter" />
                     <p>Filter</p>
                 </div>
             </section>
-            <section className="flex justify-between w-full flex-wrap gap-y-8">
+            <section className=" flex flex-col lg:flex-row justify-between w-full flex-wrap gap-y-8">
                 {dummyData.map((dummy, index) => (
                     <div 
                         key={index}
                         onClick={() => router.push(`/dashboard/talents/${dummy.id}`)}
-                        className="w-[23.5%] cursor-pointer hover:scale-105 bg-white duration-300 transition-all boxShadow flex-col rounded-2xl">
+                        className="lg:w-[23.5%] w-full cursor-pointer hover:scale-105 bg-white duration-300 transition-all boxShadow flex-col rounded-2xl">
                         <div className="w-full h-[227px]">
                             <img src={dummy.img} alt={dummy.name} className="w-full rounded-t-2xl object-cover h-full" />
                         </div>
