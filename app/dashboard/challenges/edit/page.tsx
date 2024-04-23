@@ -65,11 +65,10 @@ const EditChallengePage = () => {
     setIsDragging(false);
 
     const files = event.dataTransfer.files;
-    // Process the dropped files
     console.log(files);
   };
 
-  // store in localstorage
+ 
   const [challengeName, setChallengeName] = useState<string>("");
   const [challengeDescription, setChallengeDescription] = useState<string>("");
 
@@ -213,22 +212,20 @@ const EditChallengePage = () => {
                 className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]"
                 onClick={handleNext}
               >
-                <p className="text-center">Cancel</p>
+               Cancel
               </Button>
               <Button
                 className="w-1/2 flex items-center justify-center"
                 onClick={handleNext}
               >
-                <p className="text-center">save changes</p>
+                Save changes
               </Button>
             </div>
           </form>
         </div>
       </div>
-      );
     </div>
   );
 };
 
-// Export the component as default
 export default EditChallengePage;

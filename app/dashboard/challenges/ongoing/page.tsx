@@ -36,22 +36,22 @@ const page = () => {
     }, []);
 
   return (
-    <div className="w-full gap-10 container py-10 flex flex-col md:flex-row justify-between">
+    <div className="w-full container py-10 flex flex-col md:flex-row justify-between">
       <div>
         <h3 className="font-semibold text-[33px] leading-[43.56px] text-[#535458] text-center md:text-left">
           Your On-going Challenges
         </h3>
-        <div className="p-6 mt-5 bg-white border border-[#C2C2C44D] rounded-lg mx-auto sm:w-full md:w-[50vw]  ">
+        <div className="p-6 mt-5  border border-[#C2C2C44D] rounded-lg mx-auto sm:w-full md:w-[50vw]  ">
           <Lightbulb></Lightbulb>
 
           <h2 className="text-[#535458] text-[16px] font-bold py-4">
             {challengeName}
           </h2>
-          <p className="text-[#88898C]">{challengeDescription}</p>
+          <p className="text-[#88898C] text-[13px]">{challengeDescription}</p>
           <div className="flex gap-5 pt-5 items-center">
-            <Button className="">Submit</Button>
+            <Button className="text-white">Submit</Button>
             <Button
-              className=" border-none bg-[#C2C2C433] w-[93px] text-[#6D6E72] flex items-center justify-center"
+              className="border border-[#C2C2C44D] bg-[#EAEEFA] w-[93px] text-[#6D6E72] flex items-center justify-center"
               onClick={handleNext}
             >
               Edit
@@ -61,10 +61,13 @@ const page = () => {
             </p>
           </div>
         </div>
+        <div>
+          <h2>Recent Challenges</h2>
+        </div>
       </div>
 
-      <div className="p-6 mt-14 bg-white border border-[#C2C2C44D] rounded-lg  ">
-        <h2 className="text-[19px] text-[#88898C]">Other Challenges</h2>
+      <div className="p-6 h-[100vh] mt-14 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[22vw]  ">
+        <h2 className="text-[19px] font-semibold text-[#88898C]">Other Challenges</h2>
         {recentChallenges.map((challenge, index) => (
           <div key={index} className="flex justify-between items-center">
             <h2 className="text-[#535458] text-[13px] font-semibold py-4">

@@ -208,10 +208,10 @@ const ChallengeForm = () => {
           </div>
 
           <Button
-            className="w-full flex items-center justify-center"
+            className="w-full flex items-center justify-center text-white "
             onClick={handleNext}
           >
-            <p className="text-center">Create a challenge</p>
+            Create a challenge
           </Button>
         </form>
       </div>
