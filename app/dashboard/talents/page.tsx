@@ -52,7 +52,7 @@ const Talent = () => {
                     <div 
                         key={index}
                         onClick={() => router.push(`/dashboard/talents/${dummy.id}`)}
-                        className="w-[23.5%] cursor-pointer hover:scale-105 duration-300 transition-all boxShadow flex-col rounded-2xl">
+                        className="w-[23.5%] cursor-pointer hover:scale-105 bg-white duration-300 transition-all boxShadow flex-col rounded-2xl">
                         <div className="w-full h-[227px]">
                             <img src={dummy.img} alt={dummy.name} className="w-full rounded-t-2xl object-cover h-full" />
                         </div>

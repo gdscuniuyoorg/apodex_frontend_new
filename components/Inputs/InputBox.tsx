@@ -111,7 +111,7 @@ const InputBox: FunctionComponent<InputBoxProps> = ({
           onChange={handleChange}
           accept={accept}
           placeholder={placeholder}
-          className={`w-full outline-none bg-foundation ${
+          className={`w-full outline-none bg-transparent ${
             type === "file" && "hidden"
           }`}
         />
