@@ -16,8 +16,8 @@ export default function RootLayout({
     <div className="flex flex-col h-full">
       <Nav />
       <div className="flex w-full h-full flex-1 relative">
-        <div className="w-[18%] hidden lg:flex sticky pt-20">
-          <SideBar className="w-1/6 h-full  flex-col hidden lg:flex flex-shrink-0 justify-between py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] fixed top-20 left-0" />
+        <div className="w-[18%] hidden lg:flex bg-lightBlue-100 overflow-y-auto sticky pt-20">
+          <SideBar className="w-1/6 min-h-screen   hidden lg:flex flex-shrink-0   py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] fixed top-20 left-0" />
         </div>
         <main className=" container pt-20  h-full">{children}</main>
       </div>

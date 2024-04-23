@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <ReduxProvider>
       <html lang="en">
-        <body className="bg-lightBlue-100 text-black">
+        <body className="bg-lightBlue-100/[50%] text-black">
           <Suspense fallback={<div>Loading...</div>}>
             {children}
             <Toaster />
