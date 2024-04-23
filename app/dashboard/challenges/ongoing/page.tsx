@@ -67,17 +67,39 @@ const page = () => {
       </div>
 
       <div className="p-6 h-[100vh] mt-14 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[22vw]  ">
-        <h2 className="text-[19px] font-semibold text-[#88898C]">Other Challenges</h2>
-        {recentChallenges.map((challenge, index) => (
-          <div key={index} className="flex justify-between items-center">
-            <h2 className="text-[#535458] text-[13px] font-semibold py-4">
-              {challenge}
-            </h2>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </div>
-        ))}
+        <h2 className="text-[19px] font-semibold text-[#88898C]">
+          Other Challenges
+        </h2>
+        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
+          <p className="text-[13px] text-[#535458]">{challengeName}</p>
+          <a href="" className="text-[#0070CC] text-[16]">
+            View
+          </a>
+        </div>
+        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
+          <p className="text-[13px] text-[#535458]">{challengeName}</p>
+          <a href="" className="text-[#0070CC] text-[16]">
+            View
+          </a>
+        </div>
+        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
+          <p className="text-[13px] text-[#535458]">{challengeName}</p>
+          <a href="" className="text-[#0070CC] text-[16]">
+            View
+          </a>
+        </div>
+        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
+          <p className="text-[13px] text-[#535458]">{challengeName}</p>
+          <a href="" className="text-[#0070CC] text-[16]">
+            View
+          </a>
+        </div>{" "}
+        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
+          <p className="text-[13px] text-[#535458]">{challengeName}</p>
+          <a href="" className="text-[#0070CC] text-[16]">
+            View
+          </a>
+        </div>
       </div>
     </div>
   );
