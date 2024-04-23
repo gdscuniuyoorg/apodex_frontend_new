@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Lightbulb from "@/components/Icons/Lightbulb";
 import Button from "@/components/buttons/Button";
 import LabelText from "@/components/Labels/Labeltext";
+import RecentChallenges from "@/components/buttons/RecentChallenges";
 // import { useHistory } from "react-router-dom";
 
 const page = () => {
@@ -12,10 +13,10 @@ const page = () => {
   const [challengeDescription, setChallengeDescription] = useState(
     "Default Challenge Description"
   );
-  
+
   const handleNext = () => {
     router.push("/dashboard/challenges/edit");
-  }
+  };
   useEffect(() => {
     const storedChallengeName = localStorage.getItem("challengeName");
     const storedChallengeDescription = localStorage.getItem(
@@ -27,13 +28,25 @@ const page = () => {
       setChallengeDescription(storedChallengeDescription);
   }, []);
 
- 
   const [recentChallenges, setRecentChallenges] = useState([]);
 
-    useEffect(() => {
-      const storedChallenges = JSON.parse(localStorage.getItem("challenges") || "[]");
-      setRecentChallenges(storedChallenges);
-    }, []);
+  useEffect(() => {
+    const storedChallenges = JSON.parse(
+      localStorage.getItem("challenges") || "[]"
+    );
+    setRecentChallenges(storedChallenges);
+  }, []);
+
+  // Function to get current date in YYYY-MM-DD format
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const currentDate = getCurrentDate(); // Get current date
 
   return (
     <div className="w-full container py-10 flex flex-col md:flex-row justify-between">
@@ -61,13 +74,33 @@ const page = () => {
             </p>
           </div>
         </div>
-        <div>
-          <h2>Recent Challenges</h2>
+        <div className="pt-10">
+          <h2 className="text-[#88898C] text-[19px] py-5 font-medium">
+            Recent Challenges
+          </h2>
+          <div className="flex justify-between py-3 text-[#88898C] text-[16px]">
+            <p>Name of challenge</p>
+            <p>Date</p>
+          </div>
+          <div className="flex flex-col gap-5">
+            <RecentChallenges>
+              <p>{challengeName}</p>
+              <p>{currentDate}</p>
+            </RecentChallenges>
+            <RecentChallenges>
+              <p>{challengeName}</p>
+              <p>{currentDate}</p>
+            </RecentChallenges>
+            <RecentChallenges className="bg-[#EFD7D7]">
+              <p>{challengeName}</p>
+              <p>{currentDate}</p>
+            </RecentChallenges>
+          </div>
         </div>
       </div>
 
       <div className="p-6 h-[100vh] mt-14 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[22vw]  ">
-        <h2 className="text-[19px] font-semibold text-[#88898C]">
+        <h2 className="text-[19px] font-medium text-[#88898C]">
           Other Challenges
         </h2>
         <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
