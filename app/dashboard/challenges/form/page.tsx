@@ -123,7 +123,7 @@ const ChallengeForm = () => {
   };
 
   return (
-    <div className="w-full container py-5 ">
+    <div className="w-full container py-5">
       <div className="lg:w-[476px] m-auto">
         {/* <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458] py-10 text-center"> */}
         <h3 className="font-semibold text-2xl lg:text-3xl leading-10 lg:leading-[43.56px] text-[#535458] py-10 text-center">

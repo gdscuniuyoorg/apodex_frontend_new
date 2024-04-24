@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
-
+"use client";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -11,45 +10,50 @@ import Image from "next/image";
 import { Button, FileUpload, Input } from "@/components/FormComponents";
 import ActivePage from "@/components/ProfileSetUp/ActivePage";
 
-
 interface FormData {
   firstName: string;
   lastName: string;
   location: string;
-  techInterests: string;
+  techInterests: string[];
   currentRole: string;
   company: string;
-  profileImage: string;
-  portfolio: string;
-  twitter: string;
-  linkedin: string;
+  portfolioUrl: string;
+  twitterUrl: string;
+  linkedInUrl: string;
   bio: string;
+}
+
+interface ImageFormData {
+  profileImage: string;
 }
 
 export default function CompleteProfile() {
   const initialFormData: FormData = {
     firstName: "",
     lastName: "",
+    bio: "",
     location: "",
-    techInterests: "",
+    techInterests: [],
     currentRole: "",
     company: "",
-    profileImage: "",
-    portfolio: "",
-    twitter: "",
-    linkedin: "",
-    bio: "",
+    portfolioUrl: "",
+    twitterUrl: "",
+    linkedInUrl: "",
   };
 
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [submitting, setSubmitting] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [inputInterest, setInputInterest] = useState<string>("");
+  const [displayPhoto, setDisplayPhoto] = useState<ImageFormData>({
+    profileImage: "",
+  });
   const [isUrlValid, setIsUrlValid] = useState({
-    portfolio: true,
-    twitter: true,
-    linkedin: true,
+    portfolioUrl: true,
+    twitterUrl: true,
+    linkedInUrl: true,
   });
 
   const nextStep = () => {
@@ -58,6 +62,56 @@ export default function CompleteProfile() {
 
   const prevStep = () => {
     setCurrentStep((prevStep: number) => prevStep - 1);
+  };
+
+  const handleInterestChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputInterest(event.target.value);
+  };
+
+  const handleInterestKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" && inputInterest.trim() !== "") {
+      event.preventDefault();
+      if (formData.techInterests.length < 5) {
+        addInterest(inputInterest.trim());
+      }
+    }
+  };
+
+  const addInterest = (interest: string) => {
+    if (
+      !formData.techInterests.includes(interest) &&
+      formData.techInterests.length < 5
+    ) {
+      setFormData((prevData) => ({
+        ...prevData,
+        techInterests: [...prevData.techInterests, interest],
+      }));
+      setInputInterest("");
+    }
+  };
+
+  const removeInterest = (interest: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      techInterests: prevData.techInterests.filter((i) => i !== interest),
+    }));
+  };
+
+  const completeProfile = async (data: any) => {
+    try {
+      const response = await UserService.completeProfile(data);
+      if (response) {
+        dispatch(completeUserProfile(response.data));
+        toast.success("You have successfully updated your profile!");
+      }
+      return response;
+    } catch (err: any) {
+      toast.error(err.response.data.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (label: any, data: any) => {
@@ -72,27 +126,26 @@ export default function CompleteProfile() {
     });
   };
 
-  const completeProfile = async (data: any) => {
+  const uploadImage = async (file: File) => {
     try {
-      const response = await UserService.completeProfile(data);
-      // if (response) {
-      //     dispatch(completeUserProfile(response.data))
-      //     toast.success("You have successfully updated your profile!");
-      // }
-      return response;
-    } catch (err: any) {
-      toast.error(err.response.data.message);
-    } finally {
-      setSubmitting(false);
+      const result = await UserService.uploadUserImage(file);
+      console.log(result);
+    } catch (error) {
+      console.error("Error uploading image: ", error);
+      return "";
     }
   };
 
-  const handleFileChange = async (file: File | null, fieldName: string) => {
-    const imageUrl = await uploadImage(file);
-    setFormData({
-      ...formData,
-      [fieldName]: imageUrl,
-    });
+  const handleFileChange = async (
+    file: File | null,
+    fieldName: keyof ImageFormData
+  ) => {
+    if (file) {
+      const imageUrl = await uploadImage(file);
+      setDisplayPhoto({
+        profileImage: String(imageUrl),
+      });
+    }
   };
 
   const validateUrl = (url: string) => {
@@ -123,10 +176,9 @@ export default function CompleteProfile() {
       techInterests: formData.techInterests,
       currentRole: formData.currentRole,
       company: formData.company,
-      profileImage: formData.profileImage,
-      portfolio: formData.portfolio,
-      twitter: formData.twitter,
-      linkedin: formData.linkedin,
+      portfolioUrl: formData.portfolioUrl,
+      twitterUrl: formData.twitterUrl,
+      linkedInUrl: formData.linkedInUrl,
       bio: formData.bio,
     };
 
@@ -252,15 +304,57 @@ export default function CompleteProfile() {
 
             <div className="w-full center flex-col gap-6">
               <div className="w-full">
-                <Input
-                  onChange={(e: any) =>
-                    handleChange("techInterests", e.target.value)
-                  }
-                  label="Tech Interests"
-                  type="text"
-                  value={formData.techInterests}
-                  placeholder="UX Designer"
-                />
+                <div className="flex flex-col gap-2 relative">
+                  <label className="font-medium text-base text-[#817E7E]">
+                    Tech Interests
+                  </label>
+                  <div className="flex flex-wrap py-2 bg-foundation items-center outline-none border-2 border-lightGray focus:outline-none rounded">
+                    <div className="flex flex-wrap flex-grow w-full gap-2 pl-2">
+                      {formData.techInterests.map((interest, index) => (
+                        <span
+                          key={index}
+                          className="flex-initial"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: "5px 8px",
+                            border: "1px solid #ccc",
+                            marginRight: "2px",
+                            marginBottom: "2px",
+                          }}
+                        >
+                          {interest}
+                          <button
+                            onClick={() => removeInterest(interest)}
+                            style={{ marginLeft: "10px" }}
+                            className="text-[18px] text-red-500"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                    {formData.techInterests.length < 5 && (
+                      <input
+                        type="text"
+                        value={inputInterest}
+                        onChange={handleInterestChange}
+                        onKeyDown={handleInterestKeyDown}
+                        placeholder="Type an interest and press Enter"
+                        className="focus:outline-none min-w-[150px] flex-grow py-2 px-4 bg-foundation"
+                      />
+                    )}
+                  </div>
+
+                  {inputInterest && formData.techInterests.length < 5 && (
+                    <div
+                      className="border-2 border-lightGray -mt-2 cursor-pointer p-2 text-gray-700 hover:bg-lightGray w-full bg-white"
+                      onClick={() => addInterest(inputInterest.trim())}
+                    >
+                      {inputInterest}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="w-full">
@@ -331,7 +425,7 @@ export default function CompleteProfile() {
               <div className="flex justify-between w-full gap-10">
                 <div className="flex-col h-full gap-3 w-1/2 flex">
                   <FileUpload
-                    image={formData.profileImage}
+                    image={displayPhoto.profileImage}
                     handleFileChange={(file: File) =>
                       handleFileChange(file, "profileImage")
                     }
@@ -348,45 +442,51 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("portfolio", e.target.value)
+                        handleURLChange("portfolioUrl", e.target.value)
                       }
-                      label="Portfolio (optional)"
+                      label="portfolioUrl (optional)"
                       type="text"
-                      value={formData.portfolio}
-                      placeholder="Link to your portfolio"
+                      value={formData.portfolioUrl}
+                      placeholder="Link to your portfolioUrl"
                     />
-                    {!isUrlValid.portfolio && (
-                      <span className="text-red-500 text-[.7rem]">Invalid URL</span>
+                    {!isUrlValid.portfolioUrl && (
+                      <span className="text-red-500 text-[.7rem]">
+                        Invalid URL
+                      </span>
                     )}
                   </div>
 
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("twitter", e.target.value)
+                        handleURLChange("twitterUrl", e.target.value)
                       }
-                      label="Twitter (optional)"
+                      label="twitterUrl (optional)"
                       type="text"
-                      value={formData.twitter}
-                      placeholder="Link to your twitter account"
+                      value={formData.twitterUrl}
+                      placeholder="Link to your twitterUrl account"
                     />
-                    {!isUrlValid.twitter && (
-                      <span className="text-red-500 text-[.7rem]">Invalid URL</span>
+                    {!isUrlValid.twitterUrl && (
+                      <span className="text-red-500 text-[.7rem]">
+                        Invalid URL
+                      </span>
                     )}
                   </div>
 
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("linkedin", e.target.value)
+                        handleURLChange("linkedInUrl", e.target.value)
                       }
-                      label="LinkedIn (optional)"
+                      label="linkedInUrl (optional)"
                       type="text"
-                      value={formData.linkedin}
-                      placeholder="Link to your linkedin account"
+                      value={formData.linkedInUrl}
+                      placeholder="Link to your linkedInUrl account"
                     />
-                    {!isUrlValid.linkedin && (
-                      <span className="text-red-500 text-[.7rem]">Invalid URL</span>
+                    {!isUrlValid.linkedInUrl && (
+                      <span className="text-red-500 text-[.7rem]">
+                        Invalid URL
+                      </span>
                     )}
                   </div>
                 </div>
@@ -414,7 +514,4 @@ export default function CompleteProfile() {
       </div>
     </div>
   );
-}
-function uploadImage(file: File | null) {
-  throw new Error("Function not implemented.");
 }
