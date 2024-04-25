@@ -32,7 +32,7 @@ const SignUp = () => {
   const [show, setShow] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
 
-  console.log(formData)
+  // console.log(formData)
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -92,7 +92,7 @@ const SignUp = () => {
             <h2 className="font-semibold text-3xl text-white">
               Join Our Talent Tribe
             </h2>
-            <p className="text-gray-100 text-normal">
+            <p className="text-white mt-6 text-normal">
               Grow your career faster with a community of like-minds by
               challenging other talents and developing your skills.
             </p>
@@ -125,7 +125,7 @@ const SignUp = () => {
 
             <Button
               link={handleGoogleAuth}
-              classname="center gap-3 flex border justify-center items-center rounded-md border-lightGray"
+              classname="center gap-3 flex border justify-center items-center rounded-md border-lightGray bg-foundation !text-black"
             >
               <img src="google.svg" alt="google" />
               <p className="font-bold md:text-xl">Google</p>
@@ -182,7 +182,7 @@ const SignUp = () => {
 
             <Button
               validation={!formData.email || !isEmailValid || !passwordMatch}
-              classname="bg-primary text-white rounded-sm font-semibold"
+              classname="bg-blue text-white rounded-sm font-semibold"
               link={(e: any) => {
                 e.preventDefault();
                 submit();

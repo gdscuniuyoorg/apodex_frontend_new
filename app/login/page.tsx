@@ -80,6 +80,7 @@ const Login = () => {
           router.push("/"); // Redirect to homepage or dashboard
         })
         .catch((error) => {
+          console.error(error)
           toast.error(error.message || "An error occurred during login.");
         });
     }
@@ -102,7 +103,7 @@ const Login = () => {
             <h2 className="font-semibold text-3xl text-white">
               Join Our Talent Tribe
             </h2>
-            <p className="text-gray-100 text-normal">
+            <p className="text-white mt-6 text-normal">
               Grow your career faster with a community of like-minds by
               challenging other talents and developing your skills.
             </p>
@@ -135,7 +136,7 @@ const Login = () => {
 
             <Button
               link={handleGoogleAuth}
-              classname="center gap-3 flex border justify-center items-center rounded-md border-lightGray"
+              classname="center gap-3 flex border justify-center items-center rounded-md border-lightGray bg-foundation !text-black"
             >
               <img src="google.svg" alt="google" />
               <p className="font-bold md:text-xl">Google</p>
@@ -176,7 +177,7 @@ const Login = () => {
 
             <Button
               validation={!formData.email || !isEmailValid}
-              classname="bg-primary text-white rounded-sm font-semibold"
+              classname="bg-blue text-white rounded-sm font-semibold"
               loading={status === states.FETCHING}
               cta="Login"
               link={(e: any) => {

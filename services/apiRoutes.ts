@@ -6,4 +6,5 @@ export const ApiRoutes = {
 
     // User profile
     completeProfile: "api/v1/profiles",
+    uploadUserImage: "api/v1/profiles/image"
 }
