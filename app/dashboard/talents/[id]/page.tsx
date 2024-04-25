@@ -10,7 +10,7 @@ const TalentProfile = () => {
   const interests = ["Design", "Front-end Development", "Back-end Development", "Animation", "Game Development"];
 
   return (
-    <main className="p-10 gap-10 w-full flex flex-col">
+    <main className="lg:px-10 p-10 px-0 gap-10 w-full flex flex-col">
       <Link href="/dashboard/talents" className="">
         <Image
           src="/back.png"
@@ -21,17 +21,17 @@ const TalentProfile = () => {
         />
       </Link>
       <section className="flex-col w-full text-[#535458]">
-        <div className="w-full gap-10 min-h-[227px] flex">
+        <div className="w-full gap-10 min-h-[227px] flex lg:flex-row flex-col">
           <div className="h-[227px]">
             <img
               src="/dummy2.jpg"
               alt="dummy1"
-              style={{ backgroundPosition: "center center" }}
+              style={{ backgroundPosition: 'center center' }}
               className="h-full w-full object-cover rounded-lg"
             />
           </div>
           <div className="w-full flex-col gap-2 flex">
-            <div className="between">
+            <div className="flex lg:flex-row flex-col between">
               <p className="text-2xl text-black font-semibold">John Wish</p>
               <div className="center gap-4">
                 <a href="#" target="_blank">
@@ -51,7 +51,7 @@ const TalentProfile = () => {
               </div>
             </div>
             <p>
-              <span className="font-semibold">React Developer</span> at{" "}
+              <span className="font-semibold">React Developer</span> at{' '}
               <span className="font-semibold">NewCastle Jobs</span>
             </p>
             <div className="flex gap-2">
@@ -63,12 +63,12 @@ const TalentProfile = () => {
               <p>Uyo, Nigeria</p>
             </div>
             <p className="mt-6">Bio</p>
-            <div className="between">
-              <p className="w-[70%]">
-                Hey there! 👋 I&lsquo;m John Wish, a passionate React developer with a
-                knack for crafting captivating web experiences. With 3 years in
-                the field, I thrive on turning innovative ideas into reality
-                through the power of code.
+            <div className="flex lg:flex-row flex-col between">
+              <p className="lg:w-[70%]">
+                Hey there! 👋 I&lsquo;m John Wish, a passionate React developer
+                with a knack for crafting captivating web experiences. With 3
+                years in the field, I thrive on turning innovative ideas into
+                reality through the power of code.
               </p>
               <a
                 href="#"
@@ -82,7 +82,7 @@ const TalentProfile = () => {
           </div>
         </div>
         <div className="w-full border-b-[1px] border-[#C2C2C44D] my-8" />
-        <div className="w-full flex justify-between gap-10">
+        <div className="w-full flex lg:flex-row flex-col justify-between gap-10">
           <section className="flex flex-col gap-4">
             <p>Education</p>
             <div className="flex flex-col gap-1">
@@ -116,7 +116,9 @@ const TalentProfile = () => {
             <p className="mt-6">Hobbies</p>
             <div className="flex gap-3 flex-wrap">
               {hobbies.map((hobby, index) => (
-                <div key={index} className="bg-[#E0E0E1] p-2">{hobby}</div>
+                <div key={index} className="bg-[#E0E0E1] p-2">
+                  {hobby}
+                </div>
               ))}
             </div>
           </section>
@@ -140,16 +142,20 @@ const TalentProfile = () => {
               <p className="italic text-gray">Aug 2016 - Nov 2018</p>
             </div>
             <p className="mt-6">Skills & Tools</p>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-3 flex-wrap w-full">
               {skills.map((skill, index) => (
-                <div key={index} className="bg-[#E0E0E1] p-2">{skill}</div>
+                <div key={index} className="bg-[#E0E0E1] p-2">
+                  {skill}
+                </div>
               ))}
             </div>
 
             <p className="mt-6">Tech Interests</p>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-3 flex-wrap w-full">
               {interests.map((interest, index) => (
-                <div key={index} className="bg-[#E0E0E1] p-2">{interest}</div>
+                <div key={index} className="bg-[#E0E0E1] p-2">
+                  {interest}
+                </div>
               ))}
             </div>
           </section>
