@@ -64,29 +64,30 @@ const Login = () => {
       });
   }
 
-  const handleGoogleAuth = (e: any) => {
+  const handleGoogleAuth = async (e: Event) => {
     e.preventDefault();
-    window.location.href =
-      "https://accounts.google.com/o/oauth2/v2/auth?client_id=386577058944-8rsn2md88cp70do5t41kueh6q30od0hb.apps.googleusercontent.com&redirect_uri=https://apodex-backend-new.onrender.com/api/v1/users/google/callback&response_type=code&scope=email+profile";
+
+    // get google init
+    const url = await dispatch(loginWithGoogle());
+
+    // change url to it
+    window.location.href = url.payload;
   };
 
   useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) {
-      dispatch(loginWithGoogle(code))
-        .unwrap()
-        .then((data) => {
-          toast.success("Login successful");
-          router.push("/"); // Redirect to homepage or dashboard
-        })
-        .catch((error) => {
-          console.error(error)
-          toast.error(error.message || "An error occurred during login.");
-        });
-    }
-  }, [dispatch, router]);
+    // const code = new URLSearchParams(window.location.search).get("code");
 
-  // console.log(isAuth);
+    dispatch(loginWithGoogle())
+      .unwrap()
+      .then((data) => {
+        toast.success("Login successful");
+        router.push("/"); // Redirect to homepage or dashboard
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message || "An error occurred during login.");
+      });
+  }, [dispatch, router]);
 
   useEffect(() => {
     if (isAuth) {
@@ -166,7 +167,7 @@ const Login = () => {
                 onChange={(e: any) => handlePasswordChange(e)}
                 value={formData.password}
                 label="Enter your password"
-                type={show ? 'text' : 'password'}
+                type={show ? "text" : "password"}
                 postIcon="/eye.svg"
                 postIconAction={(e: any) => {
                   e.preventDefault();
