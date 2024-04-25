@@ -7,12 +7,12 @@ import Button from "@/components/buttons/Button";
 import InputBox from "@/components/Inputs/InputBox";
 import LabelText from "@/components/Labels/Labeltext";
 import { CalendarForm } from "@/components/UI/datepicker";
-import { boolean } from "zod";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import Tiptap from "@/components/tipTap/Tiptap";
 
 const EditChallengePage = () => {
   const router = useRouter();
+
+  const [tipTapContent, setTipTapContent] = useState<string>("");
 
   const [formData, setFormData] = useState({
     challengeName: "",
@@ -24,6 +24,10 @@ const EditChallengePage = () => {
 
   const [value, setValue] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const changeTiptapContent = (reason: any) => {
+    setTipTapContent(reason);
+  };
 
   const validateForm = () => {
     // Check if all required fields are filled out
@@ -68,7 +72,6 @@ const EditChallengePage = () => {
     console.log(files);
   };
 
- 
   const [challengeName, setChallengeName] = useState<string>("");
   const [challengeDescription, setChallengeDescription] = useState<string>("");
 
@@ -177,11 +180,11 @@ const EditChallengePage = () => {
                   Rules
                 </label>
               </div>
-              <ReactQuill
-                theme="snow"
-                className='border-2 border-gray rounded-[4px] w-full h-[10rem] text-editor flex flex-col-reverse bg-white"'
-                value={value}
-                onChange={setValue}
+              <Tiptap
+                value={tipTapContent}
+                onChange={(newContent: string) =>
+                  changeTiptapContent(newContent)
+                }
               />
             </div>
 
@@ -212,7 +215,7 @@ const EditChallengePage = () => {
                 className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]"
                 onClick={handleNext}
               >
-               Cancel
+                Cancel
               </Button>
               <Button
                 className="w-1/2 flex items-center justify-center"
