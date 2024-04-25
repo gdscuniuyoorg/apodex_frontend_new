@@ -21,13 +21,15 @@ import SettingsIcon from "@/components/Icons/SettingsIcon";
 import SupportAgentIcon from "@/components/Icons/SupportAgentIcon";
 const SideBar = ({ className }: { className: string }) => {
   return (
-    <aside className={`flex flex-col justify-between ${className}`}>
+    <aside
+      className={`flex flex-col bg-lightBlue-100 justify-between ${className}`}
+    >
       <div className="flex flex-col ">
         <div className=" border-b-[1px] border-[#C2C2C4]/[50%] flex gap-[1.5rem] flex-col pb-[1.5rem] mb-[1.5rem]">
           <NavLink name="Home" icon={<HomeIcon />} />
-          <NavLink name="Talents" icon={<TalentIcon />} />{" "}
-          <NavLink name="Forum" icon={<ForumIcon />} />{" "}
-          <NavLink name="Challenges" icon={<ChallengeIcon />} />{" "}
+          <NavLink name="Talents" icon={<TalentIcon />} />{' '}
+          <NavLink name="Forum" icon={<ForumIcon />} />{' '}
+          <NavLink name="Challenges" icon={<ChallengeIcon />} />{' '}
           <NavLink name="Updates" icon={<UpdatesIcon />} />
           <NavLink name="Job Listings" icon={<JobListingIcon />} />
         </div>
@@ -37,7 +39,7 @@ const SideBar = ({ className }: { className: string }) => {
           <NavLink name="Settings" icon={<SettingsIcon />} />
         </div>
       </div>
-      <div className="flex flex-col gap-3 justify-between  items-center">
+      <div className="flex flex-col justify-between mb-[4.5rem] gap-3 items-center">
         <div className="text-[#a7a9ae] flex w-full items-center justify-start gap-3">
           <img
             className="rounded-full w-[40px] h-[40px] object-cover"

@@ -8,7 +8,7 @@ import RecentChallenges from "@/components/buttons/RecentChallenges";
 import OtherChallenges from "@/components/buttons/OtherChallenges";
 // import { useHistory } from "react-router-dom";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [challengeName, setChallengeName] = useState("Default Challenge Name");
   const [challengeDescription, setChallengeDescription] = useState(
@@ -100,6 +100,8 @@ const page = () => {
         </div>
       </div>
 
+      <div></div>
+
       <div className="p-6 h-[100vh] mt-14 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[22vw]  ">
         <h2 className="text-[19px] font-medium text-[#88898C]">
           Other Challenges
@@ -141,4 +143,4 @@ const page = () => {
   );
 };
 
-export default page
+export default Page;

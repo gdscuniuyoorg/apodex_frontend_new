@@ -6,13 +6,19 @@ import Button from "@/components/buttons/Button";
 import InputBox from "@/components/Inputs/InputBox";
 import LabelText from "@/components/Labels/Labeltext";
 import { CalendarForm } from "@/components/UI/datepicker";
-import { boolean } from "zod";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-// import { useHistory } from "react-router-dom";
+import Tiptap from "@/components/tipTap/Tiptap";
 
 const ChallengeForm = () => {
   const router = useRouter();
+
+  const [tipTapContent, setTipTapContent] = useState<string>("");
+
+  // store in localstorage
+  const [challengeName, setChallengeName] = useState<string>("");
+  const [challengeDescription, setChallengeDescription] = useState<string>("");
+
+  const [value, setValue] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const [formData, setFormData] = useState({
     challengeName: "",
@@ -20,10 +26,12 @@ const ChallengeForm = () => {
     Add: "",
     start: "",
     end: "",
+    rules: "",
   });
 
-  const [value, setValue] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  const changeTiptapContent = (reason: any) => {
+    setTipTapContent(reason);
+  };
 
   const validateForm = () => {
     // Check if all required fields are filled out
@@ -69,15 +77,11 @@ const ChallengeForm = () => {
     console.log(files);
   };
 
-  // store in localstorage
-  const [challengeName, setChallengeName] = useState<string>("");
-  const [challengeDescription, setChallengeDescription] = useState < string > ("");
-
   const handleNext = () => {
     router.push("/dashboard/challenges/ongoing");
 
     localStorage.setItem("challengeName", challengeName);
-    localStorage.setItem("challengeDescription", challengeDescription)
+    localStorage.setItem("challengeDescription", challengeDescription);
   };
 
   const handlePrev = () => {
@@ -102,13 +106,19 @@ const ChallengeForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // this is the tip tap content, you can add it to your form data
+    console.log(tipTapContent);
+
     console.log("Form data:", formData);
+
     setFormData({
       challengeName: "",
       challengeDescription: "",
       Add: "",
       start: "",
       end: "",
+      rules: tipTapContent,
     });
   };
 
@@ -120,10 +130,9 @@ const ChallengeForm = () => {
           Create a Challenge
         </h3>
 
-        <form
+        <div
           className="space-y-6  flex-col items-center justify-center"
-          action="#"
-          onSubmit={handleSubmit}
+          // action="#"
         >
           <div>
             <LabelText htmlFor="username">Challenge Name</LabelText>
@@ -146,7 +155,8 @@ const ChallengeForm = () => {
               id="challengeDescription"
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
-              value={challengeDescription }
+              value={formData.challengeDescription}
+
               handleChange={handleChange}
             />
           </div>
@@ -177,11 +187,10 @@ const ChallengeForm = () => {
                 Rules
               </label>
             </div>
-            <ReactQuill
-              theme="snow"
-              className='border-2 border-gray rounded-[4px] w-full h-[10rem] text-editor flex flex-col-reverse bg-white"'
-              value={value}
-              onChange={setValue}
+
+            <Tiptap
+              value={tipTapContent}
+              onChange={(newContent: string) => changeTiptapContent(newContent)}
             />
           </div>
 
@@ -208,12 +217,14 @@ const ChallengeForm = () => {
           </div>
 
           <Button
+
             className="w-full flex items-center justify-center text-white "
             onClick={handleNext}
+
           >
             Create a challenge
           </Button>
-        </form>
+        </div>
       </div>
     </div>
   );
