@@ -422,8 +422,8 @@ export default function CompleteProfile() {
             <ActivePage page={currentStep} />
 
             <div className="w-full center flex-col gap-6">
-              <div className="flex justify-between w-full gap-10">
-                <div className="flex-col h-full gap-3 w-1/2 flex">
+              <div className="flex flex-col lg:flex-row justify-between w-full gap-10">
+                <div className="flex-col h-full gap-3 w-full lg:w-1/2 flex">
                   <FileUpload
                     image={displayPhoto.profileImage}
                     handleFileChange={(file: File) =>
@@ -438,7 +438,7 @@ export default function CompleteProfile() {
                   </div>
                 </div>
 
-                <div className="flex-col flex gap-4 w-1/2">
+                <div className="flex-col flex gap-4 w-full lg:w-1/2">
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
