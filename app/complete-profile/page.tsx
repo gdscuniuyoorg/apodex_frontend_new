@@ -194,26 +194,26 @@ export default function CompleteProfile() {
   };
 
   return (
-    <div className="h-full">
+    <div className="min-h-screen py-4 bg-foundation">
       <div className="px-4">
         {currentStep === 1 && (
           <div className="max-w-screen-sm mx-auto pb-10">
             <div className="mx-auto w-max">
               <Image
-                src="/logo.png"
+                src="/apodexLogo.png"
                 alt="Logo"
                 height={80}
                 width={118}
-                className="object-cover  w-[218px] mx-auto"
+                className="object-cover  w-[89px] lg:w-[158px] mx-auto"
               />
             </div>
 
             <div className="center relative w-full">
-              <h1 className="font-semibold text-4xl text-center">
+              <h1 className="font-semibold text-2xl lg:text-4xl text-center">
                 Set up your Profile
               </h1>
             </div>
-            <p className="text-center text-[#8D8D8D] mt-5">
+            <p className="text-center text-[#8D8D8D] mt-3 lg:mt-5">
               Care to share some personal details with us?
             </p>
 
@@ -223,7 +223,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange("firstName", e.target.value)
+                    handleChange('firstName', e.target.value)
                   }
                   label="First Name"
                   type="text"
@@ -235,7 +235,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange("lastName", e.target.value)
+                    handleChange('lastName', e.target.value)
                   }
                   label="Last Name"
                   type="text"
@@ -247,7 +247,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange("location", e.target.value)
+                    handleChange('location', e.target.value)
                   }
                   label="Location"
                   type="text"
@@ -263,7 +263,7 @@ export default function CompleteProfile() {
                   !formData.location
                 }
                 link={nextStep}
-                classname="w-full bg-[#0072CE] py-4 px-2 text-white font-medium text-xl text-center rounded"
+                classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
               >
                 Continue
               </Button>
@@ -275,11 +275,11 @@ export default function CompleteProfile() {
           <div className="max-w-screen-sm mx-auto pb-10">
             <div className="mx-auto w-max">
               <Image
-                src="/logo.png"
+                src="/apodexLogo.png"
                 alt="Logo"
                 height={80}
                 width={118}
-                className="object-cover  w-[218px] mx-auto"
+                className="object-cover  w-[89px] lg:w-[158px] mx-auto"
               />
             </div>
 
@@ -292,11 +292,11 @@ export default function CompleteProfile() {
                 className="absolute left-0 mx-auto cursor-pointer"
                 onClick={prevStep}
               />
-              <h1 className="font-semibold text-4xl text-center">
+              <h1 className="font-semibold text-2xl lg:text-4xl text-center">
                 Let us know what you do
               </h1>
             </div>
-            <p className="text-center text-[#8D8D8D] mt-5">
+            <p className="text-center text-[#8D8D8D] mt-3 lg:mt-5">
               Give us more details so that we can know you better
             </p>
 
@@ -308,25 +308,25 @@ export default function CompleteProfile() {
                   <label className="font-medium text-base text-[#817E7E]">
                     Tech Interests
                   </label>
-                  <div className="flex flex-wrap py-2 bg-foundation items-center outline-none border-2 border-lightGray focus:outline-none rounded">
+                  <div className="flex flex-wrap py-1 bg-foundation items-center outline-none border-2 border-lightGray focus:outline-none rounded">
                     <div className="flex flex-wrap flex-grow w-full gap-2 pl-2">
                       {formData.techInterests.map((interest, index) => (
                         <span
                           key={index}
-                          className="flex-initial"
+                          className="flex-initial rounded-lg"
                           style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: "5px 8px",
-                            border: "1px solid #ccc",
-                            marginRight: "2px",
-                            marginBottom: "2px",
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            padding: '3px 8px',
+                            border: '1px solid #ccc',
+                            marginRight: '2px',
+                            marginBottom: '2px'
                           }}
                         >
                           {interest}
                           <button
                             onClick={() => removeInterest(interest)}
-                            style={{ marginLeft: "10px" }}
+                            style={{ marginLeft: '10px' }}
                             className="text-[18px] text-red-500"
                           >
                             ×
@@ -348,7 +348,7 @@ export default function CompleteProfile() {
 
                   {inputInterest && formData.techInterests.length < 5 && (
                     <div
-                      className="border-2 border-lightGray -mt-2 cursor-pointer p-2 text-gray-700 hover:bg-lightGray w-full bg-white"
+                      className="border-2 border-lightGray -mt-2 cursor-pointer p-2 text-gray-700 rounded-b hover:bg-lightBlue-100 w-full bg-white"
                       onClick={() => addInterest(inputInterest.trim())}
                     >
                       {inputInterest}
@@ -360,7 +360,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange("currentRole", e.target.value)
+                    handleChange('currentRole', e.target.value)
                   }
                   label="Current Role (optional)"
                   type="text"
@@ -371,7 +371,7 @@ export default function CompleteProfile() {
 
               <div className="w-full">
                 <Input
-                  onChange={(e: any) => handleChange("company", e.target.value)}
+                  onChange={(e: any) => handleChange('company', e.target.value)}
                   label="Company (optional)"
                   type="text"
                   value={formData.company}
@@ -382,7 +382,7 @@ export default function CompleteProfile() {
               <Button
                 link={nextStep}
                 validation={!formData.techInterests}
-                classname="w-full bg-[#0072CE] py-4 px-2 text-white font-medium text-xl text-center rounded"
+                classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
               >
                 Continue
               </Button>
@@ -394,11 +394,11 @@ export default function CompleteProfile() {
           <div className="max-w-screen-md mx-auto pb-10">
             <div className="mx-auto w-max">
               <Image
-                src="/logo.png"
+                src="/apodexLogo.png"
                 alt="Logo"
                 height={80}
                 width={118}
-                className="object-cover  w-[218px] mx-auto"
+                className="object-cover  w-[89px] lg:w-[158px] mx-auto"
               />
             </div>
 
@@ -411,11 +411,11 @@ export default function CompleteProfile() {
                 className="absolute left-0 mx-auto cursor-pointer"
                 onClick={prevStep}
               />
-              <h1 className="font-semibold text-4xl text-center">
+              <h1 className="font-semibold text-2xl lg:text-4xl text-center">
                 Give us a face
               </h1>
             </div>
-            <p className="text-center text-[#8D8D8D] mt-5">
+            <p className="text-center text-[#8D8D8D] mt-3 lg:mt-5">
               Share your best photo and tell us a bit about you
             </p>
 
@@ -427,7 +427,7 @@ export default function CompleteProfile() {
                   <FileUpload
                     image={displayPhoto.profileImage}
                     handleFileChange={(file: File) =>
-                      handleFileChange(file, "profileImage")
+                      handleFileChange(file, 'profileImage')
                     }
                   />
                   <div className="flex items-center gap-1">
@@ -442,9 +442,9 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("portfolioUrl", e.target.value)
+                        handleURLChange('portfolioUrl', e.target.value)
                       }
-                      label="portfolioUrl (optional)"
+                      label="PortfolioUrl (optional)"
                       type="text"
                       value={formData.portfolioUrl}
                       placeholder="Link to your portfolioUrl"
@@ -459,9 +459,9 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("twitterUrl", e.target.value)
+                        handleURLChange('twitterUrl', e.target.value)
                       }
-                      label="twitterUrl (optional)"
+                      label="TwitterUrl (optional)"
                       type="text"
                       value={formData.twitterUrl}
                       placeholder="Link to your twitterUrl account"
@@ -476,9 +476,9 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange("linkedInUrl", e.target.value)
+                        handleURLChange('linkedInUrl', e.target.value)
                       }
-                      label="linkedInUrl (optional)"
+                      label="LinkedInUrl (optional)"
                       type="text"
                       value={formData.linkedInUrl}
                       placeholder="Link to your linkedInUrl account"
@@ -494,9 +494,9 @@ export default function CompleteProfile() {
 
               <div className="w-full">
                 <Input
-                  onChange={(e: any) => handleChange("bio", e.target.value)}
+                  onChange={(e: any) => handleChange('bio', e.target.value)}
                   label="Bio"
-                  type="text"
+                  type="textbox"
                   value={formData.bio}
                   placeholder="Tell us something about you"
                 />
@@ -504,7 +504,7 @@ export default function CompleteProfile() {
 
               <Button
                 link={Submit}
-                classname="w-full bg-[#0072CE] py-4 px-2 text-white font-medium text-xl text-center rounded"
+                classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
               >
                 Submit
               </Button>

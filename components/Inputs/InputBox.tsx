@@ -90,7 +90,7 @@ const InputBox: FunctionComponent<InputBoxProps> = ({
     <div
       className={`${
         type !== "file" && "border-2"
-      } font-work-sans w-full border-lightGray px-4 py-3 rounded shadow-[#4a4a6826] mb-5 mt-1 flex flex-col`}
+      } font-work-sans w-full border-lightGray px-4 py-2 rounded shadow-[#4a4a6826] mb-5 mt-1 flex flex-col`}
     >
       {isTextArea ? (
         <textarea
