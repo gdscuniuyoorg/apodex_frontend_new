@@ -123,7 +123,7 @@ const ChallengeForm = () => {
   };
 
   return (
-    <div className="w-full container py-5">
+    <div className="w-full container lg:px-10 p-10 px-0">
       <div className="lg:w-[476px] m-auto">
         {/* <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458] py-10 text-center"> */}
         <h3 className="font-semibold text-2xl lg:text-3xl leading-10 lg:leading-[43.56px] text-[#535458] py-10 text-center">
@@ -156,7 +156,6 @@ const ChallengeForm = () => {
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
               value={formData.challengeDescription}
-
               handleChange={handleChange}
             />
           </div>
@@ -217,10 +216,8 @@ const ChallengeForm = () => {
           </div>
 
           <Button
-
             className="w-full flex items-center justify-center text-white "
             onClick={handleNext}
-
           >
             Create a challenge
           </Button>

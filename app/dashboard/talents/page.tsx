@@ -40,7 +40,7 @@ const Talent = () => {
     ]
 
     return (
-        <main className="lg:px-10 p-10 px-0 w-full flex flex-col">
+        <main className="lg:px-10 p-10 px-0 container w-full flex flex-col">
             <section className="mb-10">
                 <div className="flex items-center gap-2">
                     <img src="/filter.png" alt="filter" />
