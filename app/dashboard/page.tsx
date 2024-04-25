@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router"; // Importing useRouter from next/router
 import HomeOutward from "@/components/Icons/HomeOutward";
@@ -6,8 +7,8 @@ import HomePageImg from "@/components/Icons/HomePageImg";
 import Lightbulb from "@/components/Icons/Lightbulb";
 import Button from "@/components/buttons/Button";
 
-const page = () => {
-    // const router = useRouter(); // Initializing useRouter
+const Home = () => {
+  // const router = useRouter(); // Initializing useRouter
 
   // State variables for challenge name and description
   const [challengeName, setChallengeName] = useState("Default Challenge Name");
@@ -67,19 +68,19 @@ const page = () => {
       </div>
 
       {/* Challenge Description */}
-          <div className="container">
-              <h2 className="py-5 font-medium text-[19px]">Challenges</h2>
+      <div className="container">
+        <h2 className="py-5 font-medium text-[19px]">Challenges</h2>
         <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[50vw]  ">
           <Lightbulb />
           <h2 className="text-[#535458] text-[16px] font-bold py-4">
             Tech Ignite Hackathon 2024
           </h2>
           <p className="text-[#88898C] text-[13px]">
-            💡 Bring your boldest ideas to life, network with like-minded
+            {`💡 Bring your boldest ideas to life, network with like-minded
             innovators, and seize the opportunity to win exciting prizes and
             recognition. Whether you're a seasoned developer, a design virtuoso,
             or a visionary entrepreneur, this is your chance to showcase your
-            skills, unleash your imagination, and make a real impact.
+            skills, unleash your imagination, and make a real impact.`}
           </p>
           <div className="flex gap-5 pt-5 items-center">
             <Button
@@ -98,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Home;
