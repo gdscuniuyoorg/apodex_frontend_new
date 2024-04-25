@@ -15,11 +15,15 @@ export default function RootLayout({
   return (
     <div className="flex flex-col h-full">
       <Nav />
-      <div className="flex w-full h-full flex-1 relative">
-        <div className="w-[18%] hidden lg:flex bg-lightBlue-100 overflow-y-auto sticky pt-20">
-          <SideBar className="w-1/6 min-h-screen   hidden lg:flex flex-shrink-0   py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] fixed top-20 left-0" />
+      <div className="flex flex-row w-full h-full flex-1 relative">
+        <div className="w-[20%] hidden lg:flex relative">
+          <div className="w-[18%]  bg-lightBlue-100 overflow-y-auto sticky pt-20">
+            <SideBar className="w-1/6 min-h-screen   hidden lg:flex flex-shrink-0   py-[2rem] px-8 border-r-[1px] border-r-[#C2C2C4]/[50%] fixed top-20 left-0" />
+          </div>
         </div>
-        <main className=" container pt-20  h-full">{children}</main>
+        <div className="w-full">
+          <main className=" w-full lg:px-0 px-4  pt-20  h-full">{children}</main>
+        </div>
       </div>
     </div>
   );
