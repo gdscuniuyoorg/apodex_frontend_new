@@ -8,7 +8,7 @@ import ChallengeForm from "./form/page";
 export default function Challenge() {
   const [showForm, setShowForm] = useState<boolean>(false);
 
-  const hanldeShowForm = () => {
+  const handleShowForm = () => {
     setShowForm(true);
   };
 
@@ -54,7 +54,7 @@ export default function Challenge() {
             <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458]">
               Challenges
             </h3>
-            <Button link={hanldeShowForm} className="">
+            <Button link={handleShowForm} className="">
               <PlusIcon />
               <p>Create a challenge</p>
             </Button>
@@ -73,7 +73,7 @@ export default function Challenge() {
             </p>
           </div>
           <div className="flex items-center justify-center p-5">
-            <Button link={hanldeShowForm} className="">
+            <Button link={handleShowForm} className="">
               <PlusIcon />
               <p>Create a challenge</p>
             </Button>
