@@ -63,7 +63,7 @@ export function CalendarForm() {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        " pl-3 text-left h-14 font-work-sans border-lightGray border-2 px-4 py-3 rounded shadow-[#4a4a6826] mb-1 mt-1 w-full",
+                        " pl-3 text-left  font-work-sans border-lightGray border-2 px-4 py-2.5 rounded shadow-[#4a4a6826] mb-1 mt-1 w-full",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -76,7 +76,7 @@ export function CalendarForm() {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-auto bg-white p-0" align="start">
                   <Calendar
                     mode="single"
                     selected={field.value}
