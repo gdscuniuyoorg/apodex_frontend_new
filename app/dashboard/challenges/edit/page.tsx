@@ -218,7 +218,7 @@ const EditChallengePage = () => {
                 Cancel
               </Button>
               <Button
-                className="w-1/2 flex items-center justify-center"
+                className="w-1/2 flex items-center justify-center text-white"
                 onClick={handleNext}
               >
                 Save changes

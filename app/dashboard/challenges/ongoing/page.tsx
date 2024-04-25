@@ -5,6 +5,7 @@ import Lightbulb from "@/components/Icons/Lightbulb";
 import Button from "@/components/buttons/Button";
 import LabelText from "@/components/Labels/Labeltext";
 import RecentChallenges from "@/components/buttons/RecentChallenges";
+import OtherChallenges from "@/components/buttons/OtherChallenges";
 // import { useHistory } from "react-router-dom";
 
 const Page = () => {
@@ -105,35 +106,37 @@ const Page = () => {
         <h2 className="text-[19px] font-medium text-[#88898C]">
           Other Challenges
         </h2>
-        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
-          <p className="text-[13px] text-[#535458]">{challengeName}</p>
-          <a href="" className="text-[#0070CC] text-[16]">
-            View
-          </a>
-        </div>
-        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
-          <p className="text-[13px] text-[#535458]">{challengeName}</p>
-          <a href="" className="text-[#0070CC] text-[16]">
-            View
-          </a>
-        </div>
-        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
-          <p className="text-[13px] text-[#535458]">{challengeName}</p>
-          <a href="" className="text-[#0070CC] text-[16]">
-            View
-          </a>
-        </div>
-        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
-          <p className="text-[13px] text-[#535458]">{challengeName}</p>
-          <a href="" className="text-[#0070CC] text-[16]">
-            View
-          </a>
-        </div>{" "}
-        <div className="flex items-center justify-between py-5 border-b border-[#C2C2C44D]">
-          <p className="text-[13px] text-[#535458]">{challengeName}</p>
-          <a href="" className="text-[#0070CC] text-[16]">
-            View
-          </a>
+        <div className="flex flex-col">
+          <OtherChallenges>
+            <p className="text-[13px] text-[#535458]">{challengeName}</p>
+            <a href="" className="text-[#0070CC] text-[16]">
+              View
+            </a>
+          </OtherChallenges>
+          <OtherChallenges>
+            <p className="text-[13px] text-[#535458]">{challengeName}</p>
+            <a href="" className="text-[#0070CC] text-[16]">
+              View
+            </a>
+          </OtherChallenges>
+          <OtherChallenges>
+            <p className="text-[13px] text-[#535458]">{challengeName}</p>
+            <a href="" className="text-[#0070CC] text-[16]">
+              View
+            </a>
+          </OtherChallenges>
+          <OtherChallenges>
+            <p className="text-[13px] text-[#535458]">{challengeName}</p>
+            <a href="" className="text-[#0070CC] text-[16]">
+              View
+            </a>
+          </OtherChallenges>
+          <OtherChallenges>
+            <p className="text-[13px] text-[#535458]">{challengeName}</p>
+            <a href="" className="text-[#0070CC] text-[16]">
+              View
+            </a>
+          </OtherChallenges>
         </div>
       </div>
     </div>
