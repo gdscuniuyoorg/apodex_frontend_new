@@ -26,6 +26,7 @@ const ChallengeForm = () => {
     Add: "",
     start: "",
     end: "",
+    pho:"",
     rules: "",
   });
 
@@ -35,13 +36,17 @@ const ChallengeForm = () => {
 
   const validateForm = () => {
     // Check if all required fields are filled out
-    const { challengeName, challengeDescription, Add, start, end } = formData;
+    const { challengeName, challengeDescription, Add, start, end, pho, rules } = formData;
     if (
       challengeName.trim() !== "" &&
       challengeDescription.trim() !== "" &&
       Add.trim() !== "" &&
       start.trim() !== "" &&
-      end.trim() !== ""
+      end.trim() !== "" &&
+      pho.trim() !== "" &&
+       rules.trim() !== "" 
+      
+
     ) {
       setIsFormValid(true);
     } else {
@@ -118,6 +123,7 @@ const ChallengeForm = () => {
       Add: "",
       start: "",
       end: "",
+      pho:"",
       rules: tipTapContent,
     });
   };
@@ -155,7 +161,7 @@ const ChallengeForm = () => {
               id="challengeDescription"
               name="challengeDescription"
               placeholder="Tech Ignite 2024 Hackathon is designed to be a new ..."
-              value={formData.challengeDescription}
+              value={challengeDescription}
               handleChange={handleChange}
             />
           </div>
@@ -204,13 +210,13 @@ const ChallengeForm = () => {
           </div>
 
           <div>
-            <LabelText htmlFor="Add">Cover Photo</LabelText>
+            <LabelText htmlFor="pho">Cover Photo</LabelText>
             <InputBox
               type="text"
               id="Add"
               name="Add"
               placeholder="Add a cover photo or banner for your challenge here"
-              value={formData.Add}
+              value={formData.pho}
               handleChange={handleChange}
             />
           </div>
