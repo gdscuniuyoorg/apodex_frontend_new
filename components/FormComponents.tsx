@@ -17,7 +17,7 @@ export const Button = ({
       onClick={link}
       type="submit"
       className={classnames(
-        "p-3 disabled:opacity-50 bg-blue text-white center gap-2 disabled:cursor-not-allowed",
+        "p-3 disabled:opacity-50 py-2 bg-blue text-white center gap-2 disabled:cursor-not-allowed",
         classname
       )}
       disabled={loading || validation}
@@ -59,7 +59,7 @@ export const Input = ({
 }: InputProps) => {
   if (type === "textbox") {
     return (
-      <div className={classnames("flex flex-col gap-2 ", classname)}>
+      <div className={classnames('flex flex-col gap-2 ', classname)}>
         {label && <label className="block text-sm font-medium">{label}</label>}
         <textarea
           id={label}
@@ -69,7 +69,7 @@ export const Input = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          className="border border-[#BFBEBE] rounded-md focus:outline-brand focus:bg-none p-3 placeholder-[#777373] bg-transparent w-full"
+          className="border-2 border-[#BFBEBE] rounded-md focus:outline-brand bg-foundation focus:bg-none p-3 placeholder-[#777373] bg-transparent w-full"
         ></textarea>
       </div>
     );
@@ -86,7 +86,7 @@ export const Input = ({
           type={type}
           id={label}
           onKeyDown={onKeyDown}
-          className="focus:outline-none focus:bg-none p-4 bg-foundation w-full"
+          className="focus:outline-none focus:bg-none p-4 py-2 bg-foundation w-full"
           placeholder={placeholder}
           value={value}
           onChange={onChange}

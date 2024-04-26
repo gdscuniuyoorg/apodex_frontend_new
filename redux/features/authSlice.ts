@@ -36,13 +36,14 @@ export const login = createAsyncThunk(
 
 export const loginWithGoogle = createAsyncThunk(
   "dsh/loginWithGoogle",
-  async (code: string, { rejectWithValue }) => {
+  async () => {
     try {
-      return await AuthService.loginWithGoogle(code);
+      return await AuthService.loginWithGoogle();
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
         console.log(err.response.data.message);
-        return rejectWithValue(err.response.data.message);
+
+        return err.response.data.message;
       }
       throw err;
     }
@@ -65,7 +66,6 @@ export const signUp = createAsyncThunk(
     }
   }
 );
-
 
 const authSlice = createSlice({
   name: "auth",
@@ -104,7 +104,6 @@ const authSlice = createSlice({
     builder.addCase(signUp.rejected, (state) => {
       state.status = states.ERROR;
     });
-    
   },
 });
 

@@ -32,7 +32,8 @@ export default class AuthService {
       }
 
       if (response?.data === false) {
-        const errorMessage = response.data.message || "Invalid login credentials supplied.";
+        const errorMessage =
+          response.data.message || "Invalid login credentials supplied.";
         throw new Error(errorMessage);
       }
 
@@ -43,16 +44,16 @@ export default class AuthService {
     }
   }
 
-  static async loginWithGoogle(code: string) {
+  static async loginWithGoogle() {
     try {
-      const response = await ApiRequestClient.post(ApiRoutes.googleLogin, { code });
-  
+      const response = await ApiRequestClient.get(ApiRoutes.googleLogin, null);
+
       if (!response || !response.data) {
         throw new Error("Unexpected error occurred. Please try again.");
       }
-  
-      _saveToken(response.data.token);
-      return response.data;
+
+      // _saveToken(response.data.token);
+      return response.data.url;
     } catch (error) {
       throw error;
     }
@@ -71,7 +72,7 @@ export default class AuthService {
       const response = await ApiRequestClient.post(ApiRoutes.signup, {
         email,
         password,
-        passwordConfirm
+        passwordConfirm,
       });
 
       if (!response) {
@@ -89,5 +90,4 @@ export default class AuthService {
       throw error;
     }
   }
-  
 }
