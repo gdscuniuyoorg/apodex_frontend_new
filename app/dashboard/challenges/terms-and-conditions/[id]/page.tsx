@@ -2,6 +2,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import Button from "@/components/buttons/Button";
+import Link from "next/link";
 
 const TermsAndConditions = () => {
   const { id } = useParams();
@@ -113,13 +114,16 @@ const TermsAndConditions = () => {
           </div>
 
           {/* Buttons */}
-          <div className="w-[80%] flex gap-5 m-auto py-5">
+          <div className="w-full flex gap-5 m-auto py-5">
             <Button className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]">
               Decline
             </Button>
-            <Button className="w-1/2 flex items-center justify-center text-white">
-              Agree
-            </Button>
+
+            <Link href={"/dashboard/challenges/team-form"} className="w-[100%]">
+              <Button className="w-1/2 flex items-center justify-center text-white">
+                Agree
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
