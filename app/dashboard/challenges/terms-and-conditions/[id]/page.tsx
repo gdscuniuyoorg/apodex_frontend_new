@@ -13,9 +13,15 @@ const TermsAndConditions = () => {
         <div className="">
           <h2 className="font-medium text-[16px] text-[#535458]">Details</h2>
           <div className="flex flex-col p-3 text-[13px] text-[#88898C]">
-            <a href="#Details" className="pt-2">Details</a>
-            <a href="#Prizes" className="pt-2">Prizes</a>
-            <a href="#Rules" className="pt-2">Rules</a>
+            <a href="#Details" className="pt-2">
+              Details
+            </a>
+            <a href="#Prizes" className="pt-2">
+              Prizes
+            </a>
+            <a href="#Rules" className="pt-2">
+              Rules
+            </a>
           </div>
         </div>
         <div className="w-[65%] m-auto">
@@ -27,7 +33,7 @@ const TermsAndConditions = () => {
               Tech Ignite Hackathon 2024
             </h2>
             <p className="text-[16px] text-[#88898C] pt-5">
-              Join us for an exhilarating weekend of innovation and
+              {`Join us for an exhilarating weekend of innovation and
               collaboration at our tech-themed hackathon! Whether you're a
               seasoned coder, designer, or a tech enthusiast eager to learn,
               this event is perfect for you. Dive into a whirlwind of creativity
@@ -35,7 +41,7 @@ const TermsAndConditions = () => {
               challenges. With expert mentors, cutting-edge technologies, and
               fantastic prizes up for grabs, it's an opportunity to showcase
               your skills, network with fellow techies, and bring your boldest
-              ideas to life. Let's hack the future together!
+              ideas to life. Let's hack the future together!`}
             </p>
           </div>
           {/* Prizes */}
@@ -47,11 +53,11 @@ const TermsAndConditions = () => {
               Prizes
             </h2>
             <p className="text-[#88898C] text-[16px]">
-              As a token of appreciation, we will be giving swags to everyone
+              {` As a token of appreciation, we will be giving swags to everyone
               who participates in the Hackathon. We will also recognize all the
               participating teams in the event. The Winning team, the first
               runner up and the second runner up will receive other prizes which
-              are as follows:
+              are as follows:`}
             </p>
             <div className="text-[#535458] text-[16px] font-medium text-center pt-5">
               <p className="pt-2 ">Winning Team - 10k, GDSC cup, Data</p>
@@ -67,7 +73,7 @@ const TermsAndConditions = () => {
               Rules
             </h2>
             <p className="text-[#88898C] text-[16px]">
-              Eligibility: Participation in the hackathon is open to individuals
+              {`Eligibility: Participation in the hackathon is open to individuals
               who meet the specified eligibility criteria, including age
               restrictions and any other requirements outlined by the
               organizers. Code of Conduct: Participants are expected to conduct
@@ -102,20 +108,17 @@ const TermsAndConditions = () => {
               controls. Disqualification: Participants may be disqualified from
               the hackathon for violations of the terms and conditions, code of
               conduct, or any other rules specified by the organizers.
+            `}
             </p>
           </div>
 
           {/* Buttons */}
           <div className="w-[80%] flex gap-5 m-auto py-5">
-            <Button
-              className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]"
-            >
-             Decline
+            <Button className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]">
+              Decline
             </Button>
-            <Button
-              className="w-1/2 flex items-center justify-center text-white"
-            >
-             Agree
+            <Button className="w-1/2 flex items-center justify-center text-white">
+              Agree
             </Button>
           </div>
         </div>
