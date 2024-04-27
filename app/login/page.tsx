@@ -192,7 +192,11 @@ const Login = () => {
               <Link href="/sign-up" className="text-blue font-semibold">
                 Sign Up
               </Link>
+            
             </div>
+              <Link href="/forgotten-password" className="text-blue font-semibold">
+                Forgot Password?
+              </Link>
           </div>
         </form>
       </section>
