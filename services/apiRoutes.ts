@@ -7,4 +7,11 @@ export const ApiRoutes = {
   // User profile
   completeProfile: "api/v1/profiles",
   uploadUserImage: "api/v1/profiles/image",
+
+  // Talents
+  getAllTalents: "api/v1/profiles",
+
+  // Challenge
+  joinChallenge: "api/v1/challenges/join",
+  createChallege: "api/v1/challenges",
 };
