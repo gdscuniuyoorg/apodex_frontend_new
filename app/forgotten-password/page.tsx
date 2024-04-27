@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ForgotPasswordImg from "@/components/Icons/ForgotPasswordImg";
 import { Input, Button } from "@/components/FormComponents";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface FormData {
@@ -10,10 +11,13 @@ interface FormData {
 }
 
 const ForgotPassword = () => {
+const router = useRouter();
+
   const initialFormData: FormData = {
     emailAdress: "",
   };
-  const [formData, setFormData] = useState<FormData>(initialFormData);
+    const [formData, setFormData] = useState<FormData>(initialFormData);
+     const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleChange = (label: any, data: any) => {
     setFormData((prevData) => {
@@ -25,7 +29,21 @@ const ForgotPassword = () => {
       console.log("Form Data", newData);
       return newData;
     });
-  };
+    };
+     const Submit = async (e: any) => {
+       e.preventDefault();
+
+       const formDataToSend: FormData = {
+        emailAdress:formData.emailAdress
+       };
+
+       setSubmitting(true);
+
+     
+     };
+     const handleNext = () => {
+       router.push("/email-sent");
+     };
 
   return (
     <div className="h-[100vh] container flex flex-col items-center justify-center">
@@ -50,7 +68,7 @@ const ForgotPassword = () => {
           />
         </div>
         <div className="pt-5">
-          <Button classname="w-full">Send</Button>
+          <Button classname="w-full" link={handleNext} onclick={submitting}>Send</Button>
         </div>
         <div className="flex items-center justify-center pt-5">
           <Link href="/login" className="text-blue font-semibold">
