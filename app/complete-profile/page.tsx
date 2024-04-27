@@ -13,6 +13,7 @@ import ActivePage from "@/components/ProfileSetUp/ActivePage";
 interface FormData {
   firstName: string;
   lastName: string;
+  name?: string;
   location: string;
   techInterests: string[];
   currentRole: string;
@@ -172,6 +173,7 @@ export default function CompleteProfile() {
     const formDataToSend: FormData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
+      name: `${formData.firstName} ${formData.lastName}`,
       location: formData.location,
       techInterests: formData.techInterests,
       currentRole: formData.currentRole,
@@ -223,7 +225,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange('firstName', e.target.value)
+                    handleChange("firstName", e.target.value)
                   }
                   label="First Name"
                   type="text"
@@ -235,7 +237,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange('lastName', e.target.value)
+                    handleChange("lastName", e.target.value)
                   }
                   label="Last Name"
                   type="text"
@@ -247,7 +249,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange('location', e.target.value)
+                    handleChange("location", e.target.value)
                   }
                   label="Location"
                   type="text"
@@ -315,18 +317,18 @@ export default function CompleteProfile() {
                           key={index}
                           className="flex-initial rounded-lg"
                           style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            padding: '3px 8px',
-                            border: '1px solid #ccc',
-                            marginRight: '2px',
-                            marginBottom: '2px'
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: "3px 8px",
+                            border: "1px solid #ccc",
+                            marginRight: "2px",
+                            marginBottom: "2px",
                           }}
                         >
                           {interest}
                           <button
                             onClick={() => removeInterest(interest)}
-                            style={{ marginLeft: '10px' }}
+                            style={{ marginLeft: "10px" }}
                             className="text-[18px] text-red-500"
                           >
                             ×
@@ -360,7 +362,7 @@ export default function CompleteProfile() {
               <div className="w-full">
                 <Input
                   onChange={(e: any) =>
-                    handleChange('currentRole', e.target.value)
+                    handleChange("currentRole", e.target.value)
                   }
                   label="Current Role (optional)"
                   type="text"
@@ -371,7 +373,7 @@ export default function CompleteProfile() {
 
               <div className="w-full">
                 <Input
-                  onChange={(e: any) => handleChange('company', e.target.value)}
+                  onChange={(e: any) => handleChange("company", e.target.value)}
                   label="Company (optional)"
                   type="text"
                   value={formData.company}
@@ -427,7 +429,7 @@ export default function CompleteProfile() {
                   <FileUpload
                     image={displayPhoto.profileImage}
                     handleFileChange={(file: File) =>
-                      handleFileChange(file, 'profileImage')
+                      handleFileChange(file, "profileImage")
                     }
                   />
                   <div className="flex items-center gap-1">
@@ -442,7 +444,7 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange('portfolioUrl', e.target.value)
+                        handleURLChange("portfolioUrl", e.target.value)
                       }
                       label="PortfolioUrl (optional)"
                       type="text"
@@ -459,7 +461,7 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange('twitterUrl', e.target.value)
+                        handleURLChange("twitterUrl", e.target.value)
                       }
                       label="TwitterUrl (optional)"
                       type="text"
@@ -476,7 +478,7 @@ export default function CompleteProfile() {
                   <div className="w-full flex-col">
                     <Input
                       onChange={(e: any) =>
-                        handleURLChange('linkedInUrl', e.target.value)
+                        handleURLChange("linkedInUrl", e.target.value)
                       }
                       label="LinkedInUrl (optional)"
                       type="text"
@@ -494,7 +496,7 @@ export default function CompleteProfile() {
 
               <div className="w-full">
                 <Input
-                  onChange={(e: any) => handleChange('bio', e.target.value)}
+                  onChange={(e: any) => handleChange("bio", e.target.value)}
                   label="Bio"
                   type="textbox"
                   value={formData.bio}

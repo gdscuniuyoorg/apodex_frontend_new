@@ -14,7 +14,7 @@ const Home = () => {
 
   // Function to handle navigation to the next page
   const handleNext = () => {
-    router.push("/dashboard/challenges/terms and condition");
+    router.push("/dashboard/challenges/terms-and-conditions");
   };
 
   return (
@@ -84,12 +84,14 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex gap-5 pt-5 items-center">
-              <Button
-                className="p-3 bg-[#D4DDF4] text-[#0070CC]"
-                onClick={handleNext}
-              >
-                Register Now
-              </Button>
+              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
+                <Button
+                  className="p-3 bg-[#D4DDF4] text-[#0070CC]"
+                  onClick={handleNext}
+                >
+                  Register Now
+                </Button>
+              </Link>
               <p className="text-[#A5A5A8] text-[13px]">
                 *Registration ends in 1:364:23:59:34*
               </p>
