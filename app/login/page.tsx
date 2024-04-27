@@ -56,7 +56,8 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then((data) => {
-        toast.success("You are logged in");
+        toast.success('You are logged in');
+              router.push('/dashboard'); // Redirect to homepage or dashboard
       })
       .catch((error) => {
         // Ensure that a string is passed to toast.error
