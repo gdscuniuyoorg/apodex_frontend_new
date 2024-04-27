@@ -74,20 +74,20 @@ const Login = () => {
     window.location.href = url.payload;
   };
 
-  useEffect(() => {
-    // const code = new URLSearchParams(window.location.search).get("code");
+  // useEffect(() => {
+  //   // const code = new URLSearchParams(window.location.search).get("code");
 
-    dispatch(loginWithGoogle())
-      .unwrap()
-      .then((data) => {
-        toast.success("You are logged in");
-        router.push("/"); // Redirect to homepage or dashboard
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error.message || "An error occurred during login.");
-      });
-  }, [dispatch, router]);
+  //   dispatch(loginWithGoogle())
+  //     .unwrap()
+  //     .then((data) => {
+  //       toast.success("You are logged in");
+  //       router.push("/"); // Redirect to homepage or dashboard
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       toast.error(error.message || "An error occurred during login.");
+  //     });
+  // }, [dispatch, router]);
 
   useEffect(() => {
     if (isAuth) {
