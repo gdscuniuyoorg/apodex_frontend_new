@@ -17,7 +17,7 @@ export const Button = ({
       onClick={link}
       type="submit"
       className={classnames(
-        "p-3 disabled:opacity-50 py-2 bg-blue text-white center gap-2 disabled:cursor-not-allowed",
+        "p-3 disabled:opacity-50 py-2 rounded-[4px] bg-blue text-white center gap-2 disabled:cursor-not-allowed",
         classname
       )}
       disabled={loading || validation}
