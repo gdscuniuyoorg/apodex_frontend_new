@@ -56,7 +56,7 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then((data) => {
-        toast.success("Login successful");
+        toast.success("You are logged in");
       })
       .catch((error) => {
         // Ensure that a string is passed to toast.error
@@ -80,7 +80,7 @@ const Login = () => {
     dispatch(loginWithGoogle())
       .unwrap()
       .then((data) => {
-        toast.success("Login successful");
+        toast.success("You are logged in");
         router.push("/"); // Redirect to homepage or dashboard
       })
       .catch((error) => {

@@ -2,9 +2,14 @@
 "use client"
 
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/common/hooks";
 
 const Talent = () => {
     const router = useRouter();
+
+    const allTalents = useAppSelector(state => state.talent);
+
+    console.log(allTalents);
 
     const dummyData = [
         {

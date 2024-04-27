@@ -1,11 +1,25 @@
 "use client";
 import React from "react";
-import { useParams } from "next/navigation";
-import Button from "@/components/buttons/Button";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { Button } from "@/components/FormComponents";
 
 const TermsAndConditions = () => {
+  const router = useRouter();
   const { id } = useParams();
+
+  const handlePrev = () => {
+    router.push("/dashboard");
+  };
+
+  const handleNext = () => {
+    try {
+      router.push(`/dashboard/challenges/terms-and-conditions/${id}/team-form`);
+    } catch (error) {
+      console.error("Failed to navigate:", error);
+    }
+  };
+
   console.log(id);
   return (
     <div className="">
@@ -114,15 +128,19 @@ const TermsAndConditions = () => {
           </div>
 
           {/* Buttons */}
-          <div className="w-full flex gap-5 m-auto py-5">
-            <Button className="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]">
+          <div className="w-full flex gap-5 center py-5">
+            <Button
+              link={handlePrev}
+              classname="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]"
+            >
               Decline
             </Button>
 
-            <Link href={"/dashboard/challenges/team-form"} className="w-[100%]">
-              <Button className="w-1/2 flex items-center justify-center text-white">
-                Agree
-              </Button>
+            <Link
+              href={`/dashboard/challenges/terms-and-conditions/${id}/team-form`}
+              className="w-full flex items-center justify-center text-white"
+            >
+              Agree
             </Link>
           </div>
         </div>
