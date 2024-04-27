@@ -24,10 +24,10 @@ const TermsAndConditions = () => {
   return (
     <div className="">
       {/* <div className="bg-[#D9D9D9] w-full h-40 sticky top-0"></div> */}
-      <div className="flex justify-between container py-5">
-        <div className="">
+      <div className="flex justify-between container py-10">
+        <div className=" lg:flex hidden">
           <h2 className="font-medium text-[16px] text-[#535458]">Details</h2>
-          <div className="flex flex-col p-3 text-[13px] text-[#88898C]">
+          <div className="flex flex-col py-3 text-[13px] text-[#88898C]">
             <a href="#Details" className="pt-2">
               Details
             </a>
