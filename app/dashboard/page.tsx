@@ -35,9 +35,7 @@ const Home = () => {
         <h3 className="text-[33px] text-[#535458] font-semibold py-3">
           Welcome Back, <span className="text-[#0070CC]">John</span>
         </h3>
-        <div>
-          <HomePageImg />
-        </div>
+        <HomePageImg />
       </div>
 
       {/* Challenge Description */}
