@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { loginWithGoogle } from "@/redux/features/authSlice";
 
 interface FormData {
   email: string;
@@ -24,7 +25,7 @@ const SignUp = () => {
   const initialFormData: FormData = {
     email: "",
     password: "",
-    passwordConfirm: ""
+    passwordConfirm: "",
   };
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -50,15 +51,21 @@ const SignUp = () => {
     setFormData({ ...formData, password: newPassword });
   };
 
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const newPasswordConfirm = e.target.value;
     setFormData({ ...formData, passwordConfirm: newPasswordConfirm });
     setPasswordMatch(newPasswordConfirm === formData.password);
   };
 
-  const handleGoogleAuth = (e: any) => {
+  const handleGoogleAuth = async (e: Event) => {
     e.preventDefault();
-    toast.success("Comming soon!");
+    // get google init
+    const url = await dispatch(loginWithGoogle());
+
+    // change url to it
+    window.location.href = url.payload;
   };
 
   function submit() {
@@ -67,11 +74,10 @@ const SignUp = () => {
       .unwrap()
       .then((data) => {
         toast.success("Sign up successful");
+        router.push("/dashboard"); // Redirect to homepage or dashboard
       })
       .catch((error) => {
-        // Ensure that a string is passed to toast.error
-        // console.log(error)
-        toast.error(error);
+        toast.error(error || "An error occured during signup");
       });
   }
 
@@ -81,8 +87,6 @@ const SignUp = () => {
       router.push(destinedPath);
     }
   }, [isAuth, router, searchParams, status]);
-  
-  
 
   return (
     <main className="w-full min-h-screen flex center">
@@ -155,7 +159,7 @@ const SignUp = () => {
                 onChange={(e: any) => handlePasswordChange(e)}
                 value={formData.password}
                 label="Create a password"
-                type={show ? 'text' : 'password'}
+                type={show ? "text" : "password"}
                 postIcon="/eye.svg"
                 postIconAction={(e: any) => {
                   e.preventDefault();
@@ -168,7 +172,7 @@ const SignUp = () => {
                 onChange={(e: any) => handleConfirmPasswordChange(e)}
                 value={formData.passwordConfirm}
                 label="Confirm your password"
-                type={show ? 'text' : 'password'}
+                type={show ? "text" : "password"}
                 postIcon="/eye.svg"
                 postIconAction={(e: any) => {
                   e.preventDefault();

@@ -23,11 +23,18 @@ export const login = createAsyncThunk(
   "dsh/login",
   async (data: any, { rejectWithValue }) => {
     try {
-      return await AuthService.login(data);
+      const response = await AuthService.login(data);
+
+      if (response.status === "success") {
+        _saveToken(response.token);
+        return response.user;
+      } else {
+        throw rejectWithValue(response.message);
+      }
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
-        console.log(err.response.data.message);
-        return rejectWithValue(err.response.data.message);
+        // console.log(err.response.data.message);
+        throw rejectWithValue(err.response.data.message);
       }
       throw err;
     }

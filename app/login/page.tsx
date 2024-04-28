@@ -56,12 +56,11 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then((data) => {
-        toast.success('You are logged in');
-              router.push('/dashboard'); // Redirect to homepage or dashboard
+        toast.success("You are logged in");
+        router.push("/dashboard"); // Redirect to homepage or dashboard
       })
       .catch((error) => {
-        // Ensure that a string is passed to toast.error
-        toast.error(error.message || "An error occurred during login.");
+        toast.error(error || "An error occurred during login.");
       });
   }
 
@@ -193,11 +192,13 @@ const Login = () => {
               <Link href="/sign-up" className="text-blue font-semibold">
                 Sign Up
               </Link>
-            
             </div>
-              <Link href="/forgotten-password" className="text-blue font-semibold">
-                Forgot Password?
-              </Link>
+            <Link
+              href="/forgotten-password"
+              className="text-blue font-semibold"
+            >
+              Forgot Password?
+            </Link>
           </div>
         </form>
       </section>
