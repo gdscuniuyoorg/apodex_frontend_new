@@ -39,7 +39,7 @@ const TermsAndConditions = () => {
             </a>
           </div>
         </div>
-        <div className="w-[65%] m-auto">
+        <div className="lg:w-[65%] w-full m-auto">
           <div>
             <h2
               className="text-[33px] font-semibold text-[#535458] text-center"
@@ -128,20 +128,32 @@ const TermsAndConditions = () => {
           </div>
 
           {/* Buttons */}
-          <div className="w-full flex gap-5 center py-5">
+          <div className="w-full flex flex-row center gap-5  py-5">
             <Button
               link={handlePrev}
-              classname="w-1/2 flex items-center justify-center  border-none bg-[#C2C2C433]  text-[#6D6E72]"
+              classname="border-[1px] border-neutral-300 text-neutral-600 !bg-transparent  w-full"
             >
               Decline
             </Button>
-
-            <Link
-              href={`/dashboard/challenges/terms-and-conditions/${id}/team-form`}
-              className="w-full flex items-center justify-center text-white"
+            <Button
+              link={handlePrev}
+              classname="bg-blue text-white rounded-sm w-full font-semibold"
             >
               Agree
+            </Button>
+
+            {/* <Link
+              link={handlePrev}
+              className="w-[50%] flex items-center justify-center  border-none bg-[#C2C2C433] py-4  text-[#6D6E72]"
+            >
+              Decline
             </Link>
+            <Link
+              href={`/dashboard/challenges/terms-and-conditions/${id}/team-form`}
+              className="w-[50%] flex items-center justify-center  border-none bg-[#C2C2C433] py-4  text-[#6D6E72]"
+            >
+              Agree
+            </Link> */}
           </div>
         </div>
       </div>

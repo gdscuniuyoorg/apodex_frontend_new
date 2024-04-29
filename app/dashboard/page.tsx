@@ -20,11 +20,11 @@ const Home = () => {
   return (
     <div className="py-2">
       <div className="flex bg-[#0070CC] items-center justify-between p-2 text-[13px]">
-        <p className="px-10 text-[#BECDEF]">
+        <p className="lg:px-10 text-[#BECDEF]">
           Your account is not yet verified. Help us to reduce the risk of losing
           your account by verifying your account
         </p>
-        <div className="flex items-center px-10">
+        <div className="flex items-center lg:px-10">
           <a href="#" className="text-[#E0E0E1]">
             Verify Now
           </a>
@@ -39,7 +39,7 @@ const Home = () => {
       </div>
 
       {/* Challenge Description */}
-      <div className="container flex gap-5 py-10">
+      <div className="container flex lg:flex-row flex-col gap-5 py-10">
         <div>
           <h2 className="font-medium text-[19px] text-[#88898C]">Challenges</h2>
           <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[50vw]  ">
@@ -54,8 +54,8 @@ const Home = () => {
             or a visionary entrepreneur, this is your chance to showcase your
             skills, unleash your imagination, and make a real impact.`}
             </p>
-            <div className="flex gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/123"}>
+            <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
+              <Link href={'/dashboard/challenges/terms-and-conditions/123'}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
@@ -81,8 +81,8 @@ const Home = () => {
             or a visionary entrepreneur, this is your chance to showcase your
             skills, unleash your imagination, and make a real impact.`}
             </p>
-            <div className="flex gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
+            <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
+              <Link href={'/dashboard/challenges/terms-and-conditions/121'}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
