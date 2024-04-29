@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from "next/navigation";
 
-import { IoNotificationsSharp } from "react-icons/io5";
 import SearchIcon from "@/components/Icons/SearchIcon";
 import NotificationsIcon from "@/components/Icons/NotificationsIcon";
 import { HiBars3 } from "react-icons/hi2";
@@ -40,22 +38,12 @@ const Nav = ({open, setOpen}: SideBarProps) => {
           </button>
         </div>
       </div>
-      {/* <div className="flex w-full  items-center justify-end gap-3">
-        
-        
-      </div> */}
+
     </div>
   );
 };
 
 export default Nav;
 
-{
-  /* <nav className="flex items-center justify-between px-3 lg:px-8 z-50 py-3  bg-lightBlue-100">
-      
 
 
-</nav> */
-}
-
-//fixed top-0 right-0 left-0
