@@ -19,6 +19,7 @@ import ProfileIcon from "@/components/Icons/ProfileIcon";
 import SettingsIcon from "@/components/Icons/SettingsIcon";
 import SupportAgentIcon from "@/components/Icons/SupportAgentIcon";
 import { useRouter } from "next/navigation";
+import SearchIcon from '@/components/Icons/SearchIcon';
 
 
 type SideBarProps = {
@@ -32,33 +33,40 @@ const SideBar = ({ open, setOpen}: SideBarProps) => {
 
   return (
     <aside
-      className={`${open ? "left-0" : "left-[-100%] lg:left-0"} min-w-[240px] transition-all w-[240px] max-w-[240px] top-0 h-screen fixed lg:relative flex flex-col bg-white justify-between p-[20px] z-20`}
+      className={`${
+        open ? 'left-0' : 'left-[-100%] lg:left-0'
+      } min-w-[240px] transition-all w-[240px] max-w-[240px] top-0 h-screen fixed lg:relative flex flex-col bg-white justify-between p-[20px] z-20`}
     >
-      <div className="flex flex-col grow items-center ">
-      <img
-        onClick={() => router.push(`/dashboard`)}
-        role="button"
-        src="/apodexLogo.png"
-        alt="apodex-logo"
-        className="lg:h-[3rem] h-[3rem] w-[150px]"
-      />
-      <div className="flex flex-col w-full space-y-[15px] lg:space-y-[25px] mt-[15%]">
-      {
-        links.slice(0,6).map((link, index) => (
-          <NavLink name={link.name} icon={link.icon} key={index}/>
-        ))
-      }
+      <div className="flex flex-col grow lg:pt-0 pt-[3rem] items-center ">
+        <div className="flex w-full items-center justify-center">
+          <img
+            onClick={() => router.push(`/dashboard`)}
+            role="button"
+            src="/apodex-D.png"
+            alt="apodex-logo"
+            className=" h-[6rem] lg:flex hidden object-contain"
+          />
+        </div>
+        <div className="border-[1px] w-full border-neutral-300  items-center  rounded-full px-[10px] flex lg:hidden">
+          <SearchIcon />
+          <input
+            className="  text-neutral-300 !bg-lightBlue-100/[20%]  outline-none w-full p-3 h-[2.7rem] "
+            type="text"
+            placeholder="Search for talent, challenges and communities"
+          />
+        </div>
+        <div className="flex flex-col w-full space-y-[15px] lg:space-y-[25px] mt-[15%]">
+          {links.slice(0, 6).map((link, index) => (
+            <NavLink name={link.name} icon={link.icon} key={index} />
+          ))}
+        </div>
+        <div className="flex flex-col w-full space-y-[15px] lg:space-y-[25px] border-t border-[#C2C2C44D] pt-[10px] mt-[10%]">
+          {links.slice(6, links.length).map((link, index) => (
+            <NavLink name={link.name} icon={link.icon} key={index} />
+          ))}
+        </div>
       </div>
-      <div className="flex flex-col w-full space-y-[15px] lg:space-y-[25px] border-t border-[#C2C2C44D] pt-[10px] mt-[10%]">
-      {
-        links.slice(6,links.length).map((link, index) => (
-          <NavLink name={link.name} icon={link.icon} key={index}/>
-        ))
-      }
-      </div>
-       
-      </div>
-      
+
       <div className="flex flex-col justify-between w-full gap-3 items-center">
         <div className="text-[#a7a9ae] flex w-full items-center justify-start gap-3 ">
           <img

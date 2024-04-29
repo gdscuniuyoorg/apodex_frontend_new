@@ -4,6 +4,7 @@ import SearchIcon from "@/components/Icons/SearchIcon";
 import NotificationsIcon from "@/components/Icons/NotificationsIcon";
 import { HiBars3 } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
+import { useRouter } from 'next/navigation';
 
 type SideBarProps = {
   open: boolean;
@@ -12,8 +13,18 @@ type SideBarProps = {
 
 
 const Nav = ({open, setOpen}: SideBarProps) => {
+    const router = useRouter();
+
   return (
-    <div className="shadow sticky top-0 bg-white  p-[15px_20px] lg:p-[20px] flex items-center justify-end">
+    <div className="shadow sticky top-0 bg-white  p-[10px_20px] lg:p-[20px] flex items-center justify-between lg:justify-end">
+      <img
+        onClick={() => router.push(`/dashboard`)}
+        role="button"
+        src="/apodex-m.png"
+        alt="apodex-logo"
+        className="lg:hidden flex w-[4.5rem] object-contain "
+      />
+
       <div className="w-fit lg:w-[60%] flex items-center space-x-[20px]">
         <div className="border-[1px] w-full border-neutral-300  items-center  rounded-full px-[10px] lg:flex hidden">
           <SearchIcon />
@@ -32,13 +43,15 @@ const Nav = ({open, setOpen}: SideBarProps) => {
             src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg"
             alt="profile-pic"
           />
-          <button className="lg:hidden " onClick={()=> setOpen(!open)}>
-            {open?  <LiaTimesSolid className="text-[30px]" /> :  <HiBars3 className="text-[30px]" />}
-         
+          <button className="lg:hidden " onClick={() => setOpen(!open)}>
+            {open ? (
+              <LiaTimesSolid className="text-[30px]" />
+            ) : (
+              <HiBars3 className="text-[30px]" />
+            )}
           </button>
         </div>
       </div>
-
     </div>
   );
 };
