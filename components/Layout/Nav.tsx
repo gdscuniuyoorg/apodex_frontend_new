@@ -1,45 +1,49 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
-import { useRouter } from 'next/navigation';
 
-import { IoNotificationsSharp } from "react-icons/io5";
 import SearchIcon from "@/components/Icons/SearchIcon";
-import NotificationsIcon from '@/components/Icons/NotificationsIcon';
-const Nav = () => {
-      const router = useRouter();
+import NotificationsIcon from "@/components/Icons/NotificationsIcon";
+import { HiBars3 } from "react-icons/hi2";
+import { LiaTimesSolid } from "react-icons/lia";
 
+type SideBarProps = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
+
+
+const Nav = ({open, setOpen}: SideBarProps) => {
   return (
-    <nav className="flex items-center justify-between px-3 lg:px-8 z-50 py-3 border-b-[1px] border-[#C2C2C4]/[50%] fixed top-0 right-0 left-0 bg-lightBlue-100">
-      <img
-        onClick={() => router.push(`/dashboard`)}
-        role='button'
-        src="/apodexLogo.png"
-        alt="apodex-logo"
-        className="lg:h-[4rem] h-[3rem]"
-      />
-
-      <div className="flex flex-1 items-center justify-end gap-3">
-        <div className=" relative w-[50%] lg:block hidden">
+    <div className="shadow sticky top-0 bg-white  p-[15px_20px] lg:p-[20px] flex items-center justify-end">
+      <div className="w-fit lg:w-[60%] flex items-center space-x-[20px]">
+        <div className="border-[1px] w-full border-neutral-300  items-center  rounded-full px-[10px] lg:flex hidden">
+          <SearchIcon />
           <input
-            className=" border-[1px] border-neutral-300 text-neutral-300 !bg-lightBlue-100/[20%] pl-[50px] outline-none rounded-full p-3 h-[2.7rem] w-full"
+            className="  text-neutral-300 !bg-lightBlue-100/[20%]  outline-none w-full p-3 h-[2.7rem] "
             type="text"
             placeholder="Search for talent, challenges and communities"
           />
-          <span className="absolute left-3 top-2.5">
-            <SearchIcon />
-          </span>
         </div>
-        <button>
-          <NotificationsIcon className=" cursor-pointer" />
-        </button>
-        <img
-          className="rounded-full w-[40px] h-[40px] object-cover"
-          src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg"
-          alt="profile-pic"
-        />
+        <div className="flex items-center space-x-[10px] lg:space-x-[20px]">
+          <button>
+            <NotificationsIcon className=" cursor-pointer text-[25px]" />
+          </button>
+          <img
+            className="rounded-full w-[30px] lg:w-[40px] h-[30px] lg:h-[40px] object-cover border"
+            src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg"
+            alt="profile-pic"
+          />
+          <button className="lg:hidden " onClick={()=> setOpen(!open)}>
+            {open?  <LiaTimesSolid className="text-[30px]" /> :  <HiBars3 className="text-[30px]" />}
+         
+          </button>
+        </div>
       </div>
-    </nav>
+
+    </div>
   );
 };
 
 export default Nav;
+
+
+
