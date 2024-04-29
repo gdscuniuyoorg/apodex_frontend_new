@@ -136,7 +136,7 @@ const TermsAndConditions = () => {
               Decline
             </Button>
             <Button
-              link={handlePrev}
+              link={handleNext}
               classname="bg-blue text-white rounded-sm w-full font-semibold"
             >
               Agree
