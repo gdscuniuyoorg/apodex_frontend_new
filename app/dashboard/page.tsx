@@ -22,7 +22,7 @@ const Home = () => {
       <VerifyBanner />
 
       <div className="container">
-        <h3 className="text-[33px] text-[#535458] font-semibold py-3">
+        <h3 className="lg:text-[33px] text-2xl text-[#535458] font-semibold py-3">
           Welcome Back, <span className="text-[#0070CC]">John</span>
         </h3>
         <HomePageImg />
