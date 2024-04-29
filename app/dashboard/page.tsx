@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import HomeOutward from "@/components/Icons/HomeOutward";
 import HomePageImg from "@/components/Icons/HomePageImg";
 import Lightbulb from "@/components/Icons/Lightbulb";
 import Button from "@/components/buttons/Button";
 import OtherChallenges from "@/components/buttons/OtherChallenges";
 import Link from "next/link";
+import VerifyBanner from "@/components/UI/VerifyBanner";
 
 const Home = () => {
   const router = useRouter(); // Initializing useRouter
@@ -19,18 +19,8 @@ const Home = () => {
 
   return (
     <div className="py-2">
-      <div className="flex bg-[#0070CC] items-center justify-between p-2 text-[13px]">
-        <p className="lg:px-10 text-[#BECDEF]">
-          Your account is not yet verified. Help us to reduce the risk of losing
-          your account by verifying your account
-        </p>
-        <div className="flex items-center lg:px-10">
-          <a href="#" className="text-[#E0E0E1]">
-            Verify Now
-          </a>
-          <HomeOutward />
-        </div>
-      </div>
+      <VerifyBanner />
+
       <div className="container">
         <h3 className="text-[33px] text-[#535458] font-semibold py-3">
           Welcome Back, <span className="text-[#0070CC]">John</span>
@@ -55,7 +45,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={'/dashboard/challenges/terms-and-conditions/123'}>
+              <Link href={"/dashboard/challenges/terms-and-conditions/123"}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
@@ -82,7 +72,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={'/dashboard/challenges/terms-and-conditions/121'}>
+              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}

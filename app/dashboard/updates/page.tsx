@@ -1,4 +1,4 @@
-const Forum = () => {
+const Updates = () => {
   return (
     <div className="container lg:px-10 p-10 px-0">
       <h1>Coming Soon...</h1>
@@ -6,4 +6,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default Updates;
