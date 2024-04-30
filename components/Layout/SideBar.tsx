@@ -96,6 +96,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
           <p className="text-neutral-300">Contact Support</p>
         </button>
         <div
+        role="button"
           className="border-[1px] w-full center rounded-md p-2 border-[#C2C2C4]/[50%]"
           onClick={logoutAction}
         >

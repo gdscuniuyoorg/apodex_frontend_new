@@ -49,7 +49,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/123"}>
+              <Link href={'/dashboard/challenges/terms-and-conditions/123'}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
@@ -76,7 +76,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
+              <Link href={'/dashboard/challenges/terms-and-conditions/121'}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
