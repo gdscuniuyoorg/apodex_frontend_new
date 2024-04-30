@@ -31,7 +31,7 @@ const Toolbar = ({ editor, content }: ToolbarProps) => {
         type="button"
         onClick={() => emit()}
         className={
-          isActive ? "bg-sky-700 text-white p-2 rounded-lg" : "text-sky-400"
+          isActive ? "bg-brand text-white p-1 rounded-lg" : "text-black"
         }
       >
         {icon}
@@ -88,53 +88,53 @@ const Toolbar = ({ editor, content }: ToolbarProps) => {
   };
 
   return (
-    <div className="px-4 py-3 rounded-tl-md rounded-tr-md flex justify-between items-start gap-5 w-full flex-wrap border border-gray-700">
+    <div className="px-4 py-3  !bg-[#BBD4F0] rounded-t-[4px] flex justify-between items-start gap-5 w-full flex-wrap border-2 border-b-0 border-lightGray">
       <div className="flex justify-start items-center gap-5 w-full lg:w-10/12 flex-wrap">
         <ActionButton
           emit={toggleBold}
-          isActive={editor.isActive("bold")}
+          isActive={editor.isActive('bold')}
           icon={<Bold className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleUnderline}
-          isActive={editor.isActive("underline")}
+          isActive={editor.isActive('underline')}
           icon={<Underline className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleItalic}
-          isActive={editor.isActive("italic")}
+          isActive={editor.isActive('italic')}
           icon={<Italic className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleList}
-          isActive={editor.isActive("bulletList")}
+          isActive={editor.isActive('bulletList')}
           icon={<List className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleListOrdered}
-          isActive={editor.isActive("orderedList")}
+          isActive={editor.isActive('orderedList')}
           icon={<ListOrdered className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleHeading2}
-          isActive={editor.isActive("heading", { level: 2 })}
+          isActive={editor.isActive('heading', { level: 2 })}
           icon={<Heading2 className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleStrikethrough}
-          isActive={editor.isActive("strike")}
+          isActive={editor.isActive('strike')}
           icon={<Strikethrough className="w-5 h-5" />}
         />
 
         <ActionButton
           emit={toggleQuote}
-          isActive={editor.isActive("blockquote")}
+          isActive={editor.isActive('blockquote')}
           icon={<Quote className="w-5 h-5" />}
         />
 
@@ -152,7 +152,7 @@ const Toolbar = ({ editor, content }: ToolbarProps) => {
 
         <ActionButton
           emit={toggleCode}
-          isActive={editor.isActive("code")}
+          isActive={editor.isActive('code')}
           icon={<Code className="w-5 h-5" />}
         />
       </div>

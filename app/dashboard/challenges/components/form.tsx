@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { CalendarForm } from "@/components/UI/datepicker";
 import Tiptap from "@/components/tipTap/Tiptap";
 import UserService from "@/services/userServices";
-import { Button, FileUpload, Input } from "@/components/FormComponents";
+import { Button, FileUpload, Input, Select } from '@/components/FormComponents';
 
 
 interface FormData {
@@ -86,9 +86,10 @@ const ChallengeForm = () => {
 
   return (
     <div className="w-full container lg:px-10 p-10 px-0">
-      <div className="lg:w-[476px] m-auto">
+      <div className=" m-auto container">
+        {/* lg:w-[476px] */}
         {/* <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458] py-10 text-center"> */}
-        <h3 className="font-semibold text-2xl lg:text-3xl leading-10 lg:leading-[43.56px] text-[#535458] py-10 text-center">
+        <h3 className="font-semibold text-2xl lg:text-3xl leading-10 lg:leading-[43.56px] text-[#535458] lg:py-10 py-4 text-center">
           Create a Challenge
         </h3>
 
@@ -96,70 +97,91 @@ const ChallengeForm = () => {
           className="space-y-6  flex-col items-center justify-center"
           // action="#"
         >
-          <div className="w-full">
-            <Input
-              onChange={(e: any) => handleChange("name", e.target.value)}
-              label="Challenge Name"
-              type="text"
-              value={formData.name}
-              placeholder="Tech Ignite 2024 Hackathon"
-            />
+          <div className="w-full flex gap-4 flex-col lg:flex-row">
+            <div className="w-full">
+              <Input
+                onChange={(e: any) => handleChange('name', e.target.value)}
+                label="Challenge Name"
+                type="text"
+                value={formData.name}
+                placeholder="Tech Ignite 2024 Hackathon"
+              />
+            </div>
+            <div className="w-full">
+              <Select
+                onChange={(e: any) =>
+                  handleChange('participationType', e.target.value)
+                }
+                label="Participation Type "
+                options={[
+                  { label: 'Individual', value: 'individual' },
+                  { label: 'Team', value: 'team' }
+                ]}
+                value={formData.participationType}
+                placeholder="Select Participation Type"
+              />
+            </div>
           </div>
 
           <div className="w-full">
             <Input
-              onChange={(e: any) => handleChange("description", e.target.value)}
+              onChange={(e: any) => handleChange('description', e.target.value)}
               label="Challenge Description"
-              type="text"
+              type="textbox"
               value={formData.description}
               placeholder="Tech Ignite 2024 Hackathon"
             />
           </div>
 
-          <div className="flex items-center ">
+          {/* <div className="flex items-center ">
             <input type="checkbox" name="" id="" />
             <label htmlFor="rules" className="px-3 text-[#88898C]">
               Prizes
             </label>
-          </div>
+          </div> */}
 
           <div className="flex flex-col ">
-            <div>
+            {/* <div>
               <input type="checkbox" name="" id="" />
               <label htmlFor="rules" className="px-3 text-[#88898C] ">
                 Rules
               </label>
             </div>
+ */}
+            <label className="font-medium text-base text-[#817E7E]">
+              Challange Details
+            </label>
 
             <Tiptap
               value={tipTapContent}
               onChange={(newContent: string) => changeTiptapContent(newContent)}
             />
           </div>
+          <div className="w-full flex gap-4 flex-col lg:flex-row">
+            <div className="w-full">
+              <Input
+                onChange={(e: any) => handleChange('startTime', e.target.value)}
+                label="Start Date"
+                type="date"
+                value={formData.startTime}
+              />
+            </div>
 
-          <div className="w-full">
-            <Input
-              onChange={(e: any) => handleChange("startTime", e.target.value)}
-              label="Start Date"
-              type="date"
-              value={formData.startTime}
-            />
-          </div>
-
-          <div className="w-full">
-            <Input
-              onChange={(e: any) => handleChange("endTime", e.target.value)}
-              label="End Date"
-              type="date"
-              value={formData.endTime}
-            />
+            <div className="w-full">
+              <Input
+                onChange={(e: any) => handleChange('endTime', e.target.value)}
+                label="End Date"
+                type="date"
+                value={formData.endTime}
+              />
+            </div>
           </div>
 
           <div className="flex-col items-center justify-center h-full gap-3 w-full">
             <FileUpload
               image={displayPhoto.coverPhoto}
               handleFileChange={(file: File) =>
-                handleFileChange(file, "coverPhoto")
+                handleFileChange(file, 'coverPhoto')
               }
             />
             <div className="flex items-center gap-1">
@@ -169,10 +191,11 @@ const ChallengeForm = () => {
               </p>
             </div>
           </div>
-
-          <Button classname="w-full flex items-center justify-center text-white ">
-            Create a challenge
-          </Button>
+          <div className="flex justify-center w-full">
+            <Button classname="lg:w-[40%] w-full flex items-center justify-center text-white ">
+              Create a challenge
+            </Button>
+          </div>
         </div>
       </div>
     </div>

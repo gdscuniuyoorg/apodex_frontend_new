@@ -42,7 +42,36 @@ interface InputProps {
   postIconAction?: (e: any) => void;
   onKeyDown?: (e: any) => void;
 }
-
+export const Select = ({
+  options,
+  classname,
+  label,
+  value,
+  onChange,
+  placeholder
+}: any) => {
+  return (
+    <div className={classnames('flex flex-col gap-2 ', classname)}>
+      {label && (
+        <label className="font-medium text-base text-[#817E7E]">{label}</label>
+      )}
+      <select
+        value={value}
+        onChange={onChange}
+        className="border-2 border-[#BFBEBE] rounded-[4px] !outline-none focus:outline-brand bg-white focus:bg-none p-2 placeholder-[#777373] bg-transparent w-full"
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        {options.map((option: any) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
 export const Input = ({
   classname,
   label,
@@ -57,10 +86,11 @@ export const Input = ({
   onKeyDown,
   type = "text",
 }: InputProps) => {
+   
   if (type === "textbox") {
     return (
       <div className={classnames('flex flex-col gap-2 ', classname)}>
-        {label && <label className="block text-sm font-medium">{label}</label>}
+        {label && <label className="font-medium text-base text-[#817E7E]">{label}</label>}
         <textarea
           id={label}
           name={label}
@@ -69,24 +99,24 @@ export const Input = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          className="border-2 border-[#BFBEBE] rounded-md focus:outline-brand bg-foundation focus:bg-none p-3 placeholder-[#777373] bg-transparent w-full"
+          className="border-2 border-[#BFBEBE] rounded-[4px] focus:outline-brand bg-white focus:bg-none p-3 placeholder-[#777373] bg-transparent w-full"
         ></textarea>
       </div>
     );
   }
 
   return (
-    <div className={classnames("flex flex-col gap-2 ", classname)}>
+    <div className={classnames('flex flex-col gap-2 ', classname)}>
       {label && (
         <small className="font-medium text-base text-[#817E7E]">{label}</small>
       )}
 
-      <div className="flex items-center input-wrapper outline-none border-2 border-lightGray focus:outline-none bg-transparent rounded">
+      <div className="flex items-center input-wrapper outline-none border-2 overflow-hidden border-lightGray focus:outline-none bg-transparent rounded-[4px]">
         <input
           type={type}
           id={label}
           onKeyDown={onKeyDown}
-          className="focus:outline-none focus:bg-none p-4 py-2 bg-foundation w-full"
+          className="focus:outline-none focus:bg-none p-4 py-2 bg-white w-full"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -95,11 +125,11 @@ export const Input = ({
 
         {postIcon && (
           <button
-            className={classnames("", buttonClassnames)}
+            className={classnames('', buttonClassnames)}
             onClick={postIconAction}
           >
             <img
-              className={classnames("h-4 w-4 mr-3", imageClassname)}
+              className={classnames('h-4 w-4 mr-3', imageClassname)}
               src={postIcon}
               alt=""
             />
@@ -145,7 +175,7 @@ export const FileUpload = ({
       {!imagePreview && !image ? (
         <>
           <div
-            className="bg-background h-[250px] cursor-pointer flex items-center rounded-md border-lightGray border p-2 text-center justify-center"
+            className="bg-background h-[250px] cursor-pointer flex items-center rounded-[4px] border-lightGray border-2 p-2 text-center justify-center"
             onClick={() => fileInputRef?.current?.click()}
           >
             <img src="/uploadIcon.svg" alt="" />
