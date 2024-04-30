@@ -41,7 +41,7 @@ const Talent = () => {
             name: "Collin Mach",
             role: "UX Designer",
             id: "4094040394"
-        },
+        }, 
     ]
 
     return (
