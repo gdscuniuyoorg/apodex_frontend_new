@@ -20,12 +20,12 @@ const Tiptap = ({
     editorProps: {
       attributes: {
         class:
-          "flex flex-col px-4 justify-start border border-gray-700 text-gray-700 items-start w-full gap-3 font-medium text-[1rem] p-4 rounded-bl-md rounded-br-md outline-none",
-      },
+          'flex flex-col px-4 justify-start border-2 !border-lightGray min-h-[20rem] !bg-white text-gray-700 items-start w-full gap-3 font-medium text-[1rem] p-4 rounded-bl-[4px] rounded-br-[4px] outline-none'
+      }
     },
     onUpdate: ({ editor }) => {
       handleChange(editor.getHTML());
-    },
+    }
   });
 
   return (
