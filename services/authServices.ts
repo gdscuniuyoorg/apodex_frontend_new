@@ -1,6 +1,19 @@
 import { ApiRoutes } from "./apiRoutes";
 import { ApiRequestClient } from "@/shared/api-clients";
 
+export const _saveUserData = (userData: any) => {
+  localStorage.setItem("userData", JSON.stringify(userData));
+};
+
+export const _getUserData = () => {
+  const data = localStorage.getItem("userData");
+  return data ? JSON.parse(data) : null;
+};
+
+export const _clearUserData = () => {
+  localStorage.removeItem("userData");
+};
+
 export const _saveToken = (token: any) => {
   localStorage.setItem("apodex", token);
 };
@@ -37,7 +50,9 @@ export default class AuthService {
         throw new Error(errorMessage);
       }
 
+      // console.log("response from service", response)
       _saveToken(response.data.token);
+      _saveUserData(response.data.user);
       return response.data;
     } catch (error) {
       throw error;
@@ -52,7 +67,10 @@ export default class AuthService {
         throw new Error("Unexpected error occurred. Please try again.");
       }
 
-      // _saveToken(response.data.token);
+      console.log(response.data)
+
+      _saveToken(response.data.token);
+      _saveUserData(response.data.data);
       return response.data.url;
     } catch (error) {
       throw error;

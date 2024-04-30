@@ -19,7 +19,7 @@ const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const { status, isAuth } = useAppSelector((state) => state.auth);
+  const { status, isAuth } = useAppSelector(state => state.auth);
 
   const initialFormData: FormData = {
     email: "",
@@ -57,7 +57,7 @@ const Login = () => {
       .unwrap()
       .then((data) => {
         toast.success("You are logged in");
-        router.push("/dashboard"); // Redirect to homepage or dashboard
+        router.push("/dashboard");
       })
       .catch((error) => {
         toast.error(error || "An error occurred during login.");
@@ -75,26 +75,14 @@ const Login = () => {
   };
 
   // useEffect(() => {
-  //   // const code = new URLSearchParams(window.location.search).get("code");
-
-  //   dispatch(loginWithGoogle())
-  //     .unwrap()
-  //     .then((data) => {
-  //       toast.success("You are logged in");
-  //       router.push("/"); // Redirect to homepage or dashboard
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //       toast.error(error.message || "An error occurred during login.");
-  //     });
-  // }, [dispatch, router]);
-
-  useEffect(() => {
-    if (isAuth) {
-      const destinedPath = searchParams.get("route") || "/";
-      router.push(destinedPath);
-    }
-  }, [isAuth, router, searchParams, status]);
+  //   if (!isAuth) {
+  //     router.push("/login");
+  //   } else {
+  //     const destinedPath = searchParams.get("route") || "/";
+  //     router.push(destinedPath);
+  //   }
+  // }, [isAuth, router, searchParams]);
+  
 
   return (
     <main className="w-full h-screen flex center">

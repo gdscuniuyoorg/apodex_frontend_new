@@ -19,22 +19,34 @@ import ProfileIcon from "@/components/Icons/ProfileIcon";
 import SettingsIcon from "@/components/Icons/SettingsIcon";
 import SupportAgentIcon from "@/components/Icons/SupportAgentIcon";
 import { useRouter } from "next/navigation";
-import SearchIcon from '@/components/Icons/SearchIcon';
-
+import SearchIcon from "@/components/Icons/SearchIcon";
+import { useAppDispatch, useAppSelector } from "@/common/hooks";
+import { logout } from "@/redux/features/authSlice";
+import { _clearToken } from "@/services/authServices";
+import dynamic from "next/dynamic";
 
 type SideBarProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
 };
 
-
-const SideBar = ({ open, setOpen}: SideBarProps) => {
+const SideBar = ({ open, setOpen }: SideBarProps) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
+  // console.log(user);
+
+  const logoutAction = () => {
+    dispatch(logout());
+    router.push("/login");
+    _clearToken();
+  };
 
   return (
     <aside
       className={`${
-        open ? 'left-0' : 'left-[-100%] lg:left-0'
+        open ? "left-0" : "left-[-100%] lg:left-0"
       } min-w-[240px] transition-all w-[240px] max-w-[240px] top-0 h-screen fixed lg:relative flex flex-col bg-white justify-between p-[20px] z-20`}
     >
       <div className="flex flex-col grow lg:pt-0 pt-[3rem] items-center ">
@@ -71,24 +83,30 @@ const SideBar = ({ open, setOpen}: SideBarProps) => {
         <div className="text-[#a7a9ae] flex w-full items-center justify-start gap-3 ">
           <img
             className="rounded-full w-[40px] h-[40px] object-cover"
-            src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg"
+            src={user?.image}
             alt="profile-pic"
           />
           <div>
-            <h1 className="text-neutral-black">John Doe</h1>
-            <p className="text-neutral-300 text-md">UX Designer</p>
+            <h1 className="text-neutral-black">{user?.firstName} {user?.lastName}</h1>
+            <p className="text-neutral-300 text-md">{user?.currentRole}</p>
           </div>
         </div>
         <button className="border-[1px] rounded-md p-2 border-[#C2C2C4]/[50%] flex items-center  gap-2 w-full justify-center">
           <SupportAgentIcon />
           <p className="text-neutral-300">Contact Support</p>
         </button>
+        <div
+          className="border-[1px] w-full center rounded-md p-2 border-[#C2C2C4]/[50%]"
+          onClick={logoutAction}
+        >
+          Log Out
+        </div>
       </div>
     </aside>
   );
 };
 
-export default SideBar;
+export default dynamic(() => Promise.resolve(SideBar), {ssr: false});
 
 const links = [
   {

@@ -5,6 +5,7 @@ import NotificationsIcon from "@/components/Icons/NotificationsIcon";
 import { HiBars3 } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
 import { useRouter } from 'next/navigation';
+import { useAppSelector } from "@/common/hooks";
 
 type SideBarProps = {
   open: boolean;
@@ -14,6 +15,7 @@ type SideBarProps = {
 
 const Nav = ({open, setOpen}: SideBarProps) => {
     const router = useRouter();
+    const { user } = useAppSelector((state) => state.auth);
 
   return (
     <div className="shadow sticky top-0 bg-white  p-[10px_20px] lg:p-[20px] flex items-center justify-between lg:justify-end">
@@ -40,7 +42,7 @@ const Nav = ({open, setOpen}: SideBarProps) => {
           </button>
           <img
             className="rounded-full w-[30px] lg:w-[40px] h-[30px] lg:h-[40px] object-cover border"
-            src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg"
+            src={user?.image}
             alt="profile-pic"
           />
           <button className="lg:hidden " onClick={() => setOpen(!open)}>

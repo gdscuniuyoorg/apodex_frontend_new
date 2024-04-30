@@ -3,6 +3,9 @@ import authSReducer from "./features/authSlice";
 import userReducer from "./features/userSlice";
 import talentReducer from "./features/talentSlice"
 import challengeSlice from "./features/challengeSlice";
+import { loadAuthState } from "@/shared/rehydrateAuth";
+
+const preloadedState = loadAuthState();
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
@@ -12,6 +15,7 @@ export const store = configureStore({
     talent: talentReducer,
     challenge: challengeSlice,
   },
+  preloadedState
 });
 
 export type RootState = ReturnType<typeof store.getState>;

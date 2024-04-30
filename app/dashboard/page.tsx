@@ -8,11 +8,15 @@ import Button from "@/components/buttons/Button";
 import OtherChallenges from "@/components/buttons/OtherChallenges";
 import Link from "next/link";
 import VerifyBanner from "@/components/UI/VerifyBanner";
+import { _getUserData } from "@/services/authServices";
+import { useAppSelector } from "@/common/hooks";
+import dynamic from "next/dynamic";
+import { promise } from "zod";
 
 const Home = () => {
-  const router = useRouter(); // Initializing useRouter
+  const router = useRouter();
+  const { user } = useAppSelector((state) => state.auth);
 
-  // Function to handle navigation to the next page
   const handleNext = () => {
     router.push("/dashboard/challenges/terms-and-conditions");
   };
@@ -23,7 +27,7 @@ const Home = () => {
 
       <div className="container">
         <h3 className="lg:text-[33px] text-2xl text-[#535458] font-semibold py-3">
-          Welcome Back, <span className="text-[#0070CC]">John</span>
+          Welcome Back, <span className="text-[#0070CC]">{user?.name}</span>
         </h3>
         <HomePageImg />
       </div>
@@ -142,4 +146,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default dynamic(() => Promise.resolve(Home), {ssr: false});
