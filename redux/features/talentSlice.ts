@@ -40,7 +40,7 @@ const talentSlice = createSlice({
     });
     builder.addCase(getAllTalents.fulfilled, (state, action) => {
         const { user } = action.payload.data;
-
+        console.log(user)
         state.data = user || [];
         state.status = states.FETCHED;
     });

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/FormComponents";
 import Challengeimg from "@/components/Icons/Challengeimg";
 import PlusIcon from "@/components/Icons/PlusIcon";
-import ChallengeForm from "./components/form";
+import ChallengeForm from "./new/form";
 import { useAppSelector } from "@/common/hooks";
 
 export default function Challenge() {
