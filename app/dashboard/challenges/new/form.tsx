@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CalendarForm } from "@/components/UI/datepicker";
+import { Button, FileUpload, Input, Select } from "@/components/FormComponents";
+import ChallengeService from "@/services/challengeService";
+import toast from "react-hot-toast";
 import Tiptap from "@/components/tipTap/Tiptap";
-import UserService from "@/services/userServices";
-import { Button, FileUpload, Input, Select } from '@/components/FormComponents';
-
 
 interface FormData {
   name: string;
@@ -15,92 +14,92 @@ interface FormData {
   startTime: string;
   endTime: string;
   rules: string;
-}
-
-interface ImageFormData {
-  coverPhoto: string;
+  coverPhoto: File | null;
 }
 
 const ChallengeForm = () => {
+  const router = useRouter();
+
+  const [tipTapContent, setTipTapContent] = useState<string>("");
   const initialFormData: FormData = {
     name: "",
     description: "",
     participationType: "",
     startTime: "",
     endTime: "",
-    rules: "",
+    coverPhoto: null,
+    rules: tipTapContent,
   };
 
-  const router = useRouter();
-
-  const [tipTapContent, setTipTapContent] = useState<string>("");
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [displayPhoto, setDisplayPhoto] = useState<ImageFormData>({
-    coverPhoto: "",
-  });
 
-  const [value, setValue] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  console.log(formData)
 
-  const changeTiptapContent = (reason: any) => {
+  const changeTiptapContent = (reason: string) => {
     setTipTapContent(reason);
   };
 
-  const handleChange = (label: any, data: any) => {
-    setFormData((prevData) => {
-      const newData = {
-        ...prevData,
-        [label]: data,
-      };
-
-      console.log("Form Data", newData);
-      return newData;
-    });
+  const handleChange = (label: keyof FormData, data: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [label]: data,
+    }));
   };
 
-  const uploadImage = async (file: File) => {
+  const handleFileChange = (file: File) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      coverPhoto: file,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("description", formData.description);
+    data.append("participationType", formData.participationType);
+    data.append("startTime", formData.startTime);
+    data.append("endTime", formData.endTime);
+    data.append("rules", formData.rules);
+    if (formData.coverPhoto) {
+      data.append("coverPhoto", formData.coverPhoto);
+    } else {
+      toast.error("No file selected");
+      return;
+    }
+
     try {
-      const result = await UserService.uploadUserImage(file);
-      console.log(result);
+      setSubmitting(true);
+      await ChallengeService.createAChallenge(data);
+      setSubmitting(false);
+      toast.success("You have successfully created a challenge");
     } catch (error) {
-      console.error("Error uploading image: ", error);
-      return "";
+      setSubmitting(false);
+      toast.error("Error creating challenge");
+      console.error("Error creating challenge", error);
     }
   };
 
-  const handleFileChange = async (
-    file: File | null,
-    fieldName: keyof ImageFormData
-  ) => {
-    if (file) {
-      const imageUrl = await uploadImage(file);
-      setDisplayPhoto({
-        coverPhoto: String(imageUrl),
-      });
-    }
-  };
-
- 
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      rules: tipTapContent,
+    }));
+  }, [tipTapContent]);
 
   return (
     <div className="w-full container lg:px-10 p-10 px-0">
-      <div className=" m-auto container">
-        {/* lg:w-[476px] */}
-        {/* <h3 className=" font-semibold text-[33px] leadding-[43.56px] text-[#535458] py-10 text-center"> */}
+      <div className="m-auto container">
         <h3 className="font-semibold text-2xl lg:text-3xl leading-10 lg:leading-[43.56px] text-[#535458] lg:py-10 py-4 text-center">
           Create a Challenge
         </h3>
 
-        <div
-          className="space-y-6  flex-col items-center justify-center"
-          // action="#"
-        >
+        <div className="space-y-6 flex-col items-center justify-center">
           <div className="w-full flex gap-4 flex-col lg:flex-row">
             <div className="w-full">
               <Input
-                onChange={(e: any) => handleChange('name', e.target.value)}
+                onChange={(e) => handleChange("name", e.target.value)}
                 label="Challenge Name"
                 type="text"
                 value={formData.name}
@@ -110,12 +109,12 @@ const ChallengeForm = () => {
             <div className="w-full">
               <Select
                 onChange={(e: any) =>
-                  handleChange('participationType', e.target.value)
+                  handleChange("participationType", e.target.value)
                 }
                 label="Participation Type "
                 options={[
-                  { label: 'Individual', value: 'individual' },
-                  { label: 'Team', value: 'team' }
+                  { label: "Individual", value: "individual" },
+                  { label: "Team", value: "team" },
                 ]}
                 value={formData.participationType}
                 placeholder="Select Participation Type"
@@ -125,7 +124,7 @@ const ChallengeForm = () => {
 
           <div className="w-full">
             <Input
-              onChange={(e: any) => handleChange('description', e.target.value)}
+              onChange={(e) => handleChange("description", e.target.value)}
               label="Challenge Description"
               type="textbox"
               value={formData.description}
@@ -133,34 +132,20 @@ const ChallengeForm = () => {
             />
           </div>
 
-          {/* <div className="flex items-center ">
-            <input type="checkbox" name="" id="" />
-            <label htmlFor="rules" className="px-3 text-[#88898C]">
-              Prizes
-            </label>
-          </div> */}
-
-          <div className="flex flex-col ">
-            {/* <div>
-              <input type="checkbox" name="" id="" />
-              <label htmlFor="rules" className="px-3 text-[#88898C] ">
-                Rules
-              </label>
-            </div>
- */}
+          <div className="flex flex-col">
             <label className="font-medium text-base text-[#817E7E]">
-              Challange Details
+              Challenge Details
             </label>
-
             <Tiptap
               value={tipTapContent}
               onChange={(newContent: string) => changeTiptapContent(newContent)}
             />
           </div>
+
           <div className="w-full flex gap-4 flex-col lg:flex-row">
             <div className="w-full">
               <Input
-                onChange={(e: any) => handleChange('startTime', e.target.value)}
+                onChange={(e) => handleChange("startTime", e.target.value)}
                 label="Start Date"
                 type="date"
                 value={formData.startTime}
@@ -169,7 +154,7 @@ const ChallengeForm = () => {
 
             <div className="w-full">
               <Input
-                onChange={(e: any) => handleChange('endTime', e.target.value)}
+                onChange={(e) => handleChange("endTime", e.target.value)}
                 label="End Date"
                 type="date"
                 value={formData.endTime}
@@ -179,10 +164,8 @@ const ChallengeForm = () => {
 
           <div className="flex-col items-center justify-center h-full gap-3 w-full">
             <FileUpload
-              image={displayPhoto.coverPhoto}
-              handleFileChange={(file: File) =>
-                handleFileChange(file, 'coverPhoto')
-              }
+              image={formData.coverPhoto ? URL.createObjectURL(formData.coverPhoto) : ""}
+              handleFileChange={(file: any) => handleFileChange(file)}
             />
             <div className="flex items-center gap-1">
               <img src="/info.png" alt="info" />
@@ -191,9 +174,10 @@ const ChallengeForm = () => {
               </p>
             </div>
           </div>
+
           <div className="flex justify-center w-full">
-            <Button classname="lg:w-[40%] w-full flex items-center justify-center text-white ">
-              Create a challenge
+            <Button link={handleSubmit} classname="lg:w-[40%] w-full flex items-center justify-center text-white">
+              {submitting ? "Creating..." : "Create a Challenge"}
             </Button>
           </div>
         </div>

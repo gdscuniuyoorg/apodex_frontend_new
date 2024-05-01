@@ -13,5 +13,5 @@ export const ApiRoutes = {
 
   // Challenge
   joinChallenge: "api/v1/challenges/join",
-  createChallege: "api/v1/challenges",
+  createChallenge: "api/v1/challenges",
 };

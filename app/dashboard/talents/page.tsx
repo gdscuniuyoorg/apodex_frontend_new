@@ -3,9 +3,16 @@
 
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
+import { getAllTalents } from "@/redux/features/talentSlice";
+import { useEffect } from "react";
 
 const Talent = () => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getAllTalents())
+      }, [dispatch])
 
     const allTalents = useAppSelector(state => state.talent);
 
