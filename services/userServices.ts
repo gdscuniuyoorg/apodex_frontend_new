@@ -1,9 +1,12 @@
 import { ApiRequestClient } from "@/shared/api-clients";
 import { ApiRoutes } from "./apiRoutes";
+import { _getUserToken } from "./authServices";
+import axiosInstance from "@/shared/axios.instance";
+import axios from "axios";
 
-export default class UserService {
+class UserService {
   // Onboard user service
-  static async completeProfile(data: any) {
+  async completeProfile(data: any) {
     try {
       const response = await ApiRequestClient.patch(ApiRoutes.completeProfile, {
         ...data,
@@ -26,20 +29,30 @@ export default class UserService {
   }
 
   // Upload user image service
-  static async uploadUserImage(file: File) {
-    const formData = new FormData();
-    formData.append('photo', file);
-
+  async uploadUserImage(image: File | string) {
     try {
-      const response = await ApiRequestClient.patch(ApiRoutes.uploadUserImage, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const imgData = new FormData();
+      imgData.append("photo", image);
+
+      // Image upload does not use crude upload mechanism
+      const response = await axiosInstance.patch(
+        ApiRoutes.uploadUserImage,
+        imgData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${_getUserToken()}`,
+          },
         }
-      });
+      );
+
       if (!response) throw new Error("Failed to upload image.");
+
       return response.data;
     } catch (error) {
       throw error;
     }
   }
 }
+
+export default new UserService();

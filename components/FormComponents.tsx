@@ -2,7 +2,7 @@
 "use client";
 
 import classnames from "@/app/shared/utils/classnames";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
 export const Button = ({
   link,
@@ -48,10 +48,10 @@ export const Select = ({
   label,
   value,
   onChange,
-  placeholder
+  placeholder,
 }: any) => {
   return (
-    <div className={classnames('flex flex-col gap-2 ', classname)}>
+    <div className={classnames("flex flex-col gap-2 ", classname)}>
       {label && (
         <label className="font-medium text-base text-[#817E7E]">{label}</label>
       )}
@@ -86,11 +86,14 @@ export const Input = ({
   onKeyDown,
   type = "text",
 }: InputProps) => {
-   
   if (type === "textbox") {
     return (
-      <div className={classnames('flex flex-col gap-2 ', classname)}>
-        {label && <label className="font-medium text-base text-[#817E7E]">{label}</label>}
+      <div className={classnames("flex flex-col gap-2 ", classname)}>
+        {label && (
+          <label className="font-medium text-base text-[#817E7E]">
+            {label}
+          </label>
+        )}
         <textarea
           id={label}
           name={label}
@@ -106,7 +109,7 @@ export const Input = ({
   }
 
   return (
-    <div className={classnames('flex flex-col gap-2 ', classname)}>
+    <div className={classnames("flex flex-col gap-2 ", classname)}>
       {label && (
         <small className="font-medium text-base text-[#817E7E]">{label}</small>
       )}
@@ -125,11 +128,11 @@ export const Input = ({
 
         {postIcon && (
           <button
-            className={classnames('', buttonClassnames)}
+            className={classnames("", buttonClassnames)}
             onClick={postIconAction}
           >
             <img
-              className={classnames('h-4 w-4 mr-3', imageClassname)}
+              className={classnames("h-4 w-4 mr-3", imageClassname)}
               src={postIcon}
               alt=""
             />
@@ -147,13 +150,15 @@ export const FileUpload = ({
   imageClassname = "rounded-md",
 }: any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
   const [imagePreview, setImagePreview] = useState<any>(null);
 
-  const onFileChange = (e: any) => {
-    const selectedFile = e.target.files[0];
-    setImagePreview(selectedFile);
-    handleFileChange(selectedFile);
+  const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      setImagePreview(file);
+      handleFileChange(file);
+    }
   };
 
   const clear = () => {

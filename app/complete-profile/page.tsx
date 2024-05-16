@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import toast from "react-hot-toast";
 import UserService from "@/services/userServices";
 import { useAppDispatch } from "@/common/hooks";
@@ -9,8 +9,9 @@ import { completeUserProfile } from "@/redux/features/userSlice";
 import Image from "next/image";
 import { Button, FileUpload, Input } from "@/components/FormComponents";
 import ActivePage from "@/components/ProfileSetUp/ActivePage";
+import { useRouter } from "next/navigation";
 
-interface FormData {
+interface UserInfoType {
   firstName: string;
   lastName: string;
   name?: string;
@@ -24,12 +25,12 @@ interface FormData {
   bio: string;
 }
 
-interface ImageFormData {
-  profileImage: string;
-}
-
 export default function CompleteProfile() {
-  const initialFormData: FormData = {
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const [userInfo, setUserInfo] = useState<UserInfoType>({
     firstName: "",
     lastName: "",
     bio: "",
@@ -40,17 +41,11 @@ export default function CompleteProfile() {
     portfolioUrl: "",
     twitterUrl: "",
     linkedInUrl: "",
-  };
-
-  const dispatch = useAppDispatch();
-
-  const [formData, setFormData] = useState<FormData>(initialFormData);
+  });
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [inputInterest, setInputInterest] = useState<string>("");
-  const [displayPhoto, setDisplayPhoto] = useState<ImageFormData>({
-    profileImage: "",
-  });
+  const [displayPhoto, setDisplayPhoto] = useState<File | string>("");
   const [isUrlValid, setIsUrlValid] = useState({
     portfolioUrl: true,
     twitterUrl: true,
@@ -74,7 +69,7 @@ export default function CompleteProfile() {
   ) => {
     if (event.key === "Enter" && inputInterest.trim() !== "") {
       event.preventDefault();
-      if (formData.techInterests.length < 5) {
+      if (userInfo.techInterests.length < 5) {
         addInterest(inputInterest.trim());
       }
     }
@@ -82,10 +77,10 @@ export default function CompleteProfile() {
 
   const addInterest = (interest: string) => {
     if (
-      !formData.techInterests.includes(interest) &&
-      formData.techInterests.length < 5
+      !userInfo.techInterests.includes(interest) &&
+      userInfo.techInterests.length < 5
     ) {
-      setFormData((prevData) => ({
+      setUserInfo((prevData) => ({
         ...prevData,
         techInterests: [...prevData.techInterests, interest],
       }));
@@ -94,61 +89,51 @@ export default function CompleteProfile() {
   };
 
   const removeInterest = (interest: string) => {
-    setFormData((prevData) => ({
+    setUserInfo((prevData) => ({
       ...prevData,
       techInterests: prevData.techInterests.filter((i) => i !== interest),
     }));
   };
 
-  const completeProfile = async (data: any) => {
+  const handleChange = (label: any, data: any) => {
+    setUserInfo((prevData) => {
+      const newData = {
+        ...prevData,
+        [label]: data,
+      };
+
+      return newData;
+    });
+  };
+
+  const handleImageChange = async (file: any) => {
+    const imgUrl = URL.createObjectURL(file);
+    setDisplayPhoto(file);
+  };
+
+  const completeProfileHandler = async (
+    data: UserInfoType,
+    imageBlob: File | string
+  ) => {
     try {
-      const response = await UserService.completeProfile(data);
+      const userPromise = UserService.completeProfile(data);
+      const imagePromise = UserService.uploadUserImage(imageBlob);
+
+      // Use Promise.all to wait for both promises to resolve
+      const response = await Promise.all([userPromise, imagePromise]);
+
       if (response) {
-        dispatch(completeUserProfile(response.data));
+        dispatch(completeUserProfile(response));
         toast.success("You have successfully updated your profile!");
       }
-      return response;
+      // go to dashboard after completing profile
+      return router.push("/dashboard");
     } catch (err: any) {
       toast.error(err.response.data.message);
     } finally {
       setSubmitting(false);
     }
   };
-
-  const handleChange = (label: any, data: any) => {
-    setFormData((prevData) => {
-      const newData = {
-        ...prevData,
-        [label]: data,
-      };
-
-      console.log("Form Data", newData);
-      return newData;
-    });
-  };
-
-  const uploadImage = async (file: File) => {
-    try {
-      const result = await UserService.uploadUserImage(file);
-      console.log(result);
-    } catch (error) {
-      console.error("Error uploading image: ", error);
-      return "";
-    }
-  };
-
-  const handleFileChange = async (
-    file: File | null,
-    fieldName: keyof ImageFormData
-  ) => {
-    if (file) {
-      const imageUrl = await uploadImage(file);
-      setDisplayPhoto({
-        profileImage: String(imageUrl),
-      });
-    }
-  };
-
   const validateUrl = (url: string) => {
     const pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
@@ -163,31 +148,23 @@ export default function CompleteProfile() {
   };
 
   const handleURLChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setUserInfo((prev) => ({ ...prev, [field]: value }));
     setIsUrlValid((prev) => ({ ...prev, [field]: validateUrl(value) }));
   };
 
-  const Submit = async (e: any) => {
+  const SubmitHandler = async (e: any) => {
     e.preventDefault();
 
-    const formDataToSend: FormData = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      name: `${formData.firstName} ${formData.lastName}`,
-      location: formData.location,
-      techInterests: formData.techInterests,
-      currentRole: formData.currentRole,
-      company: formData.company,
-      portfolioUrl: formData.portfolioUrl,
-      twitterUrl: formData.twitterUrl,
-      linkedInUrl: formData.linkedInUrl,
-      bio: formData.bio,
+    // building user data and image data
+    const userData = {
+      ...userInfo,
+      name: `${userInfo.firstName} ${userInfo.lastName}`,
     };
 
     setSubmitting(true);
 
     try {
-      await completeProfile(formDataToSend);
+      await completeProfileHandler(userData, displayPhoto);
     } catch (err: any) {
       toast.error(err.response?.data?.message || "An error occurred");
     } finally {
@@ -229,7 +206,7 @@ export default function CompleteProfile() {
                   }
                   label="First Name"
                   type="text"
-                  value={formData.firstName}
+                  value={userInfo.firstName}
                   placeholder="John"
                 />
               </div>
@@ -241,7 +218,7 @@ export default function CompleteProfile() {
                   }
                   label="Last Name"
                   type="text"
-                  value={formData.lastName}
+                  value={userInfo.lastName}
                   placeholder="Doe"
                 />
               </div>
@@ -253,16 +230,16 @@ export default function CompleteProfile() {
                   }
                   label="Location"
                   type="text"
-                  value={formData.location}
+                  value={userInfo.location}
                   placeholder="Uyo, Nigeria"
                 />
               </div>
 
               <Button
                 validation={
-                  !formData.firstName ||
-                  !formData.lastName ||
-                  !formData.location
+                  !userInfo.firstName ||
+                  !userInfo.lastName ||
+                  !userInfo.location
                 }
                 link={nextStep}
                 classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
@@ -312,7 +289,7 @@ export default function CompleteProfile() {
                   </label>
                   <div className="flex flex-wrap py-1 bg-foundation items-center outline-none border-2 border-lightGray focus:outline-none rounded">
                     <div className="flex flex-wrap flex-grow w-full gap-2 pl-2">
-                      {formData.techInterests.map((interest, index) => (
+                      {userInfo.techInterests.map((interest, index) => (
                         <span
                           key={index}
                           className="flex-initial rounded-lg"
@@ -336,7 +313,7 @@ export default function CompleteProfile() {
                         </span>
                       ))}
                     </div>
-                    {formData.techInterests.length < 5 && (
+                    {userInfo.techInterests.length < 5 && (
                       <input
                         type="text"
                         value={inputInterest}
@@ -348,7 +325,7 @@ export default function CompleteProfile() {
                     )}
                   </div>
 
-                  {inputInterest && formData.techInterests.length < 5 && (
+                  {inputInterest && userInfo.techInterests.length < 5 && (
                     <div
                       className="border-2 border-lightGray -mt-2 cursor-pointer p-2 text-gray-700 rounded-b hover:bg-lightBlue-100 w-full bg-white"
                       onClick={() => addInterest(inputInterest.trim())}
@@ -366,7 +343,7 @@ export default function CompleteProfile() {
                   }
                   label="Current Role (optional)"
                   type="text"
-                  value={formData.currentRole}
+                  value={userInfo.currentRole}
                   placeholder="UX Designer"
                 />
               </div>
@@ -376,14 +353,14 @@ export default function CompleteProfile() {
                   onChange={(e: any) => handleChange("company", e.target.value)}
                   label="Company (optional)"
                   type="text"
-                  value={formData.company}
+                  value={userInfo.company}
                   placeholder="John Doe & Sonsl ltd"
                 />
               </div>
 
               <Button
                 link={nextStep}
-                validation={!formData.techInterests}
+                validation={!userInfo.techInterests}
                 classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
               >
                 Continue
@@ -427,9 +404,9 @@ export default function CompleteProfile() {
               <div className="flex flex-col lg:flex-row justify-between w-full gap-10">
                 <div className="flex-col h-full gap-3 w-full lg:w-1/2 flex">
                   <FileUpload
-                    image={displayPhoto.profileImage}
-                    handleFileChange={(file: File) =>
-                      handleFileChange(file, "profileImage")
+                    image={displayPhoto}
+                    handleFileChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      handleImageChange(event)
                     }
                   />
                   <div className="flex items-center gap-1">
@@ -448,7 +425,7 @@ export default function CompleteProfile() {
                       }
                       label="PortfolioUrl (optional)"
                       type="text"
-                      value={formData.portfolioUrl}
+                      value={userInfo.portfolioUrl}
                       placeholder="Link to your portfolioUrl"
                     />
                     {!isUrlValid.portfolioUrl && (
@@ -465,7 +442,7 @@ export default function CompleteProfile() {
                       }
                       label="TwitterUrl (optional)"
                       type="text"
-                      value={formData.twitterUrl}
+                      value={userInfo.twitterUrl}
                       placeholder="Link to your twitterUrl account"
                     />
                     {!isUrlValid.twitterUrl && (
@@ -482,7 +459,7 @@ export default function CompleteProfile() {
                       }
                       label="LinkedInUrl (optional)"
                       type="text"
-                      value={formData.linkedInUrl}
+                      value={userInfo.linkedInUrl}
                       placeholder="Link to your linkedInUrl account"
                     />
                     {!isUrlValid.linkedInUrl && (
@@ -499,13 +476,13 @@ export default function CompleteProfile() {
                   onChange={(e: any) => handleChange("bio", e.target.value)}
                   label="Bio"
                   type="textbox"
-                  value={formData.bio}
+                  value={userInfo.bio}
                   placeholder="Tell us something about you"
                 />
               </div>
 
               <Button
-                link={Submit}
+                link={SubmitHandler}
                 classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
               >
                 Submit
