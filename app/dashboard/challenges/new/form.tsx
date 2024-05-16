@@ -34,8 +34,6 @@ const ChallengeForm = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  console.log(formData)
-
   const changeTiptapContent = (reason: string) => {
     setTipTapContent(reason);
   };
@@ -114,7 +112,7 @@ const ChallengeForm = () => {
                 label="Participation Type "
                 options={[
                   { label: "Individual", value: "individual" },
-                  { label: "Team", value: "team" },
+                  { label: "Team", value: "Team" },
                 ]}
                 value={formData.participationType}
                 placeholder="Select Participation Type"
@@ -164,7 +162,11 @@ const ChallengeForm = () => {
 
           <div className="flex-col items-center justify-center h-full gap-3 w-full">
             <FileUpload
-              image={formData.coverPhoto ? URL.createObjectURL(formData.coverPhoto) : ""}
+              image={
+                formData.coverPhoto
+                  ? URL.createObjectURL(formData.coverPhoto)
+                  : ""
+              }
               handleFileChange={(file: any) => handleFileChange(file)}
             />
             <div className="flex items-center gap-1">
@@ -176,7 +178,10 @@ const ChallengeForm = () => {
           </div>
 
           <div className="flex justify-center w-full">
-            <Button link={handleSubmit} classname="lg:w-[40%] w-full flex items-center justify-center text-white">
+            <Button
+              link={handleSubmit}
+              classname="lg:w-[40%] w-full flex items-center justify-center text-white"
+            >
               {submitting ? "Creating..." : "Create a Challenge"}
             </Button>
           </div>
