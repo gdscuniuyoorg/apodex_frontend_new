@@ -1,11 +1,12 @@
 import { useAppSelector } from "@/common/hooks";
+import Image from "next/image";
 
 const ProfileImage = () => {
   const { user } = useAppSelector((state) => state.auth);
   return (
-    <img
+    <Image
       className="rounded-full w-[30px] lg:w-[40px] h-[30px] lg:h-[40px] object-cover border"
-      src={user?.displayPhoto}
+      src={user?.displayPhoto || ""}
       alt="profile-pic"
     />
   );
