@@ -24,6 +24,7 @@ import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { logout } from "@/redux/features/authSlice";
 import { _clearToken } from "@/services/authServices";
 import dynamic from "next/dynamic";
+import ProfileImage from "../UI/ProfileImage";
 
 type SideBarProps = {
   open: boolean;
@@ -81,13 +82,11 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
 
       <div className="flex flex-col justify-between w-full gap-3 items-center">
         <div className="text-[#a7a9ae] flex w-full items-center justify-start gap-3 ">
-          <img
-            className="rounded-full w-[40px] h-[40px] object-cover"
-            src={user?.image}
-            alt="profile-pic"
-          />
+          <ProfileImage />
           <div>
-            <h1 className="text-neutral-black">{user?.firstName} {user?.lastName}</h1>
+            <h1 className="text-neutral-black">
+              {user?.firstName} {user?.lastName}
+            </h1>
             <p className="text-neutral-300 text-md">{user?.currentRole}</p>
           </div>
         </div>
@@ -96,7 +95,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
           <p className="text-neutral-300">Contact Support</p>
         </button>
         <div
-        role="button"
+          role="button"
           className="border-[1px] w-full center rounded-md p-2 border-[#C2C2C4]/[50%]"
           onClick={logoutAction}
         >
@@ -107,7 +106,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(SideBar), {ssr: false});
+export default dynamic(() => Promise.resolve(SideBar), { ssr: false });
 
 const links = [
   {
