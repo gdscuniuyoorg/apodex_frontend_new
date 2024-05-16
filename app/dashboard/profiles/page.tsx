@@ -18,7 +18,7 @@ const Profiles = () => {
         <div className="w-full gap-10 min-h-[227px] flex lg:flex-row flex-col">
           <div className="h-[227px] w-[250px] border border-lightGray">
             <img
-              src={user?.image}
+              src={user?.displayPhoto}
               alt="dummy1"
               style={{ backgroundPosition: "center center" }}
               className="h-full w-full object-cover rounded-lg"
@@ -26,7 +26,9 @@ const Profiles = () => {
           </div>
           <div className="w-full flex-col gap-2 flex">
             <div className="flex lg:flex-row flex-col between">
-              <p className="text-2xl text-black font-semibold">{user?.firstName} {user?.lastName}</p>
+              <p className="text-2xl text-black font-semibold">
+                {user?.firstName} {user?.lastName}
+              </p>
               <div className="center gap-4">
                 <a href={user?.linkedInUrl} target="_blank">
                   <img src="/linkedin.png" alt="linkedin Logo" />
@@ -58,9 +60,7 @@ const Profiles = () => {
             </div>
             <p className="mt-6">Bio</p>
             <div className="flex lg:flex-row flex-col between">
-              <p className="lg:w-[70%]">
-                {user?.bio}
-              </p>
+              <p className="lg:w-[70%]">{user?.bio}</p>
               <a
                 href={user?.portfolioUrl}
                 target="_blank"
@@ -169,4 +169,4 @@ const Profiles = () => {
 };
 
 // export default Profiles
-export default dynamic(() => Promise.resolve(Profiles), {ssr: false});
+export default dynamic(() => Promise.resolve(Profiles), { ssr: false });
