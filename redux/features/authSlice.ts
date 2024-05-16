@@ -1,9 +1,13 @@
 // slices/counterSlice.js
-import AuthService, { _clearToken, _clearUserData, _saveToken } from "@/services/authServices";
+import AuthService, {
+  _clearToken,
+  _clearUserData,
+  _saveToken,
+} from "@/services/authServices";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as states from "../../services/states";
 
-interface User {
+export interface User {
   _id: string;
   name: string;
   email: string;
@@ -19,7 +23,7 @@ interface User {
   currentRole: string;
   dateOfBirth: string;
   firstName: string;
-  image: string;
+  displayPhoto: string;
   lastName: string;
   linkedInUrl: string;
   portfolioUrl: string;
@@ -47,7 +51,7 @@ export const login = createAsyncThunk(
   async (data: any, { rejectWithValue }) => {
     try {
       const response = await AuthService.login(data);
-      console.log(response)
+      console.log(response);
       _saveToken(response.token);
       return response.user;
     } catch (err: any) {
@@ -113,7 +117,7 @@ const authSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload;
-      console.log(state.user)
+      console.log(state.user);
       state.isAuth = true;
       state.status = states.FETCHED;
     });

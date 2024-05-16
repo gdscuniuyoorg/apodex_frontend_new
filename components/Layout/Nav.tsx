@@ -4,18 +4,18 @@ import SearchIcon from "@/components/Icons/SearchIcon";
 import NotificationsIcon from "@/components/Icons/NotificationsIcon";
 import { HiBars3 } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/common/hooks";
+import ProfileImage from "../UI/ProfileImage";
 
 type SideBarProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
 };
 
-
-const Nav = ({open, setOpen}: SideBarProps) => {
-    const router = useRouter();
-    const { user } = useAppSelector((state) => state.auth);
+const Nav = ({ open, setOpen }: SideBarProps) => {
+  const router = useRouter();
+  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <div className="shadow sticky top-0 bg-white  p-[10px_20px] lg:p-[20px] flex items-center justify-between lg:justify-end">
@@ -40,11 +40,7 @@ const Nav = ({open, setOpen}: SideBarProps) => {
           <button>
             <NotificationsIcon className=" cursor-pointer text-[25px]" />
           </button>
-          <img
-            className="rounded-full w-[30px] lg:w-[40px] h-[30px] lg:h-[40px] object-cover border"
-            src={user?.image}
-            alt="profile-pic"
-          />
+          <ProfileImage />
           <button className="lg:hidden " onClick={() => setOpen(!open)}>
             {open ? (
               <LiaTimesSolid className="text-[30px]" />
@@ -59,6 +55,3 @@ const Nav = ({open, setOpen}: SideBarProps) => {
 };
 
 export default Nav;
-
-
-
