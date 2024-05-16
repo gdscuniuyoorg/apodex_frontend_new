@@ -16,6 +16,7 @@ const Talent = () => {
   }, [dispatch]);
 
   const { data: allTalents, status } = useAppSelector((state) => state.talent);
+  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <main className="lg:px-10 p-10 px-0 container w-full flex flex-col">
@@ -27,7 +28,9 @@ const Talent = () => {
       </section>
       <section className=" flex flex-col lg:flex-row justify-start w-full flex-wrap gap-y-8 gap-x-6">
         {allTalents.users
-          ?.filter((el: User) => el.name && el.displayPhoto)
+          ?.filter(
+            (el: User) => el.name && el.displayPhoto && el.id !== user?.id
+          )
           .map((user: User) => (
             <div
               key={user.id}
