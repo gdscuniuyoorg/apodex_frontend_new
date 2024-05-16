@@ -19,7 +19,7 @@ const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const { status, isAuth } = useAppSelector(state => state.auth);
+  const { status, isAuth } = useAppSelector((state) => state.auth);
 
   const initialFormData: FormData = {
     email: "",
@@ -57,7 +57,12 @@ const Login = () => {
       .unwrap()
       .then((data) => {
         toast.success("You are logged in");
-        router.push("/dashboard");
+
+        if (data.name) {
+          router.push("/dashboard");
+        } else {
+          router.push("/complete-profile");
+        }
       })
       .catch((error) => {
         toast.error(error || "An error occurred during login.");
@@ -82,7 +87,6 @@ const Login = () => {
   //     router.push(destinedPath);
   //   }
   // }, [isAuth, router, searchParams]);
-  
 
   return (
     <main className="w-full h-screen flex center">

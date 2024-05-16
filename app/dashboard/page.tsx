@@ -11,7 +11,6 @@ import VerifyBanner from "@/components/UI/VerifyBanner";
 import { _getUserData } from "@/services/authServices";
 import { useAppSelector } from "@/common/hooks";
 import dynamic from "next/dynamic";
-import { promise } from "zod";
 
 const Home = () => {
   const router = useRouter();
@@ -27,7 +26,10 @@ const Home = () => {
 
       <div className="container">
         <h3 className="lg:text-[33px] text-2xl text-[#535458] font-semibold py-3">
-          Welcome Back, <span className="text-[#0070CC]">{user?.name}</span>
+          Welcome Back,{" "}
+          <span className="text-[#0070CC]">
+            {user?.name && user?.name.split(" ")[0]}
+          </span>
         </h3>
         <HomePageImg />
       </div>
@@ -49,7 +51,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={'/dashboard/challenges/terms-and-conditions/123'}>
+              <Link href={"/dashboard/challenges/terms-and-conditions/123"}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
@@ -76,7 +78,7 @@ const Home = () => {
             skills, unleash your imagination, and make a real impact.`}
             </p>
             <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={'/dashboard/challenges/terms-and-conditions/121'}>
+              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
                 <Button
                   className="p-3 bg-[#D4DDF4] text-[#0070CC]"
                   onClick={handleNext}
@@ -146,4 +148,4 @@ const Home = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Home), {ssr: false});
+export default dynamic(() => Promise.resolve(Home), { ssr: false });

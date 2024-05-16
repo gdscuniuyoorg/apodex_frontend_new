@@ -74,7 +74,12 @@ const SignUp = () => {
       .unwrap()
       .then((data) => {
         toast.success("Sign up successful");
-        router.push("/dashboard"); // Redirect to homepage or dashboard
+
+        if (data.name) {
+          router.push("/dashboard");
+        } else {
+          router.push("/complete-profile");
+        }
       })
       .catch((error) => {
         toast.error(error || "An error occured during signup");
