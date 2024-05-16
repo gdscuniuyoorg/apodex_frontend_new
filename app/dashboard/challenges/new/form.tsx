@@ -111,7 +111,7 @@ const ChallengeForm = () => {
                 }
                 label="Participation Type "
                 options={[
-                  { label: "Individual", value: "individual" },
+                  { label: "Individual", value: "Individual" },
                   { label: "Team", value: "Team" },
                 ]}
                 value={formData.participationType}
