@@ -7,7 +7,7 @@ import AuthService, {
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as states from "../../services/states";
 
-interface User {
+export interface User {
   _id: string;
   name: string;
   email: string;

@@ -22,7 +22,6 @@ export const completeUserProfile = createAsyncThunk(
   }
 );
 
-
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -39,10 +38,10 @@ const userSlice = createSlice({
       state.status = states.FETCHING;
     });
     builder.addCase(completeUserProfile.fulfilled, (state, action) => {
-        const { user } = action.payload.data;
+      const { user } = action.payload.data;
 
-        state.data = user || [];
-        state.status = states.FETCHED;
+      state.data = user || [];
+      state.status = states.FETCHED;
     });
     builder.addCase(completeUserProfile.rejected, (state) => {
       state.status = states.ERROR;

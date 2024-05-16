@@ -11,17 +11,13 @@ const initialState: talentType = {
   status: states.BASE,
 };
 
-export const getAllTalents = createAsyncThunk(
-  "allTalents/get",
-  async () => {
-    try {
-      return await TalentService.getAllTalents();
-    } catch (err: any) {
-      throw err;
-    }
+export const getAllTalents = createAsyncThunk("allTalents/get", async () => {
+  try {
+    return await TalentService.getAllTalents();
+  } catch (err: any) {
+    throw err;
   }
-);
-
+});
 
 const talentSlice = createSlice({
   name: "talent",
@@ -39,10 +35,8 @@ const talentSlice = createSlice({
       state.status = states.FETCHING;
     });
     builder.addCase(getAllTalents.fulfilled, (state, action) => {
-        const { user } = action.payload.data;
-        console.log(user)
-        state.data = user || [];
-        state.status = states.FETCHED;
+      state.data = action.payload.data || [];
+      state.status = states.FETCHED;
     });
     builder.addCase(getAllTalents.rejected, (state) => {
       state.status = states.ERROR;

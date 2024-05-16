@@ -17,8 +17,6 @@ const Nav = ({ open, setOpen }: SideBarProps) => {
   const router = useRouter();
   const { user } = useAppSelector((state) => state.auth);
 
-  console.log(user);
-
   return (
     <div className="shadow sticky top-0 bg-white  p-[10px_20px] lg:p-[20px] flex items-center justify-between lg:justify-end">
       <img
