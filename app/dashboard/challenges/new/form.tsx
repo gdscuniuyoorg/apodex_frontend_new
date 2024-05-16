@@ -6,7 +6,6 @@ import { Button, FileUpload, Input, Select } from "@/components/FormComponents";
 import ChallengeService from "@/services/challengeService";
 import toast from "react-hot-toast";
 import Tiptap from "@/components/tipTap/Tiptap";
-import Image from "next/image";
 
 interface FormData {
   name: string;
@@ -171,7 +170,7 @@ const ChallengeForm = () => {
               handleFileChange={(file: any) => handleFileChange(file)}
             />
             <div className="flex items-center gap-1">
-              <Image src="/info.png" alt="info" />
+              <img src="/info.png" alt="info" />
               <p className="text-gray text-sm">
                 Make sure your photo is not blurry
               </p>

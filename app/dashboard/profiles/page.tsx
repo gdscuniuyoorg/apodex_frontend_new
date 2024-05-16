@@ -2,7 +2,6 @@
 
 import { useAppSelector } from "@/common/hooks";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const Profiles = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -18,7 +17,7 @@ const Profiles = () => {
       <section className="flex-col w-full text-[#535458]">
         <div className="w-full gap-10 min-h-[227px] flex lg:flex-row flex-col">
           <div className="h-[227px] w-[250px] border border-lightGray">
-            <Image
+            <img
               src={user?.displayPhoto || ""}
               alt="dummy1"
               style={{ backgroundPosition: "center center" }}
