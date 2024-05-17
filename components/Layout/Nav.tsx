@@ -9,12 +9,12 @@ import { useAppSelector } from "@/common/hooks";
 import ProfileImage from "../UI/ProfileImage";
 import dynamic from "next/dynamic";
 
-type SideBarProps = {
+type NavBarProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
 };
 
-const Nav = ({ open, setOpen }: SideBarProps) => {
+const Nav = ({ open, setOpen }: NavBarProps) => {
   const router = useRouter();
   const { user } = useAppSelector((state) => state.auth);
 
