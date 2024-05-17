@@ -7,6 +7,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/common/hooks";
 import ProfileImage from "../UI/ProfileImage";
+import dynamic from "next/dynamic";
 
 type SideBarProps = {
   open: boolean;
@@ -40,7 +41,7 @@ const Nav = ({ open, setOpen }: SideBarProps) => {
           <button>
             <NotificationsIcon className=" cursor-pointer text-[25px]" />
           </button>
-          <ProfileImage />
+          <ProfileImage displayPhoto={user?.displayPhoto} />
           <button className="lg:hidden " onClick={() => setOpen(!open)}>
             {open ? (
               <LiaTimesSolid className="text-[30px]" />
@@ -54,4 +55,4 @@ const Nav = ({ open, setOpen }: SideBarProps) => {
   );
 };
 
-export default Nav;
+export default dynamic(() => Promise.resolve(Nav), { ssr: false });

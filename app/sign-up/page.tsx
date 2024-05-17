@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { loginWithGoogle } from "@/redux/features/authSlice";
+import { FETCHING } from "@/services/states";
 
 interface FormData {
   email: string;
@@ -86,12 +87,12 @@ const SignUp = () => {
       });
   }
 
-  useEffect(() => {
-    if (isAuth) {
-      const destinedPath = searchParams.get("route") || "/complete-profile";
-      router.push(destinedPath);
-    }
-  }, [isAuth, router, searchParams, status]);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     const destinedPath = searchParams.get("route") || "/complete-profile";
+  //     router.push(destinedPath);
+  //   }
+  // }, [isAuth, router, searchParams, status]);
 
   return (
     <main className="w-full min-h-screen flex center">
@@ -192,13 +193,13 @@ const SignUp = () => {
             <Button
               validation={!formData.email || !isEmailValid || !passwordMatch}
               classname="bg-blue text-white rounded-sm font-semibold"
+              loading={status === FETCHING}
+              cta="Sign up"
               link={(e: any) => {
                 e.preventDefault();
                 submit();
               }}
-            >
-              Continue
-            </Button>
+            ></Button>
             <div className="flex gap-3">
               <p>Already have an account?</p>
               <Link href="/login" className="text-blue font-semibold">
