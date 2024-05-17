@@ -53,6 +53,21 @@ class UserService {
       throw error;
     }
   }
+  async getProfile(userId: string) {
+    try {
+      const route = userId
+        ? `${ApiRoutes.completeProfile}/${userId}`
+        : `${ApiRoutes.completeProfile}/me`;
+
+      const response = await ApiRequestClient.get(route);
+
+      if (!response) throw new Error("Failed to get Profile");
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default new UserService();

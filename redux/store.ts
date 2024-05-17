@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSReducer from "./features/authSlice";
 import userReducer from "./features/userSlice";
-import talentReducer from "./features/talentSlice"
+import talentReducer from "./features/talentSlice";
 import challengeSlice from "./features/challengeSlice";
+import profileSlice from "./features/profileSlice";
 import { loadAuthState } from "@/shared/rehydrateAuth";
 
 const preloadedState = loadAuthState();
@@ -14,8 +15,9 @@ export const store = configureStore({
     user: userReducer,
     talent: talentReducer,
     challenge: challengeSlice,
+    profile: profileSlice,
   },
-  preloadedState
+  preloadedState,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

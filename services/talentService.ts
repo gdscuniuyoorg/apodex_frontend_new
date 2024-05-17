@@ -5,7 +5,9 @@ export default class TalentService {
   // Onboard user service
   static async getAllTalents() {
     try {
-      const response = await ApiRequestClient.get(ApiRoutes.completeProfile);
+      const response = await ApiRequestClient.get(
+        `${ApiRoutes.completeProfile}?page=1&limit=10`
+      );
 
       if (!response) {
         throw new Error("Unexpected error occurred. Please try again.");

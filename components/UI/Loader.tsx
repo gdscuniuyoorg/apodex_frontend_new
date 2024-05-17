@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import styled from "styled-components";
 import Backdrop from "./Backdrop";
 
@@ -60,7 +60,13 @@ const LoaderStyles = styled.span`
 `;
 
 const Loader = (): ReactElement => {
-  return <Backdrop modal={<LoaderStyles />} />;
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  return (
+    <Backdrop onClose={() => setIsModalOpen(false)} isOpen={true}>
+      <LoaderStyles />
+    </Backdrop>
+  );
 };
 
 export default Loader;

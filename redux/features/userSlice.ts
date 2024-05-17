@@ -39,7 +39,6 @@ const userSlice = createSlice({
     });
     builder.addCase(completeUserProfile.fulfilled, (state, action) => {
       const { user } = action.payload.data;
-
       state.data = user || [];
       state.status = states.FETCHED;
     });

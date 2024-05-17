@@ -33,6 +33,9 @@ export interface User {
   hobbies: string[];
   skills: string[];
   location: string;
+  workExperience: string[];
+  education: string[];
+  language: string[];
 }
 
 interface authType {

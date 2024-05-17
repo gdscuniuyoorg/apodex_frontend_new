@@ -1,9 +1,8 @@
 "use client";
-
 import { useAppSelector } from "@/common/hooks";
 import dynamic from "next/dynamic";
 
-const Profiles = () => {
+const Profile = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   // console.log(user);
@@ -169,4 +168,4 @@ const Profiles = () => {
 };
 
 // export default Profiles
-export default dynamic(() => Promise.resolve(Profiles), { ssr: false });
+export default dynamic(() => Promise.resolve(Profile), { ssr: false });

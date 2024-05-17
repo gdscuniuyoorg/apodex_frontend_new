@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { getAllTalents } from "@/redux/features/talentSlice";
 import { useEffect } from "react";
 import { User } from "@/redux/features/authSlice";
+import Loader from "@/components/UI/Loader";
+import { ERROR, FETCHED, FETCHING } from "@/services/states";
 
 const Talent = () => {
   const router = useRouter();
@@ -27,6 +29,7 @@ const Talent = () => {
         </div>
       </section>
       <section className=" flex flex-col lg:flex-row justify-start w-full flex-wrap gap-y-8 gap-x-6">
+        {status === FETCHING && <Loader />}
         {allTalents.users
           ?.filter(
             (el: User) => el.name && el.displayPhoto && el.id !== user?.id
@@ -46,7 +49,7 @@ const Talent = () => {
               </div>
               <div className="flex-col p-4 flex">
                 <h3 className="text-lg font-semibold">{user.name}</h3>
-                <p className="text-gray">{user.role || "Techie"}</p>
+                <p className="text-gray">{user.currentRole || "Techie"}</p>
               </div>
             </div>
           ))}

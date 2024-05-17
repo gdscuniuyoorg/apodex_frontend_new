@@ -134,7 +134,7 @@ const links = [
     icon: <JobListingIcon />,
   },
   {
-    name: "Profiles",
+    name: "Profile",
     icon: <ProfileIcon />,
   },
   {
