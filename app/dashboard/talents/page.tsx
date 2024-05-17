@@ -7,7 +7,7 @@ import { getAllTalents } from "@/redux/features/talentSlice";
 import { useEffect } from "react";
 import { User } from "@/redux/features/authSlice";
 import Loader from "@/components/UI/Loader";
-import { ERROR, FETCHED } from "@/services/states";
+import { ERROR, FETCHED, FETCHING } from "@/services/states";
 
 const Talent = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const Talent = () => {
         </div>
       </section>
       <section className=" flex flex-col lg:flex-row justify-start w-full flex-wrap gap-y-8 gap-x-6">
-        {status !== FETCHED && status !== ERROR && <Loader />}
+        {status === FETCHING && <Loader />}
         {allTalents.users
           ?.filter(
             (el: User) => el.name && el.displayPhoto && el.id !== user?.id
