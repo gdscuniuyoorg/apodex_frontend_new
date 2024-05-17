@@ -6,6 +6,7 @@ import AuthService, {
 } from "@/services/authServices";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as states from "../../services/states";
+import { completeUserProfile } from "./userSlice";
 
 export interface User {
   _id: string;
@@ -54,7 +55,6 @@ export const login = createAsyncThunk(
   async (data: any, { rejectWithValue }) => {
     try {
       const response = await AuthService.login(data);
-      console.log(response);
       _saveToken(response.token);
       return response.user;
     } catch (err: any) {
@@ -138,6 +138,9 @@ const authSlice = createSlice({
     });
     builder.addCase(signUp.rejected, (state) => {
       state.status = states.ERROR;
+    });
+    builder.addCase(completeUserProfile.fulfilled, (state, action) => {
+      state.user = action.payload.data;
     });
   },
 });

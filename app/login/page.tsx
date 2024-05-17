@@ -5,7 +5,7 @@ import { Button, Input } from "@/components/FormComponents";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { login, loginWithGoogle } from "@/redux/features/authSlice";
 import * as states from "@/services/states";
@@ -17,7 +17,6 @@ interface FormData {
 
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const { status, isAuth } = useAppSelector((state) => state.auth);
 
