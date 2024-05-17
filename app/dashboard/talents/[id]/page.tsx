@@ -20,8 +20,6 @@ const TalentProfile = () => {
 
   const { data, status } = useAppSelector((state) => state.profile);
 
-  console.log(data);
-
   const hobbies = ["Fishing", "Hunting", "Eating", "Movies"];
   const skills = [
     "Laravel",
@@ -32,13 +30,6 @@ const TalentProfile = () => {
     "Swift",
     "Communication",
     "Researching",
-  ];
-  const interests = [
-    "Design",
-    "Front-end Development",
-    "Back-end Development",
-    "Animation",
-    "Game Development",
   ];
 
   return (
