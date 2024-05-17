@@ -5,8 +5,6 @@ import dynamic from "next/dynamic";
 const Profile = () => {
   const { user } = useAppSelector((state) => state.auth);
 
-  // console.log(user);
-
   const hobbies = user?.hobbies;
   const skills = user?.skills;
   const interests = user?.techInterests;
