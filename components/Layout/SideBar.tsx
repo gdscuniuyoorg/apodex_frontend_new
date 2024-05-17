@@ -82,7 +82,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
 
       <div className="flex flex-col justify-between w-full gap-3 items-center">
         <div className="text-[#a7a9ae] flex w-full items-center justify-start gap-3 ">
-          <ProfileImage />
+          <ProfileImage displayPhoto={user?.displayPhoto} />
           <div>
             <h1 className="text-neutral-black">
               {user?.firstName} {user?.lastName}

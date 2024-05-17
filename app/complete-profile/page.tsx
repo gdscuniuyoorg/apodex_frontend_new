@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Button, FileUpload, Input } from "@/components/FormComponents";
 import ActivePage from "@/components/ProfileSetUp/ActivePage";
 import { useRouter } from "next/navigation";
-import { FETCHING } from "@/services/states";
+import * as states from "@/services/states";
 
 interface UserInfoType {
   firstName: string;
@@ -30,7 +30,7 @@ export default function CompleteProfile() {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector((state) => state.profile);
+  const { status } = useAppSelector((state) => state.user);
 
   const [userInfo, setUserInfo] = useState<UserInfoType>({
     firstName: "",
@@ -487,7 +487,7 @@ export default function CompleteProfile() {
                 link={SubmitHandler}
                 classname="w-full bg-[#0072CE] py-2 px-2 text-white font-medium text-xl text-center rounded"
                 cta="Submit"
-                loading={status === FETCHING}
+                loading={status === states.FETCHING}
               ></Button>
             </div>
           </div>
