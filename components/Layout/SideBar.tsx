@@ -1,13 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import NavLink from "../atoms/NavLink";
-import { GoHomeFill } from "react-icons/go";
-import { IoIosPeople } from "react-icons/io";
-import { MdForum } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
-import { MdReportProblem } from "react-icons/md";
-import { MdUpdate } from "react-icons/md";
-import { BsFillBagFill } from "react-icons/bs";
 import NotificationsIcon from "@/components/Icons/NotificationsIcon";
 import HomeIcon from "@/components/Icons/HomeIcon";
 import TalentIcon from "@/components/Icons/TalentIcon";

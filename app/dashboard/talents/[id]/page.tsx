@@ -33,7 +33,7 @@ const TalentProfile = () => {
   ];
 
   return (
-    <main className="lg:px-10 p-10 px-0 gap-10 w-full flex flex-col">
+    <main className="lg:px-10 p-10 px-4 gap-10 w-full flex flex-col">
       {status === FETCHING && <Loader />}
       {data && (
         <Fragment>
@@ -56,12 +56,12 @@ const TalentProfile = () => {
                   className="h-full w-full object-cover rounded-lg"
                 />
               </div>
-              <div className="w-full flex-col gap-2 flex">
-                <div className="flex lg:flex-row flex-col between">
+              <div className="flex w-full flex-col gap-6 ">
+                <div className="flex lg:flex-row flex-col md:justify-between flex-start gap-3">
                   <p className="text-2xl text-black font-semibold">
                     {data.name}
                   </p>
-                  <div className="center gap-4">
+                  <div className="flex items-center gap-4">
                     {data.linkedInUrl && (
                       <a href={data.linkedInUrl} target="_blank">
                         <img src="/linkedin.png" alt="linkedin Logo" />
@@ -75,38 +75,42 @@ const TalentProfile = () => {
                     <a
                       href="#"
                       target="_blank"
-                      className="center ml-6 gap-2 p-2 border border-lightGray"
+                      className="center gap-2 p-2 border border-lightGray"
                     >
                       <img src="/share.png" alt="share Logo" />
                       <p>Share</p>
                     </a>
                   </div>
                 </div>
-                <p>
-                  <span className="font-semibold">{data.currentRole}</span> at{" "}
-                  <span className="font-semibold">{data.company}</span>
-                </p>
-                <div className="flex gap-2">
-                  <img
-                    src="/location.png"
-                    alt="location logo"
-                    className="object-contain"
-                  />
-                  <p>{data.location}</p>
+                <div className="flex gap-2 flex-col">
+                  <p className="">
+                    <span className="font-semibold">{data.currentRole}</span> at{" "}
+                    <span className="font-semibold">{data.company}</span>
+                  </p>
+                  <div className="flex gap-2">
+                    <img
+                      src="/location.png"
+                      alt="location logo"
+                      className="object-contain"
+                    />
+                    <p>{data.location}</p>
+                  </div>
                 </div>
-                <p className="mt-6">Bio</p>
-                <div className="flex lg:flex-row flex-col between">
-                  <p className="lg:w-[70%]">{data.bio || ""}</p>
-                  {data.portfolioUrl && (
-                    <a
-                      href={data.portfolioUrl}
-                      target="_blank"
-                      className="center ml-6 gap-2 p-3 border border-lightGray"
-                    >
-                      <img src="/view.png" alt="view Logo" />
-                      <p>View Portfolio</p>
-                    </a>
-                  )}
+                <div className="flex gap-2 flex-col">
+                  <p className="font-bold">Bio</p>
+                  <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
+                    <p className="lg:w-[70%]">{data.bio || ""}</p>
+                    {data.portfolioUrl && (
+                      <a
+                        href={data.portfolioUrl}
+                        target="_blank"
+                        className="center gap-2 p-2 border border-lightGray w-fit"
+                      >
+                        <img src="/view.png" alt="view Logo" />
+                        <p>View Portfolio</p>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
