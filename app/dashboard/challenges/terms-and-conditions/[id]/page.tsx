@@ -73,13 +73,11 @@ const TermsAndConditions = () => {
               ideas to life. Let's hack the future together!`}
             </p>
           </div>
-          {/* <div
+          <div
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(singleChallenge?.rules || ""),
             }}
-          >
-            {}
-          </div> */}
+          ></div>
 
           <div className="w-full flex flex-row gap-5  py-5">
             <Button
