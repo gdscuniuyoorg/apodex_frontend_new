@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import EmailSentImg from "@/components/Icons/EmailSentImg";
-import { Input, Button } from "@/components/FormComponents";
+import { Input, Button } from "@/components/molecules/FormComponents";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 

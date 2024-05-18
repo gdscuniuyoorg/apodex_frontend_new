@@ -36,4 +36,34 @@ export default class ChallengeService {
 
     return response.data;
   }
+
+  static async getChallenges() {
+    const response = await ApiRequestClient.get(ApiRoutes.createChallenge);
+
+    if (!response) {
+      return null;
+    }
+
+    if (response.data.status === "failed") {
+      throw new Error(response.data.message);
+    }
+
+    return response.data;
+  }
+
+  static async getChallenge(id: string) {
+    const response = await ApiRequestClient.get(
+      `${ApiRoutes.createChallenge}/${id}`
+    );
+
+    if (!response) {
+      return null;
+    }
+
+    if (response.data.status === "failed") {
+      throw new Error(response.data.message);
+    }
+
+    return response.data;
+  }
 }

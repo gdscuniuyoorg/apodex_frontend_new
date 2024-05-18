@@ -105,36 +105,31 @@ const Page = () => {
           Other Challenges
         </h2>
         <div className="flex flex-col">
-          <OtherChallenges>
-            <p className="text-[13px] text-[#535458]">{challengeName}</p>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </OtherChallenges>
-          <OtherChallenges>
-            <p className="text-[13px] text-[#535458]">{challengeName}</p>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </OtherChallenges>
-          <OtherChallenges>
-            <p className="text-[13px] text-[#535458]">{challengeName}</p>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </OtherChallenges>
-          <OtherChallenges>
-            <p className="text-[13px] text-[#535458]">{challengeName}</p>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </OtherChallenges>
-          <OtherChallenges>
-            <p className="text-[13px] text-[#535458]">{challengeName}</p>
-            <a href="" className="text-[#0070CC] text-[16]">
-              View
-            </a>
-          </OtherChallenges>
+          <OtherChallenges
+            title="GDSC"
+            activity="started a new poll ending in 48 hours"
+            link="#"
+          />
+          <OtherChallenges
+            title="GDSC"
+            activity="started a new poll ending in 48 hours"
+            link="#"
+          />
+          <OtherChallenges
+            title="GDSC"
+            activity="started a new poll ending in 48 hours"
+            link="#"
+          />
+          <OtherChallenges
+            title="GDSC"
+            activity="started a new poll ending in 48 hours"
+            link="#"
+          />
+          <OtherChallenges
+            title="GDSC"
+            activity="started a new poll ending in 48 hours"
+            link="#"
+          />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
-import { Button, Input } from "@/components/FormComponents";
+import { Button, Input } from "@/components/molecules/FormComponents";
 import { signUp } from "@/redux/features/authSlice";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -19,7 +19,7 @@ interface FormData {
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
-  const { status, isAuth } = useAppSelector((state) => state.auth);
+  const { status, isAuth } = useAppSelector((state: any) => state.auth);
   const searchParams = useSearchParams();
   const router = useRouter();
 

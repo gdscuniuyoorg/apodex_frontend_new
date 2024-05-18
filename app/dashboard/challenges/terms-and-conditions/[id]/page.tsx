@@ -1,12 +1,24 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/FormComponents";
+import { useAppDispatch, useAppSelector } from "@/common/hooks";
+import { getChallenge } from "@/redux/features/challengeSlice";
+import { FETCHING } from "@/services/states";
+import Loader from "@/components/UI/Loader";
+import DOMPurify from "isomorphic-dompurify";
+import Button from "@/components/buttons/Button";
 
 const TermsAndConditions = () => {
   const router = useRouter();
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const { singleChallenge, status } = useAppSelector(
+    (state) => state.challenge
+  );
+
+  useEffect(() => {
+    dispatch(getChallenge(id as string));
+  }, [dispatch, id]);
 
   const handlePrev = () => {
     router.push("/dashboard");
@@ -20,16 +32,18 @@ const TermsAndConditions = () => {
     }
   };
 
-  console.log(id);
+  if (status === FETCHING) {
+    return <Loader />;
+  }
   return (
     <div className="">
       {/* <div className="bg-[#D9D9D9] w-full h-40 sticky top-0"></div> */}
       <div className="flex justify-between container py-10">
-        <div className=" lg:flex hidden">
+        <div className=" lg:flex hidden flex-col">
           <h2 className="font-medium text-[16px] text-[#535458]">Details</h2>
           <div className="flex flex-col py-3 text-[13px] text-[#88898C]">
             <a href="#Details" className="pt-2">
-              Details
+              Specifics
             </a>
             <a href="#Prizes" className="pt-2">
               Prizes
@@ -45,7 +59,7 @@ const TermsAndConditions = () => {
               className="text-[33px] font-semibold text-[#535458] text-center"
               id="Details"
             >
-              Tech Ignite Hackathon 2024
+              {singleChallenge?.name}
             </h2>
             <p className="text-[16px] text-[#88898C] pt-5">
               {`Join us for an exhilarating weekend of innovation and
@@ -59,101 +73,27 @@ const TermsAndConditions = () => {
               ideas to life. Let's hack the future together!`}
             </p>
           </div>
-          {/* Prizes */}
-          <div>
-            <h2
-              className="text-[#88898C] font-semibold text-[23px] text-center py-5"
-              id="Prizes"
-            >
-              Prizes
-            </h2>
-            <p className="text-[#88898C] text-[16px]">
-              {` As a token of appreciation, we will be giving swags to everyone
-              who participates in the Hackathon. We will also recognize all the
-              participating teams in the event. The Winning team, the first
-              runner up and the second runner up will receive other prizes which
-              are as follows:`}
-            </p>
-            <div className="text-[#535458] text-[16px] font-medium text-center pt-5">
-              <p className="pt-2 ">Winning Team - 10k, GDSC cup, Data</p>
-              <p className="pt-2 ">First Runner up - 6k, Data</p>
-              <p className="pt-2">Second Runner up - 3k</p>
-            </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(singleChallenge?.rules || ""),
+            }}
+          >
+            {}
           </div>
 
-          {/* Rules */}
-
-          <div>
-            <h2 className="text-[#88898C] font-semibold text-[23px] text-center py-5">
-              Rules
-            </h2>
-            <p className="text-[#88898C] text-[16px]">
-              {`Eligibility: Participation in the hackathon is open to individuals
-              who meet the specified eligibility criteria, including age
-              restrictions and any other requirements outlined by the
-              organizers. Code of Conduct: Participants are expected to conduct
-              themselves in a respectful and professional manner at all times.
-              Harassment, discrimination, or any form of inappropriate behavior
-              will not be tolerated and may result in immediate disqualification
-              from the event. Team Formation: Participants may form teams of up
-              to [number] members. Teams may be formed prior to the event or
-              during the team formation period specified by the organizers.
-              Participants may not join or switch teams after the designated
-              deadline. Original Work: All code, designs, and solutions
-              developed during the hackathon must be original and created solely
-              by the participating team. The use of pre-existing code or
-              solutions not developed during the event is strictly prohibited.
-              Intellectual Property: Participants retain ownership of the
-              intellectual property rights to their submissions. By
-              participating in the hackathon, participants grant the organizers
-              the right to use, display, and promote their submissions for
-              non-commercial purposes. Judging Criteria: Submissions will be
-              judged based on criteria such as innovation, functionality,
-              design, and impact. The judging criteria will be communicated to
-              participants prior to the start of the hackathon. Submission
-              Deadline: Submissions must be completed and submitted by the
-              deadline specified by the organizers. Late submissions will not be
-              accepted or considered for judging. Technology and Tools:
-              Participants are free to use any programming languages,
-              frameworks, libraries, and tools of their choice, provided they
-              comply with any restrictions or guidelines specified by the
-              organizers. Legal Compliance: Participants must comply with all
-              applicable laws, regulations, and policies, including those
-              related to data privacy, intellectual property, and export
-              controls. Disqualification: Participants may be disqualified from
-              the hackathon for violations of the terms and conditions, code of
-              conduct, or any other rules specified by the organizers.
-            `}
-            </p>
-          </div>
-
-          {/* Buttons */}
-          <div className="w-full flex flex-row center gap-5  py-5">
+          <div className="w-full flex flex-row gap-5  py-5">
             <Button
-              link={handlePrev}
-              classname="border-[1px] border-neutral-300 text-neutral-600 !bg-transparent  w-full"
+              onClick={handlePrev}
+              className="bg-[#D4DDF4] text-[#0070CC] w-full font-semibold items-center justify-center"
             >
               Decline
             </Button>
             <Button
-              link={handleNext}
-              classname="bg-blue text-white rounded-sm w-full font-semibold"
+              onClick={handleNext}
+              className="bg-blue text-white rounded-sm w-full font-semibold items-center justify-center"
             >
               Agree
             </Button>
-
-            {/* <Link
-              link={handlePrev}
-              className="w-[50%] flex items-center justify-center  border-none bg-[#C2C2C433] py-4  text-[#6D6E72]"
-            >
-              Decline
-            </Link>
-            <Link
-              href={`/dashboard/challenges/terms-and-conditions/${id}/team-form`}
-              className="w-[50%] flex items-center justify-center  border-none bg-[#C2C2C433] py-4  text-[#6D6E72]"
-            >
-              Agree
-            </Link> */}
           </div>
         </div>
       </div>

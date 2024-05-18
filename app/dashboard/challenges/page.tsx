@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button } from "@/components/FormComponents";
+import { Button } from "@/components/molecules/FormComponents";
 import Challengeimg from "@/components/Icons/Challengeimg";
 import PlusIcon from "@/components/Icons/PlusIcon";
 import ChallengeForm from "./new/form";

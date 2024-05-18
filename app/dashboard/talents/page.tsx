@@ -12,13 +12,12 @@ import { ERROR, FETCHED, FETCHING } from "@/services/states";
 const Talent = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { data: allTalents, status } = useAppSelector((state) => state.talent);
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getAllTalents());
   }, [dispatch]);
-
-  const { data: allTalents, status } = useAppSelector((state) => state.talent);
-  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <main className="lg:px-10 p-10 px-0 container w-full flex flex-col">

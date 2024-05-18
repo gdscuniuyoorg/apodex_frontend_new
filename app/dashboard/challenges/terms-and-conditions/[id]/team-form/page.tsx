@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Button } from "@/components/FormComponents";
+import { Input, Button } from "@/components/molecules/FormComponents";
 import ChallengeService from "@/services/challengeService";
 import { useAppDispatch } from "@/common/hooks";
 import { joinAChallenge } from "@/redux/features/challengeSlice";

@@ -7,7 +7,7 @@ import UserService from "@/services/userServices";
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { completeUserProfile } from "@/redux/features/userSlice";
 import Image from "next/image";
-import { Button, FileUpload, Input } from "@/components/FormComponents";
+import { Button, FileUpload, Input } from "@/components/molecules/FormComponents";
 import ActivePage from "@/components/ProfileSetUp/ActivePage";
 import { useRouter } from "next/navigation";
 import * as states from "@/services/states";

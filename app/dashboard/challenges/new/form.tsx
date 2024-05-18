@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Button, FileUpload, Input, Select } from "@/components/FormComponents";
+import {
+  Button,
+  FileUpload,
+  Input,
+  Select,
+} from "@/components/molecules/FormComponents";
 import ChallengeService from "@/services/challengeService";
 import toast from "react-hot-toast";
 import Tiptap from "@/components/tipTap/Tiptap";
@@ -18,8 +22,6 @@ interface FormData {
 }
 
 const ChallengeForm = () => {
-  const router = useRouter();
-
   const [tipTapContent, setTipTapContent] = useState<string>("");
   const initialFormData: FormData = {
     name: "",
