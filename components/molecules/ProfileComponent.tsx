@@ -22,7 +22,7 @@ const ProfileComponent = ({
       {status === FETCHING && <Loader />}
       {data && (
         <Fragment>
-          {myProfile && (
+          {!myProfile && (
             <Link href="/dashboard/talents" className="">
               <Image
                 src="/back.png"

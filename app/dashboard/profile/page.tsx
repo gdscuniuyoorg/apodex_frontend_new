@@ -6,13 +6,7 @@ import dynamic from "next/dynamic";
 const Profile = () => {
   const { user, status } = useAppSelector((state: any) => state.auth);
 
-  return (
-    <ProfileComponent
-      status={status}
-      data={user}
-      myProfile={false}
-    />
-  );
+  return <ProfileComponent status={status} data={user} myProfile={true} />;
 };
 
 // export default Profiles
