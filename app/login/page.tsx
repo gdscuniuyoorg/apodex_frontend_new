@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Button, Input } from "@/components/FormComponents";
+import { Button, Input } from "@/components/molecules/FormComponents";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ interface FormData {
 const Login = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { status, isAuth } = useAppSelector((state) => state.auth);
+  const { status, isAuth } = useAppSelector((state: any) => state.auth);
 
   const initialFormData: FormData = {
     email: "",

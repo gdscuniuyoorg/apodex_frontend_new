@@ -16,7 +16,7 @@ type NavBarProps = {
 
 const Nav = ({ open, setOpen }: NavBarProps) => {
   const router = useRouter();
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state: any) => state.auth);
 
   return (
     <div className="shadow sticky top-0 bg-white  p-[10px_20px] lg:p-[20px] flex items-center justify-between lg:justify-end">
