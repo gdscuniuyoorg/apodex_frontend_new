@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { Fragment } from "react";
 import Loader from "@/components/UI/Loader";
 import { User } from "@/redux/features/authSlice";
 import { FETCHING } from "@/services/states";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 
 const ProfileComponent = ({
   status,

@@ -2,7 +2,7 @@
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button } from "@/components/FormComponents";
+import { Button } from "@/components/molecules/FormComponents";
 
 const TermsAndConditions = () => {
   const router = useRouter();
