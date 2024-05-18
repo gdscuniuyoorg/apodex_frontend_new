@@ -1,24 +1,29 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import HomePageImg from "@/components/Icons/HomePageImg";
-import Lightbulb from "@/components/Icons/Lightbulb";
-import Button from "@/components/buttons/Button";
 import OtherChallenges from "@/components/buttons/OtherChallenges";
-import Link from "next/link";
 import VerifyBanner from "@/components/UI/VerifyBanner";
 import { _getUserData } from "@/services/authServices";
-import { useAppSelector } from "@/common/hooks";
+import { useAppSelector, useAppDispatch } from "@/common/hooks";
 import dynamic from "next/dynamic";
+import { IChallenge, getAllChallenges } from "@/redux/features/challengeSlice";
+import Challenge from "@/components/atoms/Challenge";
+import { FETCHING } from "@/services/states";
+import Loader from "@/components/UI/Loader";
 
 const Home = () => {
-  const router = useRouter();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const { data, status } = useAppSelector((state) => state.challenge);
 
-  const handleNext = () => {
-    router.push("/dashboard/challenges/terms-and-conditions");
-  };
+  useEffect(() => {
+    dispatch(getAllChallenges());
+  }, [dispatch]);
+
+  if (status === FETCHING) {
+    return <Loader />;
+  }
 
   return (
     <div className="py-2">
@@ -38,59 +43,8 @@ const Home = () => {
       <div className="container flex lg:flex-row flex-col gap-5 py-10">
         <div>
           <h2 className="font-medium text-[19px] text-[#88898C]">Challenges</h2>
-          <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[50vw]  ">
-            <Lightbulb />
-            <h2 className="text-[#535458] text-[16px] font-bold py-4">
-              Tech Ignite Hackathon 2024
-            </h2>
-            <p className="text-[#88898C] text-[13px]">
-              {`💡 Bring your boldest ideas to life, network with like-minded
-            innovators, and seize the opportunity to win exciting prizes and
-            recognition. Whether you're a seasoned developer, a design virtuoso,
-            or a visionary entrepreneur, this is your chance to showcase your
-            skills, unleash your imagination, and make a real impact.`}
-            </p>
-            <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/123"}>
-                <Button
-                  className="p-3 bg-[#D4DDF4] text-[#0070CC]"
-                  onClick={handleNext}
-                >
-                  Register Now
-                </Button>
-              </Link>
 
-              <p className="text-[#A5A5A8] text-[13px]">
-                *Registration ends in 1:364:23:59:34*
-              </p>
-            </div>
-          </div>
-          <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[50vw]  ">
-            <Lightbulb />
-            <h2 className="text-[#535458] text-[16px] font-bold py-4">
-              Solana EcoSystem Ignite 2025
-            </h2>
-            <p className="text-[#88898C] text-[13px]">
-              {`💡 Bring your boldest ideas to life, network with like-minded
-            innovators, and seize the opportunity to win exciting prizes and
-            recognition. Whether you're a seasoned developer, a design virtuoso,
-            or a visionary entrepreneur, this is your chance to showcase your
-            skills, unleash your imagination, and make a real impact.`}
-            </p>
-            <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
-              <Link href={"/dashboard/challenges/terms-and-conditions/121"}>
-                <Button
-                  className="p-3 bg-[#D4DDF4] text-[#0070CC]"
-                  onClick={handleNext}
-                >
-                  Register Now
-                </Button>
-              </Link>
-              <p className="text-[#A5A5A8] text-[13px]">
-                *Registration ends in 1:364:23:59:34*
-              </p>
-            </div>
-          </div>
+          {data && data.map((el) => <Challenge challenge={el} />)}
         </div>
 
         <div className="p-6 border border-[#C2C2C44D] rounded-lg sm:w-full  ">

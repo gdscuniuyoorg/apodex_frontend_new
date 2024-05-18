@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   Button,
   FileUpload,
@@ -23,8 +22,6 @@ interface FormData {
 }
 
 const ChallengeForm = () => {
-  const router = useRouter();
-
   const [tipTapContent, setTipTapContent] = useState<string>("");
   const initialFormData: FormData = {
     name: "",
