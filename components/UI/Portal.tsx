@@ -9,7 +9,7 @@ const Portal = ({ children }: { children: ReactElement }) => {
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
-  });
+  }, []);
 
   return mounted ? createPortal(children, document.body) : null;
 };

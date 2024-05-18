@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Button } from "@/components/molecules/FormComponents";
 import { useAppDispatch, useAppSelector } from "@/common/hooks";
 import { getChallenge } from "@/redux/features/challengeSlice";
 import { FETCHING } from "@/services/states";
 import Loader from "@/components/UI/Loader";
 import DOMPurify from "isomorphic-dompurify";
+import Button from "@/components/buttons/Button";
 
 const TermsAndConditions = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const TermsAndConditions = () => {
 
   useEffect(() => {
     dispatch(getChallenge(id as string));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const handlePrev = () => {
     router.push("/dashboard");
@@ -81,16 +81,16 @@ const TermsAndConditions = () => {
             {}
           </div>
 
-          <div className="w-full flex flex-row center gap-5  py-5">
+          <div className="w-full flex flex-row gap-5  py-5">
             <Button
-              link={handlePrev}
-              classname="border-[1px] border-neutral-300 text-neutral-600 !bg-transparent w-full rounded-sm "
+              onClick={handlePrev}
+              className="bg-[#D4DDF4] text-[#0070CC] w-full font-semibold items-center justify-center"
             >
               Decline
             </Button>
             <Button
-              link={handleNext}
-              classname="bg-blue text-white rounded-sm w-full font-semibold"
+              onClick={handleNext}
+              className="bg-blue text-white rounded-sm w-full font-semibold items-center justify-center"
             >
               Agree
             </Button>

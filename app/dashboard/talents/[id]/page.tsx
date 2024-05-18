@@ -13,7 +13,7 @@ const TalentProfile = () => {
 
   useEffect(() => {
     dispatch(getProfile(id as string));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const { data, status } = useAppSelector((state) => state.profile);
 

@@ -40,61 +40,46 @@ const Home = () => {
       </div>
 
       {/* Challenge Description */}
-      <div className="container flex lg:flex-row flex-col gap-5 py-10">
-        <div>
+      <div className="container flex lg:flex-row flex-col gap-5 py-10 w-full">
+        <div className="flex-1">
           <h2 className="font-medium text-[19px] text-[#88898C]">Challenges</h2>
 
-          {data && data.map((el) => <Challenge challenge={el} />)}
+          {data &&
+            data.map((el: IChallenge) => (
+              <Challenge key={el.id} challenge={el} />
+            ))}
         </div>
 
-        <div className="p-6 border border-[#C2C2C44D] rounded-lg sm:w-full  ">
-          <h2 className="text-[19px] font-medium text-[#88898C]">Activity</h2>
+        <div className="p-6 border border-[#C2C2C44D] rounded-lg md:w-fit w-full flex-0">
+          <h2 className="text-[19px] font-medium text-[#88898C] text-center">
+            Activity
+          </h2>
           <div className="flex flex-col justify-between items-center">
-            <OtherChallenges className="">
-              <p className="text-[13px] text-[#535458]">
-                <span className="text-[#131C2D]">GDSC </span>started a new poll
-                ending in 48 hours
-              </p>
-              <a href="" className="text-[#0070CC] text-[16]">
-                View
-              </a>
-            </OtherChallenges>
-            <OtherChallenges className="">
-              <p className="text-[13px] text-[#535458]">
-                <span className="text-[#131C2D]">GDSC </span>started a new poll
-                ending in 48 hours
-              </p>
-              <a href="" className="text-[#0070CC] text-[16]">
-                View
-              </a>
-            </OtherChallenges>
-            <OtherChallenges className="">
-              <p className="text-[13px] text-[#535458]">
-                <span className="text-[#131C2D]">GDSC </span>started a new poll
-                ending in 48 hours
-              </p>
-              <a href="" className="text-[#0070CC] text-[16]">
-                View
-              </a>
-            </OtherChallenges>
-            <OtherChallenges className="">
-              <p className="text-[13px] text-[#535458]">
-                <span className="text-[#131C2D]">GDSC </span>started a new poll
-                ending in 48 hours
-              </p>
-              <a href="" className="text-[#0070CC] text-[16]">
-                View
-              </a>
-            </OtherChallenges>
-            <OtherChallenges className="">
-              <p className="text-[13px] text-[#535458]">
-                <span className="text-[#131C2D]">GDSC </span>started a new poll
-                ending in 48 hours
-              </p>
-              <a href="" className="text-[#0070CC] text-[16]">
-                View
-              </a>
-            </OtherChallenges>
+            <OtherChallenges
+              title="GDSC"
+              activity="started a new poll ending in 48 hours"
+              link="#"
+            />
+            <OtherChallenges
+              title="GDSC"
+              activity="started a new poll ending in 48 hours"
+              link="#"
+            />
+            <OtherChallenges
+              title="GDSC"
+              activity="started a new poll ending in 48 hours"
+              link="#"
+            />
+            <OtherChallenges
+              title="GDSC"
+              activity="started a new poll ending in 48 hours"
+              link="#"
+            />
+            <OtherChallenges
+              title="GDSC"
+              activity="started a new poll ending in 48 hours"
+              link="#"
+            />
           </div>
         </div>
       </div>

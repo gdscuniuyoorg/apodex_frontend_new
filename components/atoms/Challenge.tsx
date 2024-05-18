@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Challenge = ({ challenge }: { challenge: IChallenge }) => {
   return (
-    <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg sm:w-full md:w-[50vw]  ">
+    <div className="p-6 mt-5 border border-[#C2C2C44D] rounded-lg w-full">
       <Lightbulb />
       <h2 className="text-[#535458] text-[16px] font-bold py-4">
         {challenge.name}
@@ -13,7 +13,7 @@ const Challenge = ({ challenge }: { challenge: IChallenge }) => {
       <p className="text-[#88898C] text-[13px]">
         {`💡 ${challenge.description}`}
       </p>
-      <div className="flex lg:flex-row flex-col gap-5 pt-5 items-center">
+      <div className="flex lg:flex-row flex-col gap-5 pt-5 md:items-center ">
         <Link
           href={`/dashboard/challenges/terms-and-conditions/${challenge.id}`}
         >
