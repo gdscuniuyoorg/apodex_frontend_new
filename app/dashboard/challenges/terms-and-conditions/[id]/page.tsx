@@ -36,8 +36,12 @@ const TermsAndConditions = () => {
     return <Loader />;
   }
   return (
-    <div className="">
-      {/* <div className="bg-[#D9D9D9] w-full h-40 sticky top-0"></div> */}
+    <div className="w-full">
+      <img
+        src={singleChallenge?.coverPhoto}
+        alt=""
+        className="w-full md:h-[22rem] h-[15rem]"
+      />
       <div className="flex justify-between container py-10">
         <div className=" lg:flex hidden flex-col">
           <h2 className="font-medium text-[16px] text-[#535458]">Details</h2>

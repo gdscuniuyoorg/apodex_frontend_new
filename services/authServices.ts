@@ -67,7 +67,7 @@ export default class AuthService {
         throw new Error("Unexpected error occurred. Please try again.");
       }
 
-      console.log(response.data)
+      console.log(response.data);
 
       _saveToken(response.data.token);
       _saveUserData(response.data.data);
@@ -103,6 +103,7 @@ export default class AuthService {
       }
 
       _saveToken(response.data.token);
+      _saveUserData(response.data.user);
       return response.data;
     } catch (error) {
       throw error;

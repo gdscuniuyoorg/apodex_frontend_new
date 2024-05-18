@@ -20,7 +20,6 @@ interface FormData {
 const SignUp = () => {
   const dispatch = useAppDispatch();
   const { status, isAuth } = useAppSelector((state: any) => state.auth);
-  const searchParams = useSearchParams();
   const router = useRouter();
 
   const initialFormData: FormData = {
