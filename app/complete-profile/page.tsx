@@ -289,7 +289,7 @@ export default function CompleteProfile() {
                   <label className="font-medium text-base text-[#817E7E]">
                     Tech Interests
                   </label>
-                  <div className="flex flex-wrap py-1 bg-foundation items-center outline-none border-2 border-lightGray focus:outline-none rounded">
+                  <div className="flex flex-wrap py-1 bg-white items-center outline-none border-2 border-lightGray focus:outline-none rounded">
                     <div className="flex flex-wrap flex-grow w-full gap-2 pl-2">
                       {userInfo.techInterests.map((interest, index) => (
                         <span
@@ -322,7 +322,7 @@ export default function CompleteProfile() {
                         onChange={handleInterestChange}
                         onKeyDown={handleInterestKeyDown}
                         placeholder="Type an interest and press Enter"
-                        className="focus:outline-none min-w-[150px] flex-grow py-2 px-4 bg-foundation"
+                        className="focus:outline-none min-w-[150px] flex-grow py-2 px-4 bg-white"
                       />
                     )}
                   </div>
@@ -347,6 +347,7 @@ export default function CompleteProfile() {
                   type="text"
                   value={userInfo.currentRole}
                   placeholder="UX Designer"
+                  
                 />
               </div>
 
@@ -357,6 +358,7 @@ export default function CompleteProfile() {
                   type="text"
                   value={userInfo.company}
                   placeholder="John Doe & Sonsl ltd"
+                  
                 />
               </div>
 
