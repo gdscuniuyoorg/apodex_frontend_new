@@ -3,14 +3,12 @@
 import Nav from "@/components/Layout/Nav";
 import SideBar from "@/components/Layout/SideBar";
 import { useState } from "react";
-import { useAuth } from "@/shared/useAuth";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useAuth();
   const [open, setOpen] = useState(false);
   return (
     <div
